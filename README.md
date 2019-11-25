@@ -1,7 +1,4 @@
-# Code Institute
+# This Project
 
-Welcome USER_NAME,
-
-We have preinstalled all of the tools you need to get started.
-
-Happy coding!
+This project is a full-stack frameworks milestone project for code institute.
+Built using the GITPOD template provided by Code Institute.
