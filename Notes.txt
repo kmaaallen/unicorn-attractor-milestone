@@ -1,0 +1,2 @@
+25/11/19 
+Remember to generate new django secret key and hide in git ignore .env file
