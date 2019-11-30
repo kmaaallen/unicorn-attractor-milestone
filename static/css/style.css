@@ -1,0 +1,79 @@
+body{
+    background-color: #330066;
+}
+
+/* Navbar styling*/
+.navbar{
+    border-bottom: none;
+    border-radius: 0;
+    background-image: none;
+    margin-bottom:0px;
+}
+.unicorn-nav{
+    background-color:#ffffff;
+    background-image: none;
+}
+
+.brand-logo {
+    width: 50px;
+    height: 50px;
+    margin-top: -15px;
+    margin-left: -7px;
+}
+
+.navbar-brand>img {
+    display:inline-block;
+}
+
+.navbar-brand, .nav-item{
+    color: #330066;
+    text-shadow: none;
+}
+
+.nav-item{
+    margin-right: 15px;
+    margin-top:15px;
+}
+
+.nav-list{
+    list-style: none;
+    display: inline-flex;
+    float: right;
+}
+
+.social-link{
+    color:#ffffff;
+    float: right;
+    margin-right:25px;
+}
+
+/* form styling */
+
+.accountform{
+    width: 80%;
+    color:#ffffff;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+/* sign-up-pages */
+.sign-up-unicorn{
+    height:100%;
+    width:100%;
+}
+
+.form-div{
+    color: #ffffff;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.sign-up-btn{
+    width:150px;
+    border: none;
+    height:40px;
+    color: #ffffff;
+    border-radius: 26px;
+    background-color:#00CC00;
+}
+

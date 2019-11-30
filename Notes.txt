@@ -1,2 +1,32 @@
 25/11/19 
 Remember to generate new django secret key and hide in git ignore .env file
+
+30/11/19
+Created env file and added secret key here, no versions visible in git repo
+
+Ran server - confirmed Django page working
+
+Build accounts app - users will need to be authenticated to track their subscription status
+and to search my their own issues raised etc.
+Create accounts app (separates code by purpose): python3 manage.py startapp accounts 
+Add 'accounts' to installed apps in settings.py
+- makemigrations and migrate -
+- Create superuser: python3 manage.py createsuperuser -
+Create templates folder in accounts app - create basic index.html file in there
+Create view in accounts app for index page
+Import accounts index url into unicorn url.py file and add to url pattern
+Added logout functionality - currently returns to index page after logout
+Added messages section in templates
+Created forms.py file
+Added basic sign in / up forms and urls
+Installed django_bootstrap_forms and added basic base html
+Added static folder 
+- images: unicorn is a free download:
+ https://pixabay.com/illustrations/unicorn-galaxy-unicorn-galaxy-star-2007266/ 
+ Image by <a href="https://pixabay.com/users/3333873-3333873/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2007266">3333873</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2007266">Pixabay</a>
+
+ Added static folder with logo and css file
+ main web safe purple color: 	#330066 from https://www.rapidtables.com/web/color/Web_Safe.html
+ websafe green: 	#00CC00
+
+ Sign Up form styled - accounts auth app underway
