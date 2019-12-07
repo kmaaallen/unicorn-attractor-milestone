@@ -17,10 +17,12 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from home.views import landing_page, find_out_more
 from accounts import urls as urls_accounts
+from issues import urls as urls_issues
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', landing_page, name="landing_page"),
     url(r'^more/', find_out_more, name="find_out_more"),
     url(r'^accounts/', include(urls_accounts)),
+    url(r'^issues/', include(urls_issues)),
 ]

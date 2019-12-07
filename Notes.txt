@@ -38,3 +38,10 @@ Added static folder
  Added landing page 
  Added find out more page and linked all up from nav bar
 
+ Added issues app
+ - Basic kanban display board of issues where issues are sorted by number of votes
+ - form for adding new issues by users
+ - styling and linked up
+ * need to collapse swim-lanes in mobile and add mobile nav
+ 
+

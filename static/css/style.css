@@ -168,5 +168,37 @@ h1.landing-title{
     margin-top: 50px;
 }
 
+/* issues board */
+.swim-lane{
+    background-color: #ffffff;
+    height: 65vh;
+    border: solid 2px #330066;
+    overflow-y:scroll;
+}
 
+.lane-title{
+    color:#330066;
+}
+
+.report-issue-btn{
+    margin-top: 30px;
+    float: right;
+}
+
+.report-issue-header, .report-issue-header>h1{
+    color: #ffffff;
+    padding-left: 0px;
+}
+
+
+/* Report an Issue Form styling */
+.issue-form{
+    color: #ffffff;
+    width: 80%;
+    margin-left: 25px;
+}
+
+.issue-form>h1{
+    color: #ffffff;
+}
 
