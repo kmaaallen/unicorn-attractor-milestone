@@ -15,11 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from accounts.views import index
+from home.views import landing_page
 from accounts import urls as urls_accounts
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', index, name="index"),
+    url(r'^$', landing_page, name="landing_page"),
     url(r'^accounts/', include(urls_accounts)),
 ]

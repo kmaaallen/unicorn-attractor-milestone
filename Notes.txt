@@ -28,8 +28,11 @@ Added static folder
  Added static folder with logo and css file
  main web safe purple color: 	#330066 from https://www.rapidtables.com/web/color/Web_Safe.html
  websafe green: 	#00CC00
+ websafe pink: #990066
 
  Sign Up form styled - accounts auth app underway
 
  7/12/19
  Sign in form styled and completed
+ Fixed navbar to top
+

@@ -3,6 +3,66 @@ body{
     padding-top: 50px;
 }
 
+a {
+    color: #ffffff;
+}
+
+a:hover{
+    color: #ffffff;
+}
+/* Landing page styling */
+.top-div-home{
+    background-color: #ffffff;
+    height:55vh;
+    width:100vw;
+    padding-top: 50px;
+    margin-top: -50px;
+}
+
+.bottom-div-home{
+    background-color: #330066;
+    height:45vh;
+    width:100vw;
+}
+
+.landing-nav{
+    background-color: #ffffff;
+    box-shadow: none;
+}
+
+.landing-title{
+    color: #330066;
+    margin: 0px;
+    text-align:center;
+}
+h1.landing-title{
+    font-size: 72px;
+}
+
+.title-div{
+    height:100%;
+    margin-top: 100px;
+}
+
+.home-unicorn{
+    height: 100vh;
+    margin-top: -50px;
+    margin-left: -50px;
+}
+
+.landing-btn{
+    width:150px;
+    border: none;
+    height:40px;
+    color: #ffffff;
+    border-radius: 26px;
+    background-color:#990066;
+}
+
+.landing-btn-div{
+    margin-top: 30px;
+    text-align: center;
+}
 /* Navbar styling*/
 .navbar{
     border-bottom: none;

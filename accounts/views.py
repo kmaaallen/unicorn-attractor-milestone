@@ -7,11 +7,6 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
-def index(request):
-    """ return index.html page """
-    return render(request, 'index.html')
-
-
 @login_required
 def sign_out(request):
     """Logs out user"""
