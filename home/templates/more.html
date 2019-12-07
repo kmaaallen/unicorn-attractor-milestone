@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load bootstrap_tags %}
+{% block page_title %}About{% endblock %}
+{% block page_heading %}About{% endblock %}
+{% block content %}
+<div class="col-md-8">
+	<div class="row more-content">
+		<h1>Unicorn Attractor</h1>
+	</div>
+	<div class="row more-content">
+		<h3>Free Software</h3>
+	</div>
+	<div class="more-content">
+		<p>
+			Unicorn Attractor is free software available to download. It simplifies your search for the perfect
+			employee, using advanced search and analytics to find your unicorn!
+		</p>
+		<p>
+			Key Features:
+		</p>
+		<p>
+			<ul>
+				<li>Free and easy download and set up</li>
+				<li>Free bug fixes</li>
+				<li>Subscribe to request new features</li>
+			</ul>
+		</p>
+
+		<p>
+			Sign up to a free account to report issues, comment on existing issues and upvote issues to get them fixed,
+			faster.
+			Subscribe to a monthly plan to request new features and upvote existing feature requests to get them fixed
+			faster.
+		</p>
+	</div>
+	<div class="row more-btn-div">
+		<button class="sign-up-btn more-btn"><a href="{% url 'sign_up' %}">Sign Up</a></button>
+		<button class="landing-btn"><a href="#">+ Subscribe</a></button>
+	</div>
+</div>
+
+{% endblock %}

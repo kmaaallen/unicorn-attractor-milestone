@@ -35,4 +35,6 @@ Added static folder
  7/12/19
  Sign in form styled and completed
  Fixed navbar to top
+ Added landing page 
+ Added find out more page and linked all up from nav bar
 

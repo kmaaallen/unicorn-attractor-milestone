@@ -20,18 +20,18 @@
 <body>
 	<!-- Fixed masthead -->
 <nav class="navbar navbar-fixed-top unicorn-nav">
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" href="{% url 'landing_page' %}">
     <img src='{% static "images/unicorn-logo.png" %}' class="d-inline-block align-top brand-logo" alt="unicorn logo">
     Unicorn Attractor
   </a>
 <ul class="nav-list justify-content-end">
 	{% if user.is_authenticated %}
-    <li class="nav-item"><a class="nav-item" href="#">Find out more</a></li>
+    <li class="nav-item"><a class="nav-item" href="{% url 'find_out_more' %}">Find out more</a></li>
     <li class="nav-item"><a class="nav-item" href="#">Issues</a></li>
     <li class="nav-item"><a class="nav-item" href="#">Features</a></li>
     <li class="nav-item"><a class="nav-item" href="{% url 'sign_out' %}">Log Out</a></li>
 	{%  else %}
-    <li class="nav-item"><a class="nav-item" href="#">Find out more</a></li>
+    <li class="nav-item"><a class="nav-item" href="{% url 'find_out_more' %}">Find out more</a></li>
     <li class="nav-item"><a class="nav-item" href="#">Issues</a></li>
     <li class="nav-item"><a class="nav-item" href="#">Features</a></li>
 	<li class="nav-item"><a class="nav-item" href="{% url 'sign_up' %}"> Sign Up</a></li>

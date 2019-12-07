@@ -86,6 +86,10 @@ h1.landing-title{
     display:inline-block;
 }
 
+.navbar-brand:hover{
+    color: #330066;
+}
+
 .navbar-brand, .nav-item{
     color: #330066;
     text-shadow: none;
@@ -94,6 +98,11 @@ h1.landing-title{
 .nav-item{
     margin-right: 15px;
     margin-top:15px;
+}
+
+.nav-item>a:hover{
+    color: #330066;
+    text-decoration: underline;
 }
 
 .nav-list{
@@ -142,4 +151,22 @@ h1.landing-title{
 .accountform>h3 {
     color: #ffffff;
 }
+
+/* Find out more page styling */
+.more-content, .more-content>h1, .more-content>h3, .more-content>p{
+    color: #ffffff;
+    margin-left: 25px;
+}
+
+.more-btn{
+    margin-right: 20px;
+}
+
+.more-btn-div{
+    align-content: left;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+
 
