@@ -30,3 +30,6 @@ Added static folder
  websafe green: 	#00CC00
 
  Sign Up form styled - accounts auth app underway
+
+ 7/12/19
+ Sign in form styled and completed

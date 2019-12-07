@@ -1,11 +1,24 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% load bootstrap_tags %}
 {% block page_title %}Sign In{% endblock %}
 {% block page_heading %}Sign In{% endblock %}
 {% block content %}
-<form method="POST" class="accountform">
-    {% csrf_token %}
-    {{ sign_in_form | as_bootstrap }}
-    <button type="submit">Sign In</button>
-</form>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<img src='{% static "images/unicorn-logo.png" %}' class="sign-up-unicorn" alt="unicorn logo">
+    </div>
+			<div class=" form-div col-md-6">
+            
+				<form method="POST" class="accountform">
+                    <h3>Sign In:</h3>
+					{% csrf_token %}
+					{{ sign_in_form | as_bootstrap }}
+					<button type="submit" class="sign-up-btn">Sign In</button>
+				</form>
+			</div>
+		</div>
+	</div>
 {% endblock %}
