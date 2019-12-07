@@ -43,5 +43,6 @@ Added static folder
  - form for adding new issues by users
  - styling and linked up
  * need to collapse swim-lanes in mobile and add mobile nav
+ - fixed some redirects for sign up / sign out now index is in home app
  
 

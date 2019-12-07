@@ -11,13 +11,13 @@ from django.contrib.auth.decorators import login_required
 def sign_out(request):
     """Logs out user"""
     auth.logout(request)
-    return redirect(reverse('index'))
+    return redirect(reverse('sign_in'))
 
 
 def sign_in(request):
     """ Return sign up template """
     if request.user.is_authenticated:
-        return redirect(reverse('index'))
+        return redirect('landing_page')
     if request.method == "POST":
         sign_in_form = UserSignInForm(request.POST)
         if sign_in_form.is_valid():
@@ -27,7 +27,7 @@ def sign_in(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have successfully signed in!")
-                return redirect(reverse('index'))
+                return redirect('find_out_more')
             else:
                 sign_in_form.add_error(
                     None,
@@ -40,7 +40,7 @@ def sign_in(request):
 def sign_up(request):
     """ render the sign up page """
     if request.user.is_authenticated:
-        return redirect(reverse('index'))
+        return redirect(reverse('sign_in'))
 
     if request.method == "POST":
         sign_up_form = UserSignUpForm(request.POST)
