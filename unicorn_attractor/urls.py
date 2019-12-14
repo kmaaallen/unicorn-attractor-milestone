@@ -18,6 +18,7 @@ from django.contrib import admin
 from home.views import landing_page, find_out_more
 from accounts import urls as urls_accounts
 from issues import urls as urls_issues
+from features import urls as urls_features
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -25,4 +26,5 @@ urlpatterns = [
     url(r'^more/', find_out_more, name="find_out_more"),
     url(r'^accounts/', include(urls_accounts)),
     url(r'^issues/', include(urls_issues)),
+    url(r'^features/', include(urls_features)),
 ]

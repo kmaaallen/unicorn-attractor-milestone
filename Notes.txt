@@ -48,5 +48,7 @@ Added static folder
  14/12
  - fixed bottom navbar - was covering submit issue buttons
  - gave description box for new issue a fixed height to prevent having to scroll off page to submit
+
+ Added features app - basic functionality copied from issues.
  
 

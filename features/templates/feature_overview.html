@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load bootstrap_tags %}
+{% block page_title %}Feature Overview{% endblock %}
+{% block page_heading %}Feature Overview{% endblock %}
+{% block content %}
+
+<div class="container">
+	<div class="row issue-header-div">
+		<div class="col-md-6 report-issue-header">
+			<h1>Request a new Feature:</h1>
+            <p>We spend 50% of our time working on the most popular requests.</p>
+		</div>
+		<div class="col-md-6">
+			<button class="sign-up-btn report-issue-btn">
+        <a href="{% url 'request_feature' %}"> + Request a Feature</a>
+        </button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 swim-lane">
+			<div class="lane-title-div">
+				<h3 class="lane-title">Requested</h3>
+
+				{% for feature in features|dictsortreversed:"votes" %}
+				{% if feature.state == 'REQUESTED' %}
+				<div class="col-xs-12 display panel panel-default">
+					<div class="panel-body">
+						<h3>{{ feature.title }}</h3>
+						<p class="">{{ feature.description }}</p>
+						<p>Priority: {{ feature.priority }}</p>
+						<p>Votes: {{ feature.votes }}</p>
+					</div>
+				</div>
+				{% endif %}
+				{% endfor %}
+
+			</div>
+		</div>
+		<div class="col-md-4 swim-lane">
+			<div class="lane-title-div">
+				<h3 class="lane-title">In Progress</h3>
+				{% for feature in features|dictsortreversed:"votes"  %}
+				{% if feature.state == 'IN PROGRESS' %}
+				<div class="col-xs-12 display panel panel-default">
+					<div class="panel-body">
+						<h3>{{ feature.title }}</h3>
+						<p class="">{{ feature.description }}</p>
+						<p>Priority: {{ feature.priority }}</p>
+						<p>Votes: {{ feature.votes }}</p>
+					</div>
+				</div>
+				{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+		<div class="col-md-4 swim-lane">
+			<div class="lane-title-div">
+				<h3 class="lane-title">Completed</h3>
+				{% for feature in features|dictsortreversed:"votes"  %}
+				{% if feature.state == 'COMPLETED' %}
+				<div class="col-xs-12 display panel panel-default">
+					<div class="panel-body">
+						<h3>{{ feature.title }}</h3>
+						<p class="">{{ feature.description }}</p>
+						<p>Priority: {{ feature.priority }}</p>
+						<p>Votes: {{ feature.votes }}</p>
+					</div>
+				</div>
+				{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+{% endblock %}
