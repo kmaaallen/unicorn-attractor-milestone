@@ -118,6 +118,10 @@ h1.landing-title{
     font-size: 20px;
 }
 
+.social-nav{
+    background-color: #330066;
+}
+
 /* form styling */
 
 .accountform{
@@ -125,6 +129,10 @@ h1.landing-title{
     color:#ffffff;
     margin-left:auto;
     margin-right:auto;
+}
+
+#id_description{
+    max-height: 170px;
 }
 
 /* sign-up-pages */
@@ -146,6 +154,7 @@ h1.landing-title{
     color: #ffffff;
     border-radius: 26px;
     background-color:#00CC00;
+    margin-bottom: 50px;
 }
 
 .accountform>h3 {

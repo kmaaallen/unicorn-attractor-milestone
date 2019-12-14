@@ -44,5 +44,9 @@ Added static folder
  - styling and linked up
  * need to collapse swim-lanes in mobile and add mobile nav
  - fixed some redirects for sign up / sign out now index is in home app
+
+ 14/12
+ - fixed bottom navbar - was covering submit issue buttons
+ - gave description box for new issue a fixed height to prevent having to scroll off page to submit
  
 
