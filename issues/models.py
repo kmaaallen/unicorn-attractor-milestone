@@ -31,6 +31,16 @@ class Issue(models.Model):
     state = models.CharField(max_length=11, choices=STATE_CHOICES,
                              default=REPORTED,)
     votes = models.IntegerField(default=0)
+    voters = models.ManyToManyField(settings.AUTH_USER_MODEL)
 
     def __str__(self):
         return self.title
+
+
+class Vote(models.Model):
+    issue = models.ForeignKey('Issue')
+    voter = models.ForeignKey(settings.AUTH_USER_MODEL, default=0)
+
+    class Meta:
+        unique_together = ('issue', 'voter')
+

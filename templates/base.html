@@ -40,8 +40,8 @@
 </ul>
 </nav>
 {% if messages %}
-	<div class="alert alert-success">
-		<div class="messages">
+	<div class="alert" id="message">
+		<div class="messages" >
 			{% for message in messages %}
 			{{ message }}
 			{% endfor %}
@@ -50,6 +50,15 @@
 	{% endif %}
 {% block content %}
 {% endblock %}
+
+<script>
+// hide messages after 3 seconds
+var message = document.getElementById("message");
+setTimeout(function(){ 
+   message.style.display = "none"; 
+}, 3000);
+
+</script>
 </body>
 <footer>
 <nav class="navbar navbar-fixed-bottom social-nav">

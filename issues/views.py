@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Issue
+from .models import Issue, Vote
 from .forms import AddIssueForm
+from django.contrib import messages
 
 
 # Create your views here.
@@ -25,7 +26,14 @@ def report_issue(request, pk=None):
 
 
 def upvote(request, issue_id):
-    issue = Issue.objects.get(pk=issue_id)
-    issue.votes += 1
-    issue.save()
+    issue = get_object_or_404(Issue, pk=issue_id)
+    voter = request.user
+    try:
+        Vote.objects.get(issue=issue, voter=voter)
+        messages.error(request, 'You have already voted on this issue')
+    except Vote.DoesNotExist:
+        Vote.objects.create(voter=voter, issue=issue)
+        issue.votes += 1
+        issue.save()
     return redirect('issues')
+

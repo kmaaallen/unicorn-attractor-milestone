@@ -53,6 +53,7 @@ Added static folder
 
  15/12
  - added upvote functionality to issues page - users can upvote issues.
- - need to work on limiting to one upvote per user per issue
+ - need to work on limiting to one upvote per user per issue - done
+ - need to improve the visuals for this - work on showing in template?
  
 
