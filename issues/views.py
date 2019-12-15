@@ -22,3 +22,10 @@ def report_issue(request, pk=None):
     else:
         form = AddIssueForm(instance=issue)
     return render(request, 'add_issue.html', {'form': form})
+
+
+def upvote(request, issue_id):
+    issue = Issue.objects.get(pk=issue_id)
+    issue.votes += 1
+    issue.save()
+    return redirect('issues')

@@ -199,6 +199,15 @@ h1.landing-title{
     padding-left: 0px;
 }
 
+.upvote-link{
+    color: #555555;
+}
+
+.upvote-link:hover{
+    color: #555555;
+    text-decoration: underline;
+}
+
 
 /* Report an Issue Form styling */
 .issue-form{
