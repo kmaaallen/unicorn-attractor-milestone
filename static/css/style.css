@@ -199,11 +199,11 @@ h1.landing-title{
     padding-left: 0px;
 }
 
-.upvote-link{
+.upvote-link, .comment-link{
     color: #555555;
 }
 
-.upvote-link:hover{
+.upvote-link:hover, .comment-link:hover{
     color: #555555;
     text-decoration: underline;
 }
@@ -220,3 +220,34 @@ h1.landing-title{
     color: #ffffff;
 }
 
+/* Full Issue form */
+.full-issue{
+    margin-top: 20px;
+    background-color: #ffffff;
+}
+
+.comment-full{
+    background-color: #cccccc;
+}
+/* Comments styling */
+
+.comment-block{
+    display: none;
+}
+
+.comments{
+    height: 100px;
+    width: 300px;
+    padding-left: 10px;
+    padding-right:10px;
+    border: 1px solid #cccccc;
+    overflow-y:scroll;
+}
+
+.comment-bold{
+    font-weight: bold;
+}
+
+.sub-text{
+    font-style:italic;
+}

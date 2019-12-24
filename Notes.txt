@@ -55,5 +55,14 @@ Added static folder
  - added upvote functionality to issues page - users can upvote issues.
  - need to work on limiting to one upvote per user per issue - done
  - need to improve the visuals for this - work on showing in template?
+
+ 23/12/19
+ - added login-url so if not signed in user is redirected to sign in page
+ - only show upvote link if user is logged in - else not visible
+ - not added to features as that will depend on stripe subscription up to date for logged in user.
+
+ 24/12/19
+ - using js comments now toggle for each issue card.
+ - full issue basic form added - need to add comment functionality
  
 

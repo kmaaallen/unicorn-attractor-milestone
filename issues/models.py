@@ -44,3 +44,12 @@ class Vote(models.Model):
     class Meta:
         unique_together = ('issue', 'voter')
 
+
+class Comment(models.Model):
+    issue = models.ForeignKey('Issue', related_name='comments')
+    commenter = models.ForeignKey(settings.AUTH_USER_MODEL, default=0)
+    comment = models.TextField(max_length=300)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.comment

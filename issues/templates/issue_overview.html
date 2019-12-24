@@ -9,7 +9,7 @@
 	<div class="row issue-header-div">
 		<div class="col-md-6 report-issue-header">
 			<h1>Report an Issue:</h1>
-            <p>We fix bugs for free! Report an issue, add comments and  track its progress.</p>
+			<p>We fix bugs for free! Report an issue, add comments and track its progress.</p>
 		</div>
 		<div class="col-md-6">
 			<button class="sign-up-btn report-issue-btn">
@@ -30,7 +30,32 @@
 						<p class="">{{ issue.description }}</p>
 						<p>Priority: {{ issue.priority }}</p>
 						<p>Votes: {{ issue.votes }}</p>
-                        <p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote</a></p>
+						{% if user.is_authenticated %}
+						<p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote</a></p>
+
+						<div>
+							<a class="comment-link" onClick="toggleComment(this)">Comments</a>
+                            </br>
+                            <a class="comment-link" href="full_issue/{{ issue.id }}">Add Comment</a>
+						</div>
+						<div class="comment-block">
+							{% for comment in issue.comments.all %}
+							<div class="comments">
+								<div class="comment-bold">{{ comment.created }}</div>
+								<p class="comment-bold"> User: {{ comment.commenter }}</p>
+								<p> Comment: {{ comment.comment }}</p>
+								<hr />
+							</div>
+							{% empty %}
+							<div>
+								<p class="sub-text">No comments yet</p>
+							</div>
+							{% endfor %}
+						</div>
+
+
+
+						{% endif %}
 					</div>
 				</div>
 				{% endif %}
@@ -49,7 +74,26 @@
 						<p class="">{{ issue.description }}</p>
 						<p>Priority: {{ issue.priority }}</p>
 						<p>Votes: {{ issue.votes }}</p>
-                        <p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote</a></p>
+						{% if user.is_authenticated %}
+						<p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote</a></p>
+						<div>
+							<a class="comment-link" onClick="toggleComment(this)">Comments</a>
+						</div>
+						<div class="comment-block">
+							{% for comment in issue.comments.all %}
+							<div class="comments">
+								<div class="comment-bold">{{ comment.created }}</div>
+								<p class="comment-bold"> User: {{ comment.commenter }}</p>
+								<p> Comment: {{ comment.comment }}</p>
+								<hr />
+							</div>
+							{% empty %}
+							<div>
+								<p class="sub-text">No comments yet</p>
+							</div>
+							{% endfor %}
+						</div>
+						{% endif %}
 					</div>
 				</div>
 				{% endif %}
@@ -67,7 +111,26 @@
 						<p class="">{{ issue.description }}</p>
 						<p>Priority: {{ issue.priority }}</p>
 						<p>Votes: {{ issue.votes }}</p>
-                        <p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote</a></p>
+						{% if user.is_authenticated %}
+						<p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote</a></p>
+						<div>
+							<a class="comment-link" onClick="toggleComment(this)">Comments</a>
+						</div>
+						<div class="comment-block">
+							{% for comment in issue.comments.all %}
+							<div class="comments">
+								<div class="comment-bold">{{ comment.created }}</div>
+								<p class="comment-bold"> User: {{ comment.commenter }}</p>
+								<p> Comment: {{ comment.comment }}</p>
+								<hr />
+							</div>
+							{% empty %}
+							<div>
+								<p class="sub-text">No comments yet</p>
+							</div>
+							{% endfor %}
+						</div>
+						{% endif %}
 					</div>
 				</div>
 				{% endif %}

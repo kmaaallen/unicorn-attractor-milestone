@@ -9,7 +9,7 @@
 	<title>Unicorn Attractor</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cerulean/bootstrap.min.css">
 	<link rel="stylesheet" href="{% static 'font-awesome/css/brands.css' %}">
-    <link rel="stylesheet" href="{% static 'font-awesome/css/fontawesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'font-awesome/css/fontawesome.min.css' %}">
 	<link rel="stylesheet" href='{% static "css/style.css" %}' type="text/css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -19,53 +19,62 @@
 
 <body>
 	<!-- Fixed masthead -->
-<nav class="navbar navbar-fixed-top unicorn-nav">
-  <a class="navbar-brand" href="{% url 'landing_page' %}">
-    <img src='{% static "images/unicorn-logo.png" %}' class="d-inline-block align-top brand-logo" alt="unicorn logo">
+	<nav class="navbar navbar-fixed-top unicorn-nav">
+		<a class="navbar-brand" href="{% url 'landing_page' %}">
+			<img src='{% static "images/unicorn-logo.png" %}' class="d-inline-block align-top brand-logo" alt="unicorn logo">
     Unicorn Attractor
   </a>
-<ul class="nav-list justify-content-end">
-	{% if user.is_authenticated %}
-    <li class="nav-item"><a class="nav-item" href="{% url 'find_out_more' %}">Find out more</a></li>
-    <li class="nav-item"><a class="nav-item" href="{% url 'issues' %}">Issues</a></li>
-    <li class="nav-item"><a class="nav-item" href="{% url 'features' %}">Features</a></li>
-    <li class="nav-item"><a class="nav-item" href="{% url 'sign_out' %}">Log Out</a></li>
-	{%  else %}
-    <li class="nav-item"><a class="nav-item" href="{% url 'find_out_more' %}">Find out more</a></li>
-    <li class="nav-item"><a class="nav-item" href="{% url 'issues' %}">Issues</a></li>
-    <li class="nav-item"><a class="nav-item" href="{% url 'features' %}">Features</a></li>
-	<li class="nav-item"><a class="nav-item" href="{% url 'sign_up' %}"> Sign Up</a></li>
-	<li class="nav-item"><a class="nav-item" href="{% url 'sign_in' %}">Sign In</a></li>
-	{% endif %}
-</ul>
-</nav>
-{% if messages %}
+			<ul class="nav-list justify-content-end">
+				{% if user.is_authenticated %}
+				<li class="nav-item"><a class="nav-item" href="{% url 'find_out_more' %}">Find out more</a></li>
+				<li class="nav-item"><a class="nav-item" href="{% url 'issues' %}">Issues</a></li>
+				<li class="nav-item"><a class="nav-item" href="{% url 'features' %}">Features</a></li>
+				<li class="nav-item"><a class="nav-item" href="{% url 'sign_out' %}">Log Out</a></li>
+				{%  else %}
+				<li class="nav-item"><a class="nav-item" href="{% url 'find_out_more' %}">Find out more</a></li>
+				<li class="nav-item"><a class="nav-item" href="{% url 'issues' %}">Issues</a></li>
+				<li class="nav-item"><a class="nav-item" href="{% url 'features' %}">Features</a></li>
+				<li class="nav-item"><a class="nav-item" href="{% url 'sign_up' %}"> Sign Up</a></li>
+				<li class="nav-item"><a class="nav-item" href="{% url 'sign_in' %}">Sign In</a></li>
+				{% endif %}
+			</ul>
+	</nav>
+	{% if messages %}
 	<div class="alert" id="message">
-		<div class="messages" >
+		<div class="messages">
 			{% for message in messages %}
 			{{ message }}
 			{% endfor %}
 		</div>
 	</div>
 	{% endif %}
-{% block content %}
-{% endblock %}
+	{% block content %}
+	{% endblock %}
 
-<script>
-// hide messages after 3 seconds
+	<script>
+		// hide messages after 3 seconds
 var message = document.getElementById("message");
 setTimeout(function(){ 
    message.style.display = "none"; 
 }, 3000);
 
-</script>
+// hide show comments
+function toggleComment(elem) {
+  if($(elem).parent().siblings(".comment-block").css('display') == 'none') {
+    $(elem).parent().siblings(".comment-block").css('display', 'block');
+  } else {
+    $(elem).parent().siblings(".comment-block").css('display', 'none');
+  }
+}
+ 
+	</script>
 </body>
 <footer>
-<nav class="navbar navbar-fixed-bottom social-nav">
-  <a class="social-link" href="#"><i class="fab fa-facebook-f"></i></a>
-  <a class="social-link" href="#"><i class="fab fa-twitter"></i></a>
-  <a class="social-link" href="#"><i class="fab fa-instagram"></i></a>
-</nav>
+	<nav class="navbar navbar-fixed-bottom social-nav">
+		<a class="social-link" href="#"><i class="fab fa-facebook-f"></i></a>
+		<a class="social-link" href="#"><i class="fab fa-twitter"></i></a>
+		<a class="social-link" href="#"><i class="fab fa-instagram"></i></a>
+	</nav>
 </footer>
 
 </html>
