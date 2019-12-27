@@ -233,15 +233,16 @@ h1.landing-title{
 
 .comment-block{
     display: none;
+    max-height:200px;
+    margin-bottom:10px;
+    margin-top:10px;
+    overflow-y:scroll;
 }
 
 .comments{
-    height: 100px;
-    width: 300px;
     padding-left: 10px;
     padding-right:10px;
     border: 1px solid #cccccc;
-    overflow-y:scroll;
 }
 
 .comment-bold{
