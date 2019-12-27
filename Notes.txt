@@ -72,5 +72,7 @@ Added static folder
  27/12/19
  - fixed comment view so user is captured.
  - added ordering meta class to comment model
+ - password reset functionality added templates and urls.
+ - need to launch app on heroku to test password reset as gmail not working on gitpod
  
 

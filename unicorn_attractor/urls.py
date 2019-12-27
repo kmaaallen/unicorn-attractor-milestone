@@ -20,6 +20,7 @@ from accounts import urls as urls_accounts
 from issues import urls as urls_issues
 from features import urls as urls_features
 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', landing_page, name="landing_page"),
