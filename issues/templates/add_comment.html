@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load bootstrap_tags %}
+{% block page_title %} Add comment {% endblock %}
+{% block page_heading %} Add comment {% endblock %}
+{% block content %}
+<div class="issue-form">
+	<h1>Add a comment to issue: " {{ issue.title }} "</h1>
+	<form method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form | as_bootstrap }}
+		<button type="submit" class="sign-up-btn">Add Comment</button>
+	</form>
+
+</div>
+{% endblock %}

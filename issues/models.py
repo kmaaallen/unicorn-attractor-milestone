@@ -33,6 +33,9 @@ class Issue(models.Model):
     votes = models.IntegerField(default=0)
     voters = models.ManyToManyField(settings.AUTH_USER_MODEL)
 
+    class Meta:
+        ordering = ('-votes',)
+
     def __str__(self):
         return self.title
 
@@ -46,10 +49,13 @@ class Vote(models.Model):
 
 
 class Comment(models.Model):
-    issue = models.ForeignKey('Issue', related_name='comments')
+    issue = models.ForeignKey('Issue', related_name='comments', default=None)
     commenter = models.ForeignKey(settings.AUTH_USER_MODEL, default=0)
     comment = models.TextField(max_length=300)
     created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ('-created',)
 
     def __str__(self):
         return self.comment

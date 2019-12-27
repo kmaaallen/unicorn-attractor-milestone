@@ -13,20 +13,20 @@
 		{% if user.is_authenticated %}
 		<p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote</a></p>
 		<div class="comment-full">
-        <p><a href="">Add Comment</a></p>
+			<p><a href="{% url 'add_comment' issue_id=issue.id%}">Add Comment</a></p>
 			<p>Comments:</p>
 			<div class="comment-block-full">
-				{% for comment in issue.comments.all %}
 				<div>
-					<div class="comment-bold">{{ comment.created }}</div>
+					{% for comment in issue.comments.all %}
+					<p class="comment-bold">{{ comment.created }}</p>
 					<p class="comment-bold"> User: {{ comment.commenter }}</p>
 					<p> Comment: {{ comment.comment }}</p>
+					{% empty %}
+					<div>
+						<p class="sub-text">No comments yet</p>
+					</div>
+					{% endfor %}
 				</div>
-				{% empty %}
-				<div>
-					<p class="sub-text">No comments yet</p>
-				</div>
-				{% endfor %}
 			</div>
 			{% endif %}
 		</div>

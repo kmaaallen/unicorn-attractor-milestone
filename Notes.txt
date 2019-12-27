@@ -64,5 +64,13 @@ Added static folder
  24/12/19
  - using js comments now toggle for each issue card.
  - full issue basic form added - need to add comment functionality
+
+ 26/12/19
+ - created add comment form
+ - allows users to add comments to issues
+
+ 27/12/19
+ - fixed comment view so user is captured.
+ - added ordering meta class to comment model
  
 
