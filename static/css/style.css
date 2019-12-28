@@ -157,6 +157,10 @@ h1.landing-title{
     margin-bottom: 50px;
 }
 
+.sign-in-link{
+    text-decoration: underline;
+}
+
 .accountform>h3 {
     color: #ffffff;
 }
@@ -251,4 +255,11 @@ h1.landing-title{
 
 .sub-text{
     font-style:italic;
+}
+
+/* password reset styling */
+
+.password-reset-done{
+    color: #ffffff;
+    margin-left:25px;
 }
