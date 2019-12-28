@@ -135,6 +135,33 @@ h1.landing-title{
     max-height: 170px;
 }
 
+.password-reset-form{
+    width: 100%;
+    color:#ffffff;
+    margin-left:25px;
+    margin-top: 50px;
+}
+
+#id_email{
+    display: block;
+    width: 100%;
+    height: 38px;
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555555;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    margin-bottom: 10px;
+}
+
 /* sign-up-pages */
 .sign-up-unicorn{
     height:100%;
@@ -267,4 +294,14 @@ h1.landing-title{
 .password-reset-done{
     color: #ffffff;
     margin-left:25px;
+}
+
+.reset-btn{
+    width:150px;
+    border: none;
+    height:40px;
+    color: #ffffff;
+    border-radius: 26px;
+    background-color:#00CC00;
+    margin-top:22px;
 }
