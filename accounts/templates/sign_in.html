@@ -11,15 +11,21 @@
 			<img src='{% static "images/unicorn-logo.png" %}' class="sign-up-unicorn" alt="unicorn logo">
     </div>
 			<div class=" form-div col-md-6">
-            
+
 				<form method="POST" class="accountform">
-                    <h3>Sign In:</h3>
+					<h3>Sign In:</h3>
 					{% csrf_token %}
 					{{ sign_in_form | as_bootstrap }}
-					<button type="submit" class="sign-up-btn">Sign In</button>
+					<div class="row">
+						<div class="col-md-5">
+							<button type="submit" class="sign-up-btn">Sign In</button>
+						</div>
+						<div class="col-md-7 forgot-password">
+							<p><a href="{% url 'password_reset' %}">Forgot Password?</a></p>
+						</div>
+					</div>
 				</form>
 			</div>
-            <p><a href="{% url 'password_reset' %}">Forgot Password?</a></p>
 		</div>
 	</div>
-{% endblock %}
+	{% endblock %}

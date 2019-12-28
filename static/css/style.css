@@ -161,6 +161,11 @@ h1.landing-title{
     text-decoration: underline;
 }
 
+.forgot-password{
+    margin-top:10px;
+    text-decoration: underline;
+}
+
 .accountform>h3 {
     color: #ffffff;
 }
