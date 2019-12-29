@@ -17,7 +17,7 @@ def new_subscription(request):
     plan = "plan_GRYCbL4JOJXYi1"
 
     if request.method == 'POST':
-        form = SubscriptionForm()
+        form = SubscriptionForm(request.POST)
         if form.is_valid():
             try:
                 customer = stripe.Charge.create(
@@ -41,7 +41,7 @@ def new_subscription(request):
                 messages.error(request, "Unable to take payment.")
         else:
             print(form.errors)
-            #messages.error(request, "We were unable to take a payment.")
+            messages.error(request, "We were unable to take a payment.")
     else:
         form = SubscriptionForm
         

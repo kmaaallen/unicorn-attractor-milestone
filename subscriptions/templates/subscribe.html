@@ -3,11 +3,20 @@
 {% load bootstrap_tags %}
 {% block page_title %}Subscribe{% endblock %}
 {% block page_heading %}Subscribe{% endblock %}
+{% block head_js %}
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+    //<![CDATA[
+        Stripe.publishableKey = '{{ publishable }}';
+    //]]>
+</script>
+<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+{% endblock %}
 {% block content %}
 <div class="issue-form">
     <h1>Subscribe</h1>
     <p>Subscribe to monthly payments to access our features section, where you can request and upvote new features.</p>
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data" id="subscription-form">
         {% csrf_token %}
         {{ form | as_bootstrap }}
         <button type="submit" class="sign-up-btn">Subscribe</button>
