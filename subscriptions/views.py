@@ -41,7 +41,7 @@ def new_subscription(request):
                 messages.error(request, "Unable to take payment.")
         else:
             print(form.errors)
-            messages.error(request, "We were unable to take a payment.")
+            #messages.error(request, "We were unable to take a payment.")
     else:
         form = SubscriptionForm
         
