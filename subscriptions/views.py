@@ -17,7 +17,7 @@ def new_subscription(request):
     plan = "plan_GRYCbL4JOJXYi1"
 
     if request.method == 'POST':
-        form = SubscriptionForm(request.POST)
+        form = SubscriptionForm()
         if form.is_valid():
             try:
                 customer = stripe.Charge.create(
