@@ -76,4 +76,11 @@ Added static folder
  - need to launch app on heroku to test password reset as gmail not working on gitpod
  - issues connecting to heroku
  
+28/12/19
+- got password reset emails working on heroku
+- fixed up some styling on the password reset pages
+working on stripe subscription:
+- Created monthly pricing plan on stripe dashboard of 25 GBP / month for features access
 
+29/12/19
+- working on stripe subscription

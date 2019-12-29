@@ -19,6 +19,7 @@ from home.views import landing_page, find_out_more
 from accounts import urls as urls_accounts
 from issues import urls as urls_issues
 from features import urls as urls_features
+from subscriptions import urls as urls_subscriptions
 
 
 urlpatterns = [
@@ -28,4 +29,5 @@ urlpatterns = [
     url(r'^accounts/', include(urls_accounts)),
     url(r'^issues/', include(urls_issues)),
     url(r'^features/', include(urls_features)),
+    url(r'^subscribe/', include(urls_subscriptions)),
 ]

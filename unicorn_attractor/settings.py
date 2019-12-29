@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'home',
     'issues',
     'features',
+    'subscriptions',
 ]
 
 MIDDLEWARE = [
@@ -148,3 +149,6 @@ EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
+# stripe
+STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
+STRIPE_SECRET = os.getenv('STRIPE_SECRET')

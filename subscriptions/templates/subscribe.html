@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load bootstrap_tags %}
+{% block page_title %}Subscribe{% endblock %}
+{% block page_heading %}Subscribe{% endblock %}
+{% block content %}
+<div class="issue-form">
+    <h1>Subscribe</h1>
+    <p>Subscribe to monthly payments to access our features section, where you can request and upvote new features.</p>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form | as_bootstrap }}
+        <button type="submit" class="sign-up-btn">Subscribe</button>
+    </form>
+    </div>
+{% endblock %}
