@@ -1,25 +1,28 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% load bootstrap_tags %}
-{% block page_title %}Subscribe{% endblock %}
-{% block page_heading %}Subscribe{% endblock %}
+{% block page_title %}Subscribe{% endblock page_title%}
+{% block page_heading %}Subscribe{% endblock page_heading%}
 {% block head_js %}
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
-    //<![CDATA[
+	//<![CDATA[
         Stripe.publishableKey = '{{ publishable }}';
     //]]>
 </script>
 <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
-{% endblock %}
+{% endblock head_js %}
 {% block content %}
 <div class="issue-form">
-    <h1>Subscribe</h1>
-    <p>Subscribe to monthly payments to access our features section, where you can request and upvote new features.</p>
-    <form method="POST" enctype="multipart/form-data" id="subscription-form">
-        {% csrf_token %}
-        {{ form | as_bootstrap }}
-        <button type="submit" class="sign-up-btn">Subscribe</button>
-    </form>
-    </div>
+	<h1>Subscribe</h1>
+	<p>Subscribe to monthly payments to access our features section, where you can request and upvote new features.</p>
+	<form method="POST" enctype="multipart/form-data" id="subscription-form">
+		{% csrf_token %}
+		{{ form | as_bootstrap }}
+		<div id="credit-card-errors" style="display:none;">
+			<div class="alert-message block-message error" id="stripe-error-message"></div>
+		</div>
+		<button type="submit" class="sign-up-btn">Subscribe</button>
+	</form>
+</div>
 {% endblock %}

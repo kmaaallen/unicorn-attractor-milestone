@@ -84,3 +84,4 @@ working on stripe subscription:
 
 29/12/19
 - working on stripe subscription
+- users can now subscribe if logged in

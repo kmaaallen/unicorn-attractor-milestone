@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
 import stripe
+stripe.api_key = settings.STRIPE_SECRET
 
 # Create your views here.
 
@@ -17,38 +18,30 @@ def new_subscription(request):
     plan = "plan_GRYCbL4JOJXYi1"
 
     if request.method == 'POST':
-        form = SubscriptionForm(request.POST)
-        if form.is_valid():
+        subscribe_form = SubscriptionForm(request.POST)
+        if subscribe_form.is_valid():
             try:
-                customer = stripe.Charge.create(
-                    amount=5000,
-                    currency="GBP",
+                customer = stripe.Customer.create(
                     description=request.user.email,
-                    card=form.cleaned_data['stripe_id'],
+                    card=subscribe_form.cleaned_data['stripe_id'],
+                    subscriptions={}
                 )
-            except stripe.error.CardError:
-                messages.error(request, "Your card was declined.")
-        
-            if customer.paid:
                 stripe.Subscription.create(
-                    customer=request.user.stripe_id,
+                    customer=customer,
                     items=[{"plan": plan}],
                 )
                 messages.error(request, "You have successfully subscribed.")
-                return render(request, "subscribe.html", {'form': form,
-                              'publishable': settings.STRIPE_PUBLISHABLE})
-            else:
-                messages.error(request, "Unable to take payment.")
+                return render(request, "subscribe.html",
+                              {'form': subscribe_form,
+                               'publishable': settings.STRIPE_PUBLISHABLE})
+            except stripe.error.CardError:
+                messages.error(request, "Your card was declined.")
         else:
-            print(form.errors)
+            print(subscribe_form.errors)
             messages.error(request, "We were unable to take a payment.")
     else:
-        form = SubscriptionForm
-        
-    return render(request, "subscribe.html", {'form': form, 'publishable': 
-                  settings.STRIPE_PUBLISHABLE})
+        subscribe_form = SubscriptionForm
 
-
-
-
-
+    return render(request, "subscribe.html",
+                  {'form': subscribe_form,
+                   'publishable': settings.STRIPE_PUBLISHABLE})
