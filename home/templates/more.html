@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load extra_filters %}
 {% load bootstrap_tags %}
 {% block page_title %}About{% endblock %}
 {% block page_heading %}About{% endblock %}
@@ -35,8 +36,20 @@
 		</p>
 	</div>
 	<div class="row more-btn-div">
-		<button class="sign-up-btn more-btn"><a href="{% url 'sign_up' %}">Sign Up</a></button>
-		<button class="landing-btn"><a href="{% url 'subscribe' %}">+ Subscribe</a></button>
+		<div class="col-md-3">
+			<form action="{% url 'sign_in' %}">
+				<input  class="sign-up-btn more-btn" type="submit" value="Contact Us" />
+		    </form>
+		</div>
+		<div class="col-md-3">
+			{% if request.user|in_group:"Subscribers" %}
+			<a href="#" class="btn landing-btn" role="button">Manage Subscription</a>
+			{% elif user.is_authenticated %}
+			<a href="{% url 'subscribe' %}" class="btn landing-btn" role="button">+ Subscribe</a>
+			{% else %}
+			<a href="{% url 'sign_up' %}" class="btn landing-btn" role="button">Sign Up</a>
+			{% endif %}
+		</div>
 	</div>
 </div>
 

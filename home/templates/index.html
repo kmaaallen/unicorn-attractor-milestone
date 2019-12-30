@@ -32,11 +32,11 @@
 				<h3 class="landing-title">Free Software</h3>
 			</div>
             <div class="row landing-btn-div">
-            <button class="landing-btn"><a href="{% url 'find_out_more' %}">Enter</a></button>
+            <a href="{% url 'find_out_more' %}" class="btn landing-btn" role="button">Enter</a>
             {% if user.is_authenticated %}
-            <button class="landing-btn"><a href="{% url 'sign_out' %}">Logout</a></button>
+            <a href="{% url 'sign_out' %}" class="btn landing-btn" role="button">Logout</a>
             {% else %}
-            <button class="landing-btn"><a href="{% url 'sign_up' %}">Sign Up / Sign In</a></button>
+            <a href="{% url 'sign_up' %}" class="btn landing-btn" role="button">Sign Up / Sign In</a>
             {% endif %}
             </div>
 		</div>

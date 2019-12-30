@@ -32,7 +32,8 @@
 				<li class="nav-item"><a class="nav-item" href="{% url 'find_out_more' %}">Find out more</a></li>
 				<li class="nav-item"><a class="nav-item" href="{% url 'issues' %}">Issues</a></li>
 				<li class="nav-item"><a class="nav-item" href="{% url 'features' %}">Features</a></li>
-				<li class="nav-item"><a class="nav-item" href="{% url 'sign_out' %}">Log Out</a></li>
+                <li class="nav-item"><a class="nav-item" href="#"><i class="fa fa-user"></i> {{user.username}}</a></li>
+                <li class="nav-item"><a class="nav-item" href="{% url 'sign_out' %}">Log Out</a></li>
 				{%  else %}
 				<li class="nav-item"><a class="nav-item" href="{% url 'find_out_more' %}">Find out more</a></li>
 				<li class="nav-item"><a class="nav-item" href="{% url 'issues' %}">Issues</a></li>

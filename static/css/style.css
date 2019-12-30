@@ -63,6 +63,11 @@ h1.landing-title{
     margin-top: 30px;
     text-align: center;
 }
+
+.btn:hover{
+    color:#ffffff;
+    text-decoration:none;
+}
 /* Navbar styling*/
 .navbar{
     border-bottom: none;
