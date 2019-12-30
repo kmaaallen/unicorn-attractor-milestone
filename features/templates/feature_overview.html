@@ -17,8 +17,9 @@
 			{% if request.user|in_group:"Subscribers" %}
 			<a href="{% url 'request_feature' %}" class="btn sign-up-btn report-issue-btn" role="button">+ Request a
 				Feature</a>
-			{% else %}
+			{% elif user.is_authenticated %}
 			<a href="{% url 'subscribe' %}" class="btn landing-btn report-issue-btn" role="button">+ Subscribe</a>
+            {% else %}
 			{% endif %}
 		</div>
 	</div>
