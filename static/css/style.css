@@ -306,32 +306,10 @@ h1.landing-title{
     margin-top:22px;
 }
 
-/* stripe subscription style */
-/**
-* Shows how you can use CSS to style your Element's container.
-*/
-.MyCardElement {
-  height: 40px;
-  padding: 10px 12px;
-  width: 100%;
-  color: #32325d;
-  background-color: white;
-  border: 1px solid transparent;
-  border-radius: 4px;
+/* No access message */
 
-  box-shadow: 0 1px 3px 0 #e6ebf1;
-  -webkit-transition: box-shadow 150ms ease;
-  transition: box-shadow 150ms ease;
-}
-
-.MyCardElement--focus {
-  box-shadow: 0 1px 3px 0 #cfd7df;
-}
-
-.MyCardElement--invalid {
-  border-color: #fa755a;
-}
-
-.MyCardElement--webkit-autofill {
-  background-color: #fefde5 !important;
+.no-access-message{
+    font-size: 14px;
+    margin-top: 20px;
+    color: #ffffff;
 }

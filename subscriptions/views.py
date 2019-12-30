@@ -4,8 +4,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
+
 import stripe
 stripe.api_key = settings.STRIPE_SECRET
+
 
 # Create your views here.
 
@@ -45,3 +47,5 @@ def new_subscription(request):
     return render(request, "subscribe.html",
                   {'form': subscribe_form,
                    'publishable': settings.STRIPE_PUBLISHABLE})
+
+

@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load extra_filters %}
 {% load bootstrap_tags %}
 {% block page_title %}Feature Overview{% endblock %}
 {% block page_heading %}Feature Overview{% endblock %}
 {% block content %}
 
 <div class="container">
+	{% if request.user|in_group:"Subscribers" %}
 	<div class="row issue-header-div">
 		<div class="col-md-6 report-issue-header">
 			<h1>Request a new Feature:</h1>
-            <p>We spend 50% of our time working on the most popular requests.</p>
+			<p>We spend 50% of our time working on the most popular requests.</p>
 		</div>
 		<div class="col-md-6">
 			<button class="sign-up-btn report-issue-btn">
@@ -72,7 +74,14 @@
 			</div>
 		</div>
 	</div>
+	{% else %}
+	<div>
+		<p class="no-access-message">You do not have access to the features module, please <a href="{% url 'subscribe' %}">subscribe </a>to access
+			this.</p>
+	</div>
+    {% endif %}
 </div>
+
 
 
 
