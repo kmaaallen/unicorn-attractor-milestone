@@ -313,3 +313,11 @@ h1.landing-title{
     margin-top: 20px;
     color: #ffffff;
 }
+
+/* welcome page */
+.welcome-name{
+    color: #330066;
+    font-size: 26px;
+    text-align:center;
+    margin-top: -20px;
+}

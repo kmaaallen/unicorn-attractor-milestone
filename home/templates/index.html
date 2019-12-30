@@ -20,6 +20,11 @@
         <img src='{% static "images/unicorn-logo.png" %}' class="home-unicorn" alt="unicorn logo">
 		</div>
 		<div class="col-md-6 title-div">
+        {% if user.is_authenticated %}
+        <div class="row">
+				<p class="welcome-name">Hi {{ user.username }}, welcome to</p>
+			</div>
+            {% endif %}
 			<div class="row">
 				<h1 class="landing-title">Unicorn Attractor</h1>
 			</div>
