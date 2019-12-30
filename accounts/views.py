@@ -28,7 +28,6 @@ def sign_in(request):
                 password=request.POST['password'])
             if user:
                 auth.login(user=user, request=request)
-                messages.success(request, "You have successfully signed in!")
                 return redirect('find_out_more')
             else:
                 sign_in_form.add_error(
