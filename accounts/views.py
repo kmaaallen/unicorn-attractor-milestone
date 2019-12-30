@@ -55,6 +55,7 @@ def sign_up(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have successfully signed up")
+                return render(request, 'find_out_more.html')
             else:
                 messages.error(
                     request, "Unable to sign you up at this time")

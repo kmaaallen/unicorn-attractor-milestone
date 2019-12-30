@@ -3,6 +3,7 @@ from .forms import SubscriptionForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
+from django.contrib.auth.models import Group
 
 
 import stripe
@@ -32,6 +33,8 @@ def new_subscription(request):
                     customer=customer,
                     items=[{"plan": plan}],
                 )
+                subscriber_group = Group.objects.get(name='Subscribers')
+                subscriber_group.user_set.add(request.user)
                 messages.error(request, "You have successfully subscribed.")
                 return render(request, "subscribe.html",
                               {'form': subscribe_form,
