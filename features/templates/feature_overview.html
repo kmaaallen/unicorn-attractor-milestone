@@ -36,6 +36,35 @@
 						<p class="">{{ feature.description }}</p>
 						<p>Priority: {{ feature.priority }}</p>
 						<p>Votes: {{ feature.votes }}</p>
+
+
+                        {% if request.user|in_group:"Subscribers" %}
+						<p><a class="upvote-link" href="upvote/{{ feature.id }}">Upvote</a></p>
+						<div>
+							<a class="comment-link" onClick="toggleComment(this)">Comments
+								<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+							</br>
+							<a class="comment-link" href="{% url 'add_feature_comment' feature_id=feature.id%}">Add Comment
+								<i class="fa fa-plus" aria-hidden="true"></i></a>
+						</div>
+						<div class="comment-block">
+							<div class="comments">
+								{% for comment in feature.comments.all %}
+								<div class="comment-bold">{{ comment.created }}</div>
+								<p class="comment-bold"> User: {{ comment.commenter }}</p>
+								<p> Comment: {{ comment.comment }}</p>
+								<hr />
+								{% empty %}
+								<div>
+									<p class="sub-text">No comments yet</p>
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+						{% endif %}
+
+
+
 					</div>
 				</div>
 				{% endif %}

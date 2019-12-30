@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Feature
-from .forms import AddFeatureForm
+from .models import Feature, Vote, Comment
+from .forms import AddFeatureForm, AddCommentForm
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 # Create your views here.
@@ -17,8 +19,48 @@ def request_feature(request, pk=None):
     if request.method == 'POST':
         form = AddFeatureForm(request.POST, request.FILES, instance=feature)
         if form.is_valid():
-            issue = form.save()
+            feature = form.save()
             return redirect('features')
     else:
         form = AddFeatureForm(instance=feature)
     return render(request, 'add_feature.html', {'form': form})
+
+
+@login_required
+def add_comment(request, feature_id, pk=None):
+    """
+    Add a comment to a feature
+    """
+    feature = get_object_or_404(Feature, pk=feature_id)
+    commenter = request.user
+    new_comment = get_object_or_404(Comment, pk=pk) if pk else None
+    if request.method == 'POST':
+        form = AddCommentForm(request.POST, request.FILES,
+                              instance=new_comment)
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+            new_comment.commenter = commenter
+            new_comment.feature = feature
+            new_comment.save()
+            return redirect('features')
+    else:
+        form = AddCommentForm(instance=new_comment)
+    return render(request, 'add_feature_comment.html', {'form': form,
+                  'feature': feature})
+
+
+@login_required
+def upvote(request, feature_id):
+    """
+    Upvote a feature if not already voted
+    """
+    feature = get_object_or_404(Feature, pk=feature_id)
+    voter = request.user
+    try:
+        Vote.objects.get(feature=feature, voter=voter)
+        messages.error(request, 'You have already voted on this feature')
+    except Vote.DoesNotExist:
+        Vote.objects.create(voter=voter, feature=feature)
+        feature.votes += 1
+        feature.save()
+    return redirect('features')

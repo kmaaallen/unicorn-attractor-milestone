@@ -89,3 +89,4 @@ working on stripe subscription:
 30/12/19
 - creating a 'subscribers' group
 - sharpening up home page - content needs to be dynamic depending on level of access for user.
+- added votes and comments to feature overview - only visible if user is part of subscriber group.
