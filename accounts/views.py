@@ -2,9 +2,8 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from accounts.forms import UserSignInForm, UserSignUpForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
-
-# from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -63,7 +62,11 @@ def sign_up(request):
         sign_up_form = UserSignUpForm()
     return render(request, 'sign_up.html', {"sign_up_form": sign_up_form})
 
-# def user_profile(request):
-#     """ the user's profile page """
-#     user = User.objects.get(email=request.user.email)
-#     return render(request, 'profile.html', {"profile": user})
+
+@login_required
+def user_profile(request):
+    """
+    User's profile page
+    """
+    user = request.user
+    return render(request, 'user_profile.html', {"user": user})

@@ -326,3 +326,15 @@ h1.landing-title{
     text-align:center;
     margin-top: -20px;
 }
+
+/* profile styling */
+
+.profile{
+    color:#ffffff;
+    margin-left: 25px;
+    margin-top: 50px;
+}
+
+.profile h1{
+    color:#ffffff;
+}

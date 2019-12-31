@@ -93,3 +93,5 @@ working on stripe subscription:
 - dynamic buttons on issue page depending on if user is signed in
 
 31/12/19
+- completed contact form functionality
+- basic user profile added

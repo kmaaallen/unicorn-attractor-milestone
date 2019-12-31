@@ -43,7 +43,7 @@
 		</div>
 		<div class="col-md-3">
 			{% if request.user|in_group:"Subscribers" %}
-			<a href="#" class="btn landing-btn" role="button">Manage Subscription</a>
+			<a href="{% url 'profile' %}" class="btn landing-btn" role="button">Manage Subscription</a>
 			{% elif user.is_authenticated %}
 			<a href="{% url 'subscribe' %}" class="btn landing-btn" role="button">+ Subscribe</a>
 			{% else %}
