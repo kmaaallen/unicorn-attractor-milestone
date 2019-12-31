@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'issues',
     'features',
     'subscriptions',
-    'phone_field'
 ]
 
 MIDDLEWARE = [
