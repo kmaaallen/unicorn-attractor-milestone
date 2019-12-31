@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'issues',
     'features',
     'subscriptions',
+    'phone_field'
 ]
 
 MIDDLEWARE = [
@@ -148,6 +149,7 @@ EMAIL_HOST_USER = os.environ.get("EMAIL_ADDRESS")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # stripe
 STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
