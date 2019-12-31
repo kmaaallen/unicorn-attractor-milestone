@@ -31,7 +31,7 @@ def contact_us(request):
         if contact_form.is_valid():
             sender_name = contact_form.cleaned_data['name']
             sender_email = contact_form.cleaned_data['email']
-            message = "{0} has sent you a new message:\n\n{1}".format(sender_name, contact_form.cleaned_data['message'])
+            message = "{0} has sent you a new message:\n\n{1} \n\nTheir contact email is: {2}".format(sender_name, contact_form.cleaned_data['message'], sender_email)
             send_mail('Contact Form', message, sender_email, [settings.EMAIL_HOST_USER])
             return render(request, 'thanks.html')
     else:
