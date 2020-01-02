@@ -95,3 +95,11 @@ working on stripe subscription:
 31/12/19
 - completed contact form functionality
 - basic user profile added
+
+02/01/19
+- Subscriptions can now be deleted from the user profile page.
+- users stripe customer records are retained - and subscription and card details updated every time they subscribe
+using the form
+- This way - not getting multiple customers on stripe BUT retain a record of those who did subscribe
+- If users change their card details only the most recent card details are saved as default
+- users can manage their subscriptions
