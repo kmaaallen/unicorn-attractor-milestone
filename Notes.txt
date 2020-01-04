@@ -103,3 +103,10 @@ using the form
 - This way - not getting multiple customers on stripe BUT retain a record of those who did subscribe
 - If users change their card details only the most recent card details are saved as default
 - users can manage their subscriptions
+
+04/01/19
+- working on testing
+- Need to test all urls
+- All forms for valid and blank data 
+- test redirects
+- remember is blank test db need to create groups / users as appropriate
