@@ -6,8 +6,8 @@ from django.core.exceptions import ValidationError
 
 class UserSignInForm(forms.Form):
     """ form to used to sign in users """
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(label="Username")
+    password = forms.CharField(widget=forms.PasswordInput, label="Password")
 
 
 class UserSignUpForm(UserCreationForm):
@@ -20,7 +20,8 @@ class UserSignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'username', 'password1', 'password2']
+        fields = ['first_name', 'last_name', 'email', 'username',
+                  'password1', 'password2']
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -29,11 +30,16 @@ class UserSignUpForm(UserCreationForm):
             raise forms.ValidationError(u'Email address must be unique')
         return email
 
+    # below method to make email field mandatory in User model
+    # taken from: https://stackoverflow.com/questions/5493096/django-user-model-email-field-how-to-make-it-mandatory
+    # answer provided by Derek Reynolds
+    def __init__(self, *args, **kwargs):
+        super(UserSignUpForm, self).__init__(*args, **kwargs)
+        self.fields['email'].required = True
+
     def clean_password2(self):
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
-        if not password1 or not password2:
-            raise ValidationError("Please confirm your password")
         if password1 != password2:
             raise ValidationError("Passwords must be the same")
         return password2

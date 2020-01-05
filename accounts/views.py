@@ -39,7 +39,7 @@ def sign_in(request):
 def sign_up(request):
     """ render the sign up page """
     if request.user.is_authenticated:
-        return redirect(reverse('sign_in'))
+        return redirect('landing_page')
 
     if request.method == "POST":
         sign_up_form = UserSignUpForm(request.POST)
@@ -53,7 +53,7 @@ def sign_up(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have successfully signed up")
-                return render(request, 'find_out_more.html')
+                return render(request, 'more.html')
             else:
                 messages.error(
                     request, "Unable to sign you up at this time")

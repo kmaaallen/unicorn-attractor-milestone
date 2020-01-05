@@ -110,3 +110,6 @@ using the form
 - All forms for valid and blank data 
 - test redirects
 - remember is blank test db need to create groups / users as appropriate
+
+05/01/19
+- first round of accounts tests completed
