@@ -141,7 +141,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
 # Login url
-LOGIN_URL = '/accounts/sign_in/'
+LOGIN_URL = 'sign_in'
 
 # Email config
 EMAIL_USE_TLS = True
