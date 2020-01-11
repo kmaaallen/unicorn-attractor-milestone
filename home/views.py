@@ -1,8 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from home.forms import ContactForm
 from django.core.mail import send_mail
 from django.conf import settings
-from django.contrib import messages
 
 
 # Create your views here.
@@ -35,7 +34,14 @@ def contact_us(request):
             message = "{0} has sent you a new message:\n\n{1} \n\nTheir contact email is: {2}".format(sender_name, contact_form.cleaned_data['message'], sender_email)
             send_mail('Contact Form', message, sender_email,
                       [settings.EMAIL_HOST_USER])
-            return messages.error(request, "Thank you for for contacting us. We aim to response within five working days.")
+            return redirect('thanks')
     else:
         contact_form = ContactForm()
     return render(request, 'contact.html', {"contact_form": contact_form})
+
+
+def thanks(request):
+    """
+    A view that displays the thank you message after using contact form
+    """
+    return render(request, 'thanks.html')
