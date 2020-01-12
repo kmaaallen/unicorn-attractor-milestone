@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
-from .models import Issue
+from .models import Issue, Vote
 
 
 class TestIssuesPages(TestCase):
@@ -82,3 +82,23 @@ class TestIssuesPages(TestCase):
         # Check redirect
         self.assertRedirects(response, '/accounts/sign_in/?next=/issues/add_comment/1/')
 
+
+class TestUpvote(TestCase):
+
+    def test_upvote_applied(self):
+        # set up issue
+        test_issue = Issue.objects.create(title='test issue', description='test')
+        test_issue.save()
+        # set up and login user
+        test_user1 = User.objects.create_user(username='testuser',
+                                              password='password')
+        test_user1.save()
+        self.client.login(username='testuser', password='password')
+        # call upvote method
+        data = {
+            'issue': test_issue,
+            'voter': test_user1,
+        }
+        self.client.
+        self.assertEqual(test_issue.votes, 1)
+# not working yet

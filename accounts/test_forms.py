@@ -18,16 +18,20 @@ class TestSignInForm(TestCase):
         self.assertTrue(form.is_valid())
 
     """ def test_incorrect_username_password_combination_error(self):
-        test_user1 = User.objects.create_user(username='testuser',
-                                              password='password')
-        test_user1.save()
+        form = UserSignInForm()
         form_data = {'username': 'testuser', 'password': 'wrongpassword'}
-        # self.client.post('/accounts/sign_in/', form_data)
+        # response = self.client.post('/accounts/sign_in/', self.form_data, follow=True)
         form = UserSignInForm(form_data)
         self.assertTrue(form.is_valid())
-        self.client.login(username='testuser', password='wrongpassword')
-        self.assertEqual(form.non_field_errors(), [u'Your username and password combination is incorrect.']) """
-# why is non_field_error empty in test but not in prod????
+        self.client.post(form)
+        print("response is ")
+        print(form.errors)
+        self.assertEqual(form.non_field_errors(), [u'Your username and password combination is incorrect'])
+        # self.assertTrue(form.is_valid())
+        # self.client.login(username='testuser', password='wrongpassword', follow=True)
+        # self.assertEqual(form.errors, 'Your username and password combination is incorrect.')
+        # self.assertEqual(form.non_field_errors(), [u'Your username and password combination is incorrect.'])
+# why is non_field_error empty in test but not in prod???? """
 
 
 class TestSignUpForm(TestCase):
