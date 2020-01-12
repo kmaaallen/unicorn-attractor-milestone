@@ -25,7 +25,7 @@ class Issue(models.Model):
     ]
 
     title = models.CharField(max_length=254, default='')
-    description = models.TextField()
+    description = models.TextField(max_length=300)
     priority = models.CharField(max_length=6, choices=PRIORITY_CHOICES,
                                 default=LOW,)
     state = models.CharField(max_length=11, choices=STATE_CHOICES,

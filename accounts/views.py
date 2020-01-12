@@ -4,9 +4,6 @@ from accounts.forms import UserSignInForm, UserSignUpForm
 from django.contrib.auth.decorators import login_required
 
 
-# Create your views here.
-
-
 @login_required
 def sign_out(request):
     """Logs out user"""
@@ -31,6 +28,7 @@ def sign_in(request):
                 sign_in_form.add_error(
                     None,
                     "Your username and password combination is incorrect")
+                print (sign_in_form.non_field_errors())
     else:
         sign_in_form = UserSignInForm()
     return render(request, 'sign_in.html', {"sign_in_form": sign_in_form})

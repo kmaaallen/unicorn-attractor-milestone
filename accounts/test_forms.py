@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 
 class TestSignInForm(TestCase):
+
     def test_sign_in_form_field_labels(self):
         form = UserSignInForm()
         self.assertTrue(form.fields['username'].label == 'Username')
@@ -16,8 +17,21 @@ class TestSignInForm(TestCase):
         form = UserSignInForm(form_data)
         self.assertTrue(form.is_valid())
 
+    """ def test_incorrect_username_password_combination_error(self):
+        test_user1 = User.objects.create_user(username='testuser',
+                                              password='password')
+        test_user1.save()
+        form_data = {'username': 'testuser', 'password': 'wrongpassword'}
+        # self.client.post('/accounts/sign_in/', form_data)
+        form = UserSignInForm(form_data)
+        self.assertTrue(form.is_valid())
+        self.client.login(username='testuser', password='wrongpassword')
+        self.assertEqual(form.non_field_errors(), [u'Your username and password combination is incorrect.']) """
+# why is non_field_error empty in test but not in prod????
+
 
 class TestSignUpForm(TestCase):
+
     def test_sign_up_form_field_labels(self):
         form = UserSignUpForm()
         self.assertTrue(form.fields['first_name'].label == 'First name')

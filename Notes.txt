@@ -96,7 +96,7 @@ working on stripe subscription:
 - completed contact form functionality
 - basic user profile added
 
-02/01/19
+02/01/20
 - Subscriptions can now be deleted from the user profile page.
 - users stripe customer records are retained - and subscription and card details updated every time they subscribe
 using the form
@@ -104,15 +104,20 @@ using the form
 - If users change their card details only the most recent card details are saved as default
 - users can manage their subscriptions
 
-04/01/19
+04/01/20
 - working on testing
 - Need to test all urls
 - All forms for valid and blank data 
 - test redirects
 - remember is blank test db need to create groups / users as appropriate
 
-05/01/19
+05/01/20
 - first round of accounts tests completed
 
-11/01/19
+11/01/20
 - home tests complete - 97% coverage
+
+12/01/20
+- Still haven't worked out why non-field error is not populating.
+- Have asked in slack
+- In the middle of testing issues
