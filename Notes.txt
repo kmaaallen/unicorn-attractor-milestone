@@ -121,3 +121,7 @@ using the form
 - Still haven't worked out why non-field error is not populating.
 - Have asked in slack
 - In the middle of testing issues
+
+14/01/19
+- successfully tested upvote basci method - need to add test to check user is added to voters field for issue
+- still working on test to test if user has already voted on an issue.

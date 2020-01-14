@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
 from .models import Issue, Vote
+from django.shortcuts import reverse
 
 
 class TestIssuesPages(TestCase):
@@ -85,7 +86,7 @@ class TestIssuesPages(TestCase):
 
 class TestUpvote(TestCase):
 
-    def test_upvote_applied(self):
+    def test_new_upvote_applied(self):
         # set up issue
         test_issue = Issue.objects.create(title='test issue', description='test')
         test_issue.save()
@@ -99,6 +100,31 @@ class TestUpvote(TestCase):
             'issue': test_issue,
             'voter': test_user1,
         }
-        self.client.
+        self.client.post('/issues/upvote/1/', data, follow=True)
+        test_issue.refresh_from_db()
+        print(Vote.objects.filter()[0].voter)
+        self.assertTrue(Vote.objects.filter()[0].voter == test_user1)
+        # assert vote is added to issue record
         self.assertEqual(test_issue.votes, 1)
+        # assert voter is added to issue record
+        self.assertEqual(test_issue.voters[0], test_user1)
+
+    def test_upvote_not_allowed_if_already_voted(self):
+        # set up issue
+        test_issue = Issue.objects.create(title='test issue', description='test', votes=1)
+        test_issue.save()
+        # set up and login user
+        test_user1 = User.objects.create_user(username='testuser',
+                                              password='password')
+        test_user1.save()
+        self.client.login(username='testuser', password='password')
+        # set up vote object
+        test_vote = Vote.objects.create(issue=test_issue, voter=test_user1)
+        # call upvote method
+        data = {
+            'issue': test_issue,
+            'voter': test_user1,
+        }
+        self.client.post('/issues/upvote/1/', data, follow=True)
+        self.assertTrue()
 # not working yet
