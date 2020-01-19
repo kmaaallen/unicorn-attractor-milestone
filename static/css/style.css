@@ -127,6 +127,43 @@ h1.landing-title{
     background-color: #330066;
 }
 
+.dropdown-menu {
+    left: -100px;
+    right: -1px;
+    top: 47px;
+    border-radius: 0px;
+}
+
+.dropdown-menu>li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #330066;
+    white-space: nowrap;
+}
+
+.dropdown-menu>li>a:hover {
+    color: #330066;
+    text-decoration: underline;
+    background-color:#ffffff;
+}
+
+.dropdown-toggle{
+    background-color:#ffffff;
+    color: #330066;
+    margin-top:5px;
+}
+
+.dropdown-toggle:hover{
+    text-decoration:underline;
+    color: #330066;
+    text-shadow:none;
+}
+
+
+
 /* form styling */
 
 .accountform{

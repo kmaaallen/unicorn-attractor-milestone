@@ -132,3 +132,11 @@ using the form
 - home 100% coverage
 - accounts 99% coverage - can't yet work out how to test authentication failure error message
 - features 100% coverage
+- started subscriptions testing - not worked out how to test stripe yet
+
+- going through requirements - need to add some JS to the front end... - have toggle comment bit
+- check responsive design: front page, mobile nav, collapsible sections of kanban board?
+- add links to fb etc. icons
+- do I need travis?
+
+- made mobile nav responsive
