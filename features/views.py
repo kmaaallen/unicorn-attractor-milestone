@@ -6,11 +6,12 @@ from django.contrib import messages
 
 
 # Create your views here.
+@login_required
 def all_features(request):
     features = Feature.objects.all()
     return render(request, "feature_overview.html", {"features": features})
 
-
+@login_required
 def request_feature(request, pk=None):
     """
     Create a view that allows users to create or edit a feature request
@@ -63,4 +64,5 @@ def upvote(request, feature_id):
         Vote.objects.create(voter=voter, feature=feature)
         feature.votes += 1
         feature.save()
+        feature.voters.add(voter)
     return redirect('features')
