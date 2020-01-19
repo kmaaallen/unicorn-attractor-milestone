@@ -2,7 +2,6 @@ from django.test import TestCase
 from .forms import AddIssueForm, AddCommentForm
 from .models import Issue, Comment
 from django.contrib.auth.models import User
-from django.shortcuts import reverse
 
 
 class TestIssueForms(TestCase):
@@ -19,6 +18,20 @@ class TestIssueForms(TestCase):
         self.assertEqual(issue.description, "My test issue")
         self.assertEqual(issue.priority, "LOW")
 
+    def test_valid_issue_form_redirect(self):
+        # Set up and log in test user
+        test_user1 = User.objects.create_user(username='testuser',
+                                              password='password')
+        test_user1.save()
+        self.client.login(username='testuser', password='password')
+        data = {
+            'title': "Test Issue",
+            'description': "My test issue",
+            'priority': 'LOW'
+        }
+        response = self.client.post('/issues/report_issue/', data)
+        self.assertRedirects(response, '/issues/')
+
     def test_blank_issue_form_data(self):
         # Priority always has a default value
         form = AddIssueForm({'priority': "LOW"})
@@ -34,6 +47,7 @@ class TestIssueForms(TestCase):
                                               password='password')
         test_user1.save()
         self.client.login(username='testuser', password='password')
+        # set up issue
         test_issue = Issue.objects.create(title='test issue', description='test')
         test_issue.save()
         data = {
@@ -48,6 +62,7 @@ class TestIssueForms(TestCase):
         self.assertTrue(Comment.objects.filter()[0].comment == "My comment on this issue is")
         self.assertTrue(Comment.objects.filter()[0].commenter == test_user1)
         self.assertTrue(Comment.objects.filter()[0].issue == test_issue)
+        self.assertEqual(str(Comment.objects.filter()[0]), "My comment on this issue is")
    
     def test_blank_comment_form_data(self):
         form = AddCommentForm({})

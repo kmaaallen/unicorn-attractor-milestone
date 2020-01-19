@@ -28,7 +28,6 @@ def sign_in(request):
                 sign_in_form.add_error(
                     None,
                     "Your username and password combination is incorrect")
-                print (sign_in_form.non_field_errors())
     else:
         sign_in_form = UserSignInForm()
     return render(request, 'sign_in.html', {"sign_in_form": sign_in_form})

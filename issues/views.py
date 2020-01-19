@@ -72,4 +72,5 @@ def upvote(request, issue_id):
         Vote.objects.create(voter=voter, issue=issue)
         issue.votes += 1
         issue.save()
+        issue.voters.add(voter)
     return redirect('issues')

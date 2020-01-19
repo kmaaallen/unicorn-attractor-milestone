@@ -2,7 +2,7 @@ from django.test import TestCase
 from .forms import UserSignInForm, UserSignUpForm
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 
 class TestSignInForm(TestCase):
@@ -17,21 +17,15 @@ class TestSignInForm(TestCase):
         form = UserSignInForm(form_data)
         self.assertTrue(form.is_valid())
 
-    """ def test_incorrect_username_password_combination_error(self):
-        form = UserSignInForm()
+    def test_incorrect_username_password_combination_error(self):
+        # Set up test user
+        test_user1 = User.objects.create_user(username='testuser',
+                                              password='password')
+        test_user1.save()
         form_data = {'username': 'testuser', 'password': 'wrongpassword'}
-        # response = self.client.post('/accounts/sign_in/', self.form_data, follow=True)
-        form = UserSignInForm(form_data)
-        self.assertTrue(form.is_valid())
-        self.client.post(form)
-        print("response is ")
-        print(form.errors)
-        self.assertEqual(form.non_field_errors(), [u'Your username and password combination is incorrect'])
-        # self.assertTrue(form.is_valid())
-        # self.client.login(username='testuser', password='wrongpassword', follow=True)
-        # self.assertEqual(form.errors, 'Your username and password combination is incorrect.')
-        # self.assertEqual(form.non_field_errors(), [u'Your username and password combination is incorrect.'])
-# why is non_field_error empty in test but not in prod???? """
+        form = UserSignInForm()
+        response = self.client.post('/accounts/sign_in/', form_data, follow=True)
+        self.assertFormError(response, 'form', None, ['Your username and password combination is incorrect'])
 
 
 class TestSignUpForm(TestCase):
@@ -46,12 +40,16 @@ class TestSignUpForm(TestCase):
         self.assertTrue(form.fields['password2'].label == 'Confirm password')
 
     def test_sign_up_form_valid_correct_data(self):
+        # create 'Subscribers' group for test database
+        Group.objects.get_or_create(name='Subscribers')
         # testing all fields entered with valid data
         form_data = {'first_name': 'Test', 'last_name': 'McTest',
                      'username': 'testUser', 'email': 'test@gmail.com',
                      'password1': 'password', 'password2': 'password'}
         form = UserSignUpForm(form_data)
         self.assertTrue(form.is_valid())
+        response = self.client.post('/accounts/sign_up/', form_data)
+        self.assertTrue(response.context['user'].is_authenticated())
 
     # Testing certain fields are required for valid form
 

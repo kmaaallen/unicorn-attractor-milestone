@@ -125,3 +125,9 @@ using the form
 14/01/19
 - successfully tested upvote basci method - need to add test to check user is added to voters field for issue
 - still working on test to test if user has already voted on an issue.
+
+19/01/2020
+-  completed upvote testing
+- issues 100% coverage complete
+- home 100% coverage
+- accounts 99% coverage - can't yet work out how to test authentication failure error message

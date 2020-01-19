@@ -64,3 +64,32 @@ class TestAccountsPages(TestCase):
         # check correct redirect
         self.assertRedirects(response,
                              '/accounts/sign_in/?next=/accounts/profile/')
+
+
+class TestLoginLogout(TestCase):
+
+    def test_user_logout(self):
+        # Set up and log in test user
+        test_user1 = User.objects.create_user(username='testuser',
+                                              password='password')
+        test_user1.save()
+        self.client.login(username='testuser', password='password')
+        response = self.client.get('/accounts/sign_out/')
+        self.assertRedirects(response, '/accounts/sign_in/')
+    
+    def test_user_login(self):
+        # create 'Subscribers' group for test database
+        Group.objects.get_or_create(name='Subscribers')
+        # Set up test user
+        test_user1 = User.objects.create_user(username='testuser',
+                                              password='password')
+        test_user1.save()
+        data = {
+            'username': 'testuser',
+            'password': 'password'
+        }
+        response = self.client.post('/accounts/sign_in/', data)
+        self.assertRedirects(response, '/home/more/')
+
+   
+

@@ -31,7 +31,7 @@ class Issue(models.Model):
     state = models.CharField(max_length=11, choices=STATE_CHOICES,
                              default=REPORTED,)
     votes = models.IntegerField(default=0)
-    voters = models.ManyToManyField(settings.AUTH_USER_MODEL)
+    voters = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
 
     class Meta:
         ordering = ('-votes',)
@@ -42,7 +42,7 @@ class Issue(models.Model):
 
 class Vote(models.Model):
     issue = models.ForeignKey('Issue')
-    voter = models.ForeignKey(settings.AUTH_USER_MODEL, default=0)
+    voter = models.ForeignKey(settings.AUTH_USER_MODEL, default='')
 
     class Meta:
         unique_together = ('issue', 'voter')

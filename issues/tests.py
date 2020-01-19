@@ -102,12 +102,13 @@ class TestUpvote(TestCase):
         }
         self.client.post('/issues/upvote/1/', data, follow=True)
         test_issue.refresh_from_db()
-        print(Vote.objects.filter()[0].voter)
+        # assert vote object exists for this user and issue
         self.assertTrue(Vote.objects.filter()[0].voter == test_user1)
+        self.assertTrue(Vote.objects.filter()[0].issue == test_issue)
         # assert vote is added to issue record
         self.assertEqual(test_issue.votes, 1)
         # assert voter is added to issue record
-        self.assertEqual(test_issue.voters[0], test_user1)
+        self.assertEqual(test_issue.voters.filter()[0], test_user1)
 
     def test_upvote_not_allowed_if_already_voted(self):
         # set up issue
@@ -125,6 +126,8 @@ class TestUpvote(TestCase):
             'issue': test_issue,
             'voter': test_user1,
         }
-        self.client.post('/issues/upvote/1/', data, follow=True)
-        self.assertTrue()
-# not working yet
+        response = self.client.post('/issues/upvote/1/', data, follow=True)
+        messages = list(response.context['messages'])
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(str(messages[0]), 'You have already voted on this issue')
+
