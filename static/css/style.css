@@ -144,6 +144,10 @@ h1.landing-title{
     white-space: nowrap;
 }
 
+.navbar .dropdown-menu a {
+    color: #330066;
+}
+
 .dropdown-menu>li>a:hover {
     color: #330066;
     text-decoration: underline;
@@ -272,7 +276,7 @@ h1.landing-title{
     float: right;
 }
 
-.report-issue-header, .report-issue-header>h1{
+.report-issue-header, .report-issue-header>h1, .btn-link{
     color: #ffffff;
     padding-left: 0px;
 }
@@ -284,6 +288,10 @@ h1.landing-title{
 .upvote-link:hover, .comment-link:hover{
     color: #555555;
     text-decoration: underline;
+}
+
+#accordion{
+    transform:translateY(-50px);
 }
 
 
