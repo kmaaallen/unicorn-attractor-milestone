@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Issue, Vote, Comment
 from .forms import AddIssueForm, AddCommentForm
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 
@@ -67,7 +66,6 @@ def upvote(request, issue_id):
     voter = request.user
     try:
         Vote.objects.get(issue=issue, voter=voter)
-        messages.error(request, 'You have already voted on this issue')
     except Vote.DoesNotExist:
         Vote.objects.create(voter=voter, issue=issue)
         issue.votes += 1

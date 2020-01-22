@@ -294,6 +294,9 @@ h1.landing-title{
     transform:translateY(-50px);
 }
 
+.already-voted{
+    font-style:italic;
+}
 
 /* Report an Issue Form styling */
 .issue-form{

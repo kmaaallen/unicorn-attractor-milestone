@@ -6,319 +6,341 @@
 {% block content %}
 
 <div class="container">
-<div class="row issue-header-div">
-    <div class="col-md-6 report-issue-header">
-        <h1>Overview of reported issues</h1>
-        <p>We fix bugs for free! Report an issue, add comments and track its progress.</p>
-        <p>To report an issue, add comments or upvote you must be signed in.</p>
-    </div>
-    <div class="col-md-6">
-    {% if user.is_authenticated %}
-        <a href="{% url 'report_issue' %}" class="btn sign-up-btn report-issue-btn" role="button">+ Report an Issue</a>
-        {% else %}
-        <a href="{% url 'sign_in' %}" class="btn sign-up-btn report-issue-btn" role="button">Sign In</a>
-        {% endif %}
-    </div>
-</div>
-<div class="row hidden-xs hidden-sm">
-    <div class="col-md-4 swim-lane">
-        <div class="lane-title-div">
-            <h3 class="lane-title">Reported</h3>
-            {% for issue in issues %}
-            {% if issue.state == 'REPORTED' %}
-            <div class="col-xs-12 display panel panel-default">
-                <div class="panel-body">
-                    <h3><a class="upvote-link" href="{% url 'full_issue' issue_id=issue.id%}">{{ issue.title }}</a></h3>
-                    <p class="">{{ issue.description }}</p>
-                    <p>Priority: {{ issue.priority }}</p>
-                    <p>Votes: {{ issue.votes }}</p>
-                    {% if user.is_authenticated %}
-                    <p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote</a></p>
-                    <div>
-                        <a class="comment-link" onClick="toggleComment(this)">Comments
-                            <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-                        </br>
-                        <a class="comment-link" href="{% url 'add_comment' issue_id=issue.id%}">Add Comment
-                            <i class="fa fa-plus" aria-hidden="true"></i></a>
-                    </div>
-                    <div class="comment-block">
-                        <div class="comments">
-                            {% for comment in issue.comments.all %}
-                            <div class="comment-bold">{{ comment.created }}</div>
-                            <p class="comment-bold"> User: {{ comment.commenter }}</p>
-                            <p> Comment: {{ comment.comment }}</p>
-                            <hr />
-                            {% empty %}
-                            <div>
-                                <p class="sub-text">No comments yet</p>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-    </div>
-    <div class="col-md-4 swim-lane">
-        <div class="lane-title-div">
-            <h3 class="lane-title">In Progress</h3>
-            {% for issue in issues|dictsortreversed:"votes"  %}
-            {% if issue.state == 'IN PROGRESS' %}
-            <div class="col-xs-12 display panel panel-default">
-                <div class="panel-body">
-                    <h3><a class="upvote-link" href="{% url 'full_issue' issue_id=issue.id%}">{{ issue.title }}</a></h3>
-                    <p class="">{{ issue.description }}</p>
-                    <p>Priority: {{ issue.priority }}</p>
-                    <p>Votes: {{ issue.votes }}</p>
-                    {% if user.is_authenticated %}
-                    <p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote</a></p>
-                    <div>
-                        <a class="comment-link" onClick="toggleComment(this)">Comments
-                            <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-                        </br>
-                        <a class="comment-link" href="{% url 'add_comment' issue_id=issue.id%}">Add Comment
-                            <i class="fa fa-plus" aria-hidden="true"></i></a>
-                    </div>
-                    <div class="comment-block">
-                        <div class="comments">
-                            {% for comment in issue.comments.all %}
-                            <div class="comment-bold">{{ comment.created }}</div>
-                            <p class="comment-bold"> User: {{ comment.commenter }}</p>
-                            <p> Comment: {{ comment.comment }}</p>
-                            <hr />
-                            {% empty %}
-                            <div>
-                                <p class="sub-text">No comments yet</p>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-    </div>
-    <div class="col-md-4 swim-lane">
-        <div class="lane-title-div">
-            <h3 class="lane-title">Completed</h3>
-            {% for issue in issues|dictsortreversed:"votes"  %}
-            {% if issue.state == 'COMPLETED' %}
-            <div class="col-xs-12 display panel panel-default">
-                <div class="panel-body">
-                    <h3><a class="upvote-link" href="{% url 'full_issue' issue_id=issue.id%}">{{ issue.title }}</a></h3>
-                    <p class="">{{ issue.description }}</p>
-                    <p>Priority: {{ issue.priority }}</p>
-                    <p>Votes: {{ issue.votes }}</p>
-                    {% if user.is_authenticated %}
-                    <p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote</a></p>
-                    <div>
-                        <a class="comment-link" onClick="toggleComment(this)">Comments
-                            <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-                        </br>
-                        <a class="comment-link" href="{% url 'add_comment' issue_id=issue.id%}">Add Comment
-                            <i class="fa fa-plus" aria-hidden="true"></i></a>
-                    </div>
-                    <div class="comment-block">
-                        <div class="comments">
-                            {% for comment in issue.comments.all %}
-                            <div class="comment-bold">{{ comment.created }}</div>
-                            <p class="comment-bold"> User: {{ comment.commenter }}</p>
-                            <p> Comment: {{ comment.comment }}</p>
-                            <hr />
-                            {% empty %}
-                            <div>
-                                <p class="sub-text">No comments yet</p>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-    </div>
-</div>
+	<div class="row issue-header-div">
+		<div class="col-md-6 report-issue-header">
+			<h1>Overview of reported issues</h1>
+			<p>We fix bugs for free! Report an issue, add comments and track its progress.</p>
+			<p>To report an issue, add comments or upvote you must be signed in.</p>
+		</div>
+		<div class="col-md-6">
+			{% if user.is_authenticated %}
+			<a href="{% url 'report_issue' %}" class="btn sign-up-btn report-issue-btn" role="button">+ Report an
+				Issue</a>
+			{% else %}
+			<a href="{% url 'sign_in' %}" class="btn sign-up-btn report-issue-btn" role="button">Sign In</a>
+			{% endif %}
+		</div>
+	</div>
+	<div class="row hidden-xs hidden-sm">
+		<div class="col-md-4 swim-lane">
+			<div class="lane-title-div">
+				<h3 class="lane-title">Reported</h3>
+				{% for issue in issues %}
+				{% if issue.state == 'REPORTED' %}
+				<div class="col-xs-12 display panel panel-default">
+					<div class="panel-body">
+						<h3><a class="upvote-link" href="{% url 'full_issue' issue_id=issue.id%}">{{ issue.title }}</a>
+						</h3>
+						<p class="">{{ issue.description }}</p>
+						<p>Priority: {{ issue.priority }}</p>
+						<p>Votes: {{ issue.votes }}</p>
+						{% if user.is_authenticated %}
+						{% if user in issue.voters.all %}
+						<p class="already-voted">You have already voted on this issue</p>
+						{% else %}
+						<p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote <i class="fa fa-arrow-up"></i></a>
+						</p>
+						{% endif %}
+						<div>
+							<a class="comment-link" onClick="toggleComment(this)">Comments
+								<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+							</br>
+							<a class="comment-link" href="{% url 'add_comment' issue_id=issue.id%}">Add Comment
+								<i class="fa fa-plus" aria-hidden="true"></i></a>
+						</div>
+						<div class="comment-block">
+							<div class="comments">
+								{% for comment in issue.comments.all %}
+								<div class="comment-bold">{{ comment.created }}</div>
+								<p class="comment-bold"> User: {{ comment.commenter }}</p>
+								<p> Comment: {{ comment.comment }}</p>
+								<hr />
+								{% empty %}
+								<div>
+									<p class="sub-text">No comments yet</p>
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+						{% endif %}
+					</div>
+				</div>
+				{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+		<div class="col-md-4 swim-lane">
+			<div class="lane-title-div">
+				<h3 class="lane-title">In Progress</h3>
+				{% for issue in issues|dictsortreversed:"votes"  %}
+				{% if issue.state == 'IN PROGRESS' %}
+				<div class="col-xs-12 display panel panel-default">
+					<div class="panel-body">
+						<h3><a class="upvote-link" href="{% url 'full_issue' issue_id=issue.id%}">{{ issue.title }}</a>
+						</h3>
+						<p class="">{{ issue.description }}</p>
+						<p>Priority: {{ issue.priority }}</p>
+						<p>Votes: {{ issue.votes }}</p>
+						{% if user.is_authenticated %}
+						{% if user in issue.voters.all %}
+						<p class="already-voted">You have already voted on this issue</p>
+						{% else %}
+						<p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote <i class="fa fa-arrow-up"></i></a>
+						</p>
+						{% endif %}
+						<div>
+							<a class="comment-link" onClick="toggleComment(this)">Comments
+								<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+							</br>
+							<a class="comment-link" href="{% url 'add_comment' issue_id=issue.id%}">Add Comment
+								<i class="fa fa-plus" aria-hidden="true"></i></a>
+						</div>
+						<div class="comment-block">
+							<div class="comments">
+								{% for comment in issue.comments.all %}
+								<div class="comment-bold">{{ comment.created }}</div>
+								<p class="comment-bold"> User: {{ comment.commenter }}</p>
+								<p> Comment: {{ comment.comment }}</p>
+								<hr />
+								{% empty %}
+								<div>
+									<p class="sub-text">No comments yet</p>
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+						{% endif %}
+					</div>
+				</div>
+				{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+		<div class="col-md-4 swim-lane">
+			<div class="lane-title-div">
+				<h3 class="lane-title">Completed</h3>
+				{% for issue in issues|dictsortreversed:"votes"  %}
+				{% if issue.state == 'COMPLETED' %}
+				<div class="col-xs-12 display panel panel-default">
+					<div class="panel-body">
+						<h3><a class="upvote-link" href="{% url 'full_issue' issue_id=issue.id%}">{{ issue.title }}</a>
+						</h3>
+						<p class="">{{ issue.description }}</p>
+						<p>Priority: {{ issue.priority }}</p>
+						<p>Votes: {{ issue.votes }}</p>
+						{% if user.is_authenticated %}
+						{% if user in issue.voters.all %}
+						<p class="already-voted">You have already voted on this issue</p>
+						{% else %}
+						<p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote <i class="fa fa-arrow-up"></i></a>
+						</p>
+						{% endif %}
+						<div>
+							<a class="comment-link" onClick="toggleComment(this)">Comments
+								<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+							</br>
+							<a class="comment-link" href="{% url 'add_comment' issue_id=issue.id%}">Add Comment
+								<i class="fa fa-plus" aria-hidden="true"></i></a>
+						</div>
+						<div class="comment-block">
+							<div class="comments">
+								{% for comment in issue.comments.all %}
+								<div class="comment-bold">{{ comment.created }}</div>
+								<p class="comment-bold"> User: {{ comment.commenter }}</p>
+								<p> Comment: {{ comment.comment }}</p>
+								<hr />
+								{% empty %}
+								<div>
+									<p class="sub-text">No comments yet</p>
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+						{% endif %}
+					</div>
+				</div>
+				{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
 
 
-<!-- Mobile view of issues board -->
-<div id="accordion" class="hidden-md hidden-lg hidden-xl">
-<div class="card">
-<div class="card-header" id="headingOne">
-    <h5 class="mb-0">
-    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+	<!-- Mobile view of issues board -->
+	<div id="accordion" class="hidden-md hidden-lg hidden-xl">
+		<div class="card">
+			<div class="card-header" id="headingOne">
+				<h5 class="mb-0">
+					<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
         Reported
         <i class="fa fa-caret-down"></i>
     </button>
-    </h5>
-</div>
+				</h5>
+			</div>
 
-<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-    <div class="card-body">
-    <div class="col-md-4 swim-lane">
-    <div class="lane-title-div">
-            <h3 class="lane-title">Reported</h3>
-    {% for issue in issues %}
-            {% if issue.state == 'REPORTED' %}
-            <div class="col-xs-12 display panel panel-default">
-                <div class="panel-body">
-                    <h3><a class="upvote-link" href="{% url 'full_issue' issue_id=issue.id%}">{{ issue.title }}</a></h3>
-                    <p class="">{{ issue.description }}</p>
-                    <p>Priority: {{ issue.priority }}</p>
-                    <p>Votes: {{ issue.votes }}</p>
-                    {% if user.is_authenticated %}
-                    <p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote</a></p>
-                    <div>
-                        <a class="comment-link" onClick="toggleComment(this)">Comments
-                            <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-                        </br>
-                        <a class="comment-link" href="{% url 'add_comment' issue_id=issue.id%}">Add Comment
-                            <i class="fa fa-plus" aria-hidden="true"></i></a>
-                    </div>
-                    <div class="comment-block">
-                        <div class="comments">
-                            {% for comment in issue.comments.all %}
-                            <div class="comment-bold">{{ comment.created }}</div>
-                            <p class="comment-bold"> User: {{ comment.commenter }}</p>
-                            <p> Comment: {{ comment.comment }}</p>
-                            <hr />
-                            {% empty %}
-                            <div>
-                                <p class="sub-text">No comments yet</p>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-    </div>
-</div>
-</div>
-<div class="card">
-<div class="card-header" id="headingTwo">
-    <h5 class="mb-0">
-    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+			<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+				<div class="card-body">
+					<div class="col-md-4 swim-lane">
+						<div class="lane-title-div">
+							<h3 class="lane-title">Reported</h3>
+							{% for issue in issues %}
+							{% if issue.state == 'REPORTED' %}
+							<div class="col-xs-12 display panel panel-default">
+								<div class="panel-body">
+									<h3><a class="upvote-link"
+											href="{% url 'full_issue' issue_id=issue.id%}">{{ issue.title }}</a></h3>
+									<p class="">{{ issue.description }}</p>
+									<p>Priority: {{ issue.priority }}</p>
+									<p>Votes: {{ issue.votes }}</p>
+									{% if user.is_authenticated %}
+									<p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote</a></p>
+									<div>
+										<a class="comment-link" onClick="toggleComment(this)">Comments
+											<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+										</br>
+										<a class="comment-link" href="{% url 'add_comment' issue_id=issue.id%}">Add
+											Comment
+											<i class="fa fa-plus" aria-hidden="true"></i></a>
+									</div>
+									<div class="comment-block">
+										<div class="comments">
+											{% for comment in issue.comments.all %}
+											<div class="comment-bold">{{ comment.created }}</div>
+											<p class="comment-bold"> User: {{ comment.commenter }}</p>
+											<p> Comment: {{ comment.comment }}</p>
+											<hr />
+											{% empty %}
+											<div>
+												<p class="sub-text">No comments yet</p>
+											</div>
+											{% endfor %}
+										</div>
+									</div>
+									{% endif %}
+								</div>
+							</div>
+							{% endif %}
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header" id="headingTwo">
+					<h5 class="mb-0">
+						<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
         In Progress
         <i class="fa fa-caret-down"></i>
     </button>
-    </h5>
-</div>
-<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-    <div class="card-body">
-    <div class="col-md-4 swim-lane">
-        <div class="lane-title-div">
-            <h3 class="lane-title">In Progress</h3>
-            {% for issue in issues|dictsortreversed:"votes"  %}
-            {% if issue.state == 'IN PROGRESS' %}
-            <div class="col-xs-12 display panel panel-default">
-                <div class="panel-body">
-                    <h3><a class="upvote-link" href="{% url 'full_issue' issue_id=issue.id%}">{{ issue.title }}</a></h3>
-                    <p class="">{{ issue.description }}</p>
-                    <p>Priority: {{ issue.priority }}</p>
-                    <p>Votes: {{ issue.votes }}</p>
-                    {% if user.is_authenticated %}
-                    <p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote</a></p>
-                    <div>
-                        <a class="comment-link" onClick="toggleComment(this)">Comments
-                            <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-                        </br>
-                        <a class="comment-link" href="{% url 'add_comment' issue_id=issue.id%}">Add Comment
-                            <i class="fa fa-plus" aria-hidden="true"></i></a>
-                    </div>
-                    <div class="comment-block">
-                        <div class="comments">
-                            {% for comment in issue.comments.all %}
-                            <div class="comment-bold">{{ comment.created }}</div>
-                            <p class="comment-bold"> User: {{ comment.commenter }}</p>
-                            <p> Comment: {{ comment.comment }}</p>
-                            <hr />
-                            {% empty %}
-                            <div>
-                                <p class="sub-text">No comments yet</p>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-    </div>
-    </div>
-</div>
-</div>
-<div class="card">
-<div class="card-header" id="headingThree">
-    <h5 class="mb-0">
-    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					</h5>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+					<div class="card-body">
+						<div class="col-md-4 swim-lane">
+							<div class="lane-title-div">
+								<h3 class="lane-title">In Progress</h3>
+								{% for issue in issues|dictsortreversed:"votes"  %}
+								{% if issue.state == 'IN PROGRESS' %}
+								<div class="col-xs-12 display panel panel-default">
+									<div class="panel-body">
+										<h3><a class="upvote-link"
+												href="{% url 'full_issue' issue_id=issue.id%}">{{ issue.title }}</a>
+										</h3>
+										<p class="">{{ issue.description }}</p>
+										<p>Priority: {{ issue.priority }}</p>
+										<p>Votes: {{ issue.votes }}</p>
+										{% if user.is_authenticated %}
+										<p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote</a></p>
+										<div>
+											<a class="comment-link" onClick="toggleComment(this)">Comments
+												<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+											</br>
+											<a class="comment-link" href="{% url 'add_comment' issue_id=issue.id%}">Add
+												Comment
+												<i class="fa fa-plus" aria-hidden="true"></i></a>
+										</div>
+										<div class="comment-block">
+											<div class="comments">
+												{% for comment in issue.comments.all %}
+												<div class="comment-bold">{{ comment.created }}</div>
+												<p class="comment-bold"> User: {{ comment.commenter }}</p>
+												<p> Comment: {{ comment.comment }}</p>
+												<hr />
+												{% empty %}
+												<div>
+													<p class="sub-text">No comments yet</p>
+												</div>
+												{% endfor %}
+											</div>
+										</div>
+										{% endif %}
+									</div>
+								</div>
+								{% endif %}
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header" id="headingThree">
+					<h5 class="mb-0">
+						<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
         Completed
         <i class="fa fa-caret-down"></i>
     </button>
-    </h5>
-</div>
-<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-    <div class="card-body">
-<div class="col-md-4 swim-lane">
-        <div class="lane-title-div">
-            <h3 class="lane-title">Completed</h3>
-            {% for issue in issues|dictsortreversed:"votes"  %}
-            {% if issue.state == 'COMPLETED' %}
-            <div class="col-xs-12 display panel panel-default">
-                <div class="panel-body">
-                    <h3><a class="upvote-link" href="{% url 'full_issue' issue_id=issue.id%}">{{ issue.title }}</a></h3>
-                    <p class="">{{ issue.description }}</p>
-                    <p>Priority: {{ issue.priority }}</p>
-                    <p>Votes: {{ issue.votes }}</p>
-                    {% if user.is_authenticated %}
-                    <p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote</a></p>
-                    <div>
-                        <a class="comment-link" onClick="toggleComment(this)">Comments
-                            <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-                        </br>
-                        <a class="comment-link" href="{% url 'add_comment' issue_id=issue.id%}">Add Comment
-                            <i class="fa fa-plus" aria-hidden="true"></i></a>
-                    </div>
-                    <div class="comment-block">
-                        <div class="comments">
-                            {% for comment in issue.comments.all %}
-                            <div class="comment-bold">{{ comment.created }}</div>
-                            <p class="comment-bold"> User: {{ comment.commenter }}</p>
-                            <p> Comment: {{ comment.comment }}</p>
-                            <hr />
-                            {% empty %}
-                            <div>
-                                <p class="sub-text">No comments yet</p>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-    </div>
-    </div>
-</div>
-</div>
-</div>
-</div>
-
-
-
-
-
-{% endblock %}
+					</h5>
+				</div>
+				<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+					<div class="card-body">
+						<div class="col-md-4 swim-lane">
+							<div class="lane-title-div">
+								<h3 class="lane-title">Completed</h3>
+								{% for issue in issues|dictsortreversed:"votes"  %}
+								{% if issue.state == 'COMPLETED' %}
+								<div class="col-xs-12 display panel panel-default">
+									<div class="panel-body">
+										<h3><a class="upvote-link"
+												href="{% url 'full_issue' issue_id=issue.id%}">{{ issue.title }}</a>
+										</h3>
+										<p class="">{{ issue.description }}</p>
+										<p>Priority: {{ issue.priority }}</p>
+										<p>Votes: {{ issue.votes }}</p>
+										{% if user.is_authenticated %}
+										<p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote</a></p>
+										<div>
+											<a class="comment-link" onClick="toggleComment(this)">Comments
+												<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+											</br>
+											<a class="comment-link" href="{% url 'add_comment' issue_id=issue.id%}">Add
+												Comment
+												<i class="fa fa-plus" aria-hidden="true"></i></a>
+										</div>
+										<div class="comment-block">
+											<div class="comments">
+												{% for comment in issue.comments.all %}
+												<div class="comment-bold">{{ comment.created }}</div>
+												<p class="comment-bold"> User: {{ comment.commenter }}</p>
+												<p> Comment: {{ comment.comment }}</p>
+												<hr />
+												{% empty %}
+												<div>
+													<p class="sub-text">No comments yet</p>
+												</div>
+												{% endfor %}
+											</div>
+										</div>
+										{% endif %}
+									</div>
+								</div>
+								{% endif %}
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endblock %}
