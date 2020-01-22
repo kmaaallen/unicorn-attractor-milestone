@@ -194,10 +194,11 @@
 									<p>Votes: {{ issue.votes }}</p>
 									{% if user.is_authenticated %}
 									{% if user in issue.voters.all %}
-        <p class="already-voted">You have already voted on this issue</p>
-        {% else %}
-        <p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote <i class="fa fa-arrow-up"></i></a></p>
-        {% endif %}
+									<p class="already-voted">You have already voted on this issue</p>
+									{% else %}
+									<p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote
+											<i class="fa fa-arrow-up"></i></a></p>
+									{% endif %}
 									<div>
 										<a class="comment-link" onClick="toggleComment(this)">Comments
 											<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
@@ -255,10 +256,11 @@
 										<p>Votes: {{ issue.votes }}</p>
 										{% if user.is_authenticated %}
 										{% if user in issue.voters.all %}
-        <p class="already-voted">You have already voted on this issue</p>
-        {% else %}
-        <p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote <i class="fa fa-arrow-up"></i></a></p>
-        {% endif %}
+										<p class="already-voted">You have already voted on this issue</p>
+										{% else %}
+										<p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote
+												<i class="fa fa-arrow-up"></i></a></p>
+										{% endif %}
 										<div>
 											<a class="comment-link" onClick="toggleComment(this)">Comments
 												<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
@@ -317,10 +319,11 @@
 										<p>Votes: {{ issue.votes }}</p>
 										{% if user.is_authenticated %}
 										{% if user in issue.voters.all %}
-        <p class="already-voted">You have already voted on this issue</p>
-        {% else %}
-        <p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote <i class="fa fa-arrow-up"></i></a></p>
-        {% endif %}
+										<p class="already-voted">You have already voted on this issue</p>
+										{% else %}
+										<p><a class="upvote-link" href="upvote/{{ issue.id }}">Upvote
+												<i class="fa fa-arrow-up"></i></a></p>
+										{% endif %}
 										<div>
 											<a class="comment-link" onClick="toggleComment(this)">Comments
 												<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
