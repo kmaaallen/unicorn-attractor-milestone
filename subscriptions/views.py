@@ -27,7 +27,28 @@ def new_subscription(request):
         if subscribe_form.is_valid():
             try:
                 # See if customer already exists in Subscriber model
+                # subscriber = Subscriber.objects.get(user=request.user.id)
                 subscriber = Subscriber.objects.get(user=request.user.id)
+                # add new card details and update subscriber data
+                customer = stripe.Customer.modify(
+                    subscriber.customer_id,
+                    card=subscribe_form.cleaned_data['stripe_id'],
+                )
+                card = stripe.Customer.retrieve_source(
+                    subscriber.customer_id,
+                    customer.default_source,
+                )
+                # create subscription
+                subscription = stripe.Subscription.create(
+                    customer=subscriber.customer_id,
+                    items=[{"plan": plan}],
+                )
+                Subscriber.objects.filter(user=request.user.id).update(subscription_id=subscription.id)
+                Subscriber.objects.filter(user=request.user.id).update(card_id=card.id)
+                subscriber_group = Group.objects.get(name='Subscribers')
+                subscriber_group.user_set.add(request.user)
+                
+                messages.error(request, "You have successfully subscribed.")
             except Subscriber.DoesNotExist:
                 try:
                     # Create new customer and subscription and store details for stripe
@@ -54,26 +75,6 @@ def new_subscription(request):
                                   'publishable': settings.STRIPE_PUBLISHABLE})
                 except stripe.error.CardError:
                     messages.error(request, "Your card was declined.")
-            else:
-                # add new card details and update subscriber data
-                customer = stripe.Customer.modify(
-                    subscriber.customer_id,
-                    card=subscribe_form.cleaned_data['stripe_id'],
-                )
-                card = stripe.Customer.retrieve_source(
-                    subscriber.customer_id,
-                    customer.default_source,
-                )
-                Subscriber.objects.filter(user=request.user.id).update(subscription_id=subscription.id)
-                Subscriber.objects.filter(user=request.user.id).update(card_id=card.id)
-                subscriber_group = Group.objects.get(name='Subscribers')
-                subscriber_group.user_set.add(request.user)
-                # create subscription
-                subscription = stripe.Subscription.create(
-                    customer=subscriber.customer_id,
-                    items=[{"plan": plan}],
-                )
-                messages.error(request, "You have successfully subscribed.")
         else:
             print(subscribe_form.errors)
             messages.error(request, "We were unable to take a payment.")

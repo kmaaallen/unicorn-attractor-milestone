@@ -149,3 +149,4 @@ using the form
 
 26/01/20
 - now upvote on issue is not working... - all now working, including from full issue page
+- having stripe card issues for new subscribers - keyError 'card' - check on this tomorrow
