@@ -313,6 +313,11 @@ h1.landing-title{
 .full-issue{
     margin-top: 20px;
     background-color: #ffffff;
+    padding-bottom: 100px;
+}
+
+.issue-bottom-margin{
+    margin-bottom: 30px;
 }
 
 .comment-full{

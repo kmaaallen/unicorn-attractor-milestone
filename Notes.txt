@@ -146,3 +146,6 @@ using the form
 - cannot currently upvote on full issue page  - wrong url?
 - body need margins in mobile
 - styles all issues page partially for mobile with collapsible sections.
+
+26/01/20
+- now upvote on issue is not working... - all now working, including from full issue page

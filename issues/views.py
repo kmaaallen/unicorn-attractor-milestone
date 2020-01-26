@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .models import Issue, Vote, Comment
 from .forms import AddIssueForm, AddCommentForm
 from django.contrib.auth.decorators import login_required
