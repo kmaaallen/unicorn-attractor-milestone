@@ -27,7 +27,6 @@ def new_subscription(request):
         if subscribe_form.is_valid():
             try:
                 # See if customer already exists in Subscriber model
-                # subscriber = Subscriber.objects.get(user=request.user.id)
                 subscriber = Subscriber.objects.get(user=request.user.id)
                 # add new card details and update subscriber data
                 customer = stripe.Customer.modify(
@@ -66,7 +65,7 @@ def new_subscription(request):
                     Subscriber.objects.create(user=request.user,
                                               customer_id=customer.id,
                                               subscription_id=subscription.id,
-                                              card_id=customer.card)
+                                              card_id=customer.default_source)
                     subscriber_group = Group.objects.get(name='Subscribers')
                     subscriber_group.user_set.add(request.user)
                     messages.error(request, "You have successfully subscribed.")

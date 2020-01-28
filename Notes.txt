@@ -150,3 +150,16 @@ using the form
 26/01/20
 - now upvote on issue is not working... - all now working, including from full issue page
 - having stripe card issues for new subscribers - keyError 'card' - check on this tomorrow
+
+28/01/20
+- Subsccriptions needs a little work
+- When a user subscribes:
+    - Stripe customer created and associated with subscription and card
+    - User added to subscribers group
+- When a user unsubscribes:
+    - User should be removed from the subscribers group
+    - Stripe subscription should be deleted
+    - User should be deleted from subscriber group - access revoked. OR should we have an active/inactive flag?
+    - Should we keep customer record on stripe?
+- Updating card details:
+    - on profile - user should be able to update default source - look into.
