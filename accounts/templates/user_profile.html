@@ -13,6 +13,7 @@
 	{% if request.user|in_group:"Subscribers" %}
 	<p>Subscriptions: Monthly Feature subscription</p>
     <p><a href="{% url 'unsubscribe' %}" class="btn landing-btn" role="button">Unsubscribe</a></p>
+    <p><a href="{% url 'update_card_details' %}" class="btn landing-btn" role="button">Update Card Details</a></p>
     <p>Please note subscriptions will be cancelled from the next due payment. Any funds already processed will not be cancelled.</p>
     <p>If you are unsibscribing please let us know why, and how our service can be improved by using the <a href="{% url 'contact_us' %}">Contact Form</a></p>
 	{% else %}

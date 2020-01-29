@@ -154,12 +154,19 @@ using the form
 28/01/20
 - Subsccriptions needs a little work
 - When a user subscribes:
-    - Stripe customer created and associated with subscription and card
-    - User added to subscribers group
+    - Stripe customer created and associated with subscription and card - yep
+    - User added to subscribers group - yep
+    - user added to subscriber model - yep - active set to true
 - When a user unsubscribes:
-    - User should be removed from the subscribers group
-    - Stripe subscription should be deleted
-    - User should be deleted from subscriber group - access revoked. OR should we have an active/inactive flag?
-    - Should we keep customer record on stripe?
+    - User should be removed from the subscribers group - yep
+    - Stripe subscription should be deleted from user record in subscription model - yep
+    - user record in subscription model flagged as acive=false - yep
+    - Should we keep customer record on stripe - yes - one customer record, one subscriber record
 - Updating card details:
     - on profile - user should be able to update default source - look into.
+
+29/01/20
+- Added an active flag to user records in Subscriber MODEL
+     - for admin to understand if user is previous or current subscriber.
+- Updating card details:
+    - on profile - user should be able to update default source - done

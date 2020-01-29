@@ -44,9 +44,9 @@ def new_subscription(request):
                 )
                 Subscriber.objects.filter(user=request.user.id).update(subscription_id=subscription.id)
                 Subscriber.objects.filter(user=request.user.id).update(card_id=card.id)
+                Subscriber.objects.filter(user=request.user.id).update(active=True)
                 subscriber_group = Group.objects.get(name='Subscribers')
                 subscriber_group.user_set.add(request.user)
-                
                 messages.error(request, "You have successfully subscribed.")
             except Subscriber.DoesNotExist:
                 try:
@@ -65,7 +65,8 @@ def new_subscription(request):
                     Subscriber.objects.create(user=request.user,
                                               customer_id=customer.id,
                                               subscription_id=subscription.id,
-                                              card_id=customer.default_source)
+                                              card_id=customer.default_source,
+                                              active=True)
                     subscriber_group = Group.objects.get(name='Subscribers')
                     subscriber_group.user_set.add(request.user)
                     messages.error(request, "You have successfully subscribed.")
@@ -95,5 +96,41 @@ def unsubscribe(request):
     stripe.Subscription.delete(subscription)
     Subscriber.objects.filter(user=request.user.id).update(subscription_id='')
     subscriber_group = Group.objects.get(name='Subscribers')
+    # Remove user from subscriber group to revoke access to add and upvote on features
     subscriber_group.user_set.remove(request.user)
+    # Set as inactive in Subscriber model for info
+    Subscriber.objects.filter(user=request.user.id).update(active=False)
+
     return render(request, "user_profile.html")
+
+
+@login_required
+def update_card_details(request):
+    """
+    Create a view that allows subscribed users to update card details for taking subscription payment
+    """
+    if request.method == 'POST':
+        subscribe_form = SubscriptionForm(request.POST)
+        if subscribe_form.is_valid():
+            try:
+                # See if customer already exists in Subscriber model
+                subscriber = Subscriber.objects.get(user=request.user.id)
+                # add new card details and update subscriber data
+                customer = stripe.Customer.modify(
+                    subscriber.customer_id,
+                    card=subscribe_form.cleaned_data['stripe_id'],
+                )
+                card = stripe.Customer.retrieve_source(
+                    subscriber.customer_id,
+                    customer.default_source,
+                )
+                Subscriber.objects.filter(user=request.user.id).update(card_id=card.id)
+            except stripe.error.CardError:
+                messages.error(request, "Unable to update card details.")
+            return render(request, "user_profile.html")
+    else:
+        subscribe_form = SubscriptionForm
+
+    return render(request, "update_card.html",
+                  {'form': subscribe_form,
+                   'publishable': settings.STRIPE_PUBLISHABLE})
