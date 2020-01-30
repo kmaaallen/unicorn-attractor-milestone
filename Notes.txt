@@ -170,3 +170,7 @@ using the form
      - for admin to understand if user is previous or current subscriber.
 - Updating card details:
     - on profile - user should be able to update default source - done
+
+30/01/20
+- Need to add favicon
+- Need to suss out media queries - margins etc. Margins generally on the page -somewhat inconsistent.

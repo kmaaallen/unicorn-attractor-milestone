@@ -11,6 +11,16 @@ def all_features(request):
     features = Feature.objects.all()
     return render(request, "feature_overview.html", {"features": features})
 
+
+@login_required
+def full_feature(request, feature_id):
+    """
+    Create a view that allows users to view a feature in full page
+    """
+    feature = get_object_or_404(Feature, pk=feature_id)
+    return render(request, 'full_feature.html', {"feature": feature})
+
+
 @login_required
 def request_feature(request, pk=None):
     """
