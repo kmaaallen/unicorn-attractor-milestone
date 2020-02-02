@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href='{% static "css/style.css" %}' type="text/css">
 	<script href='{% static "js/script.js" %}'></script>
 	<script href='{% static "js/client.js" %}'></script>
+    <script href='{% static "js/comment.js" %}'></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	{% block head_js %}
@@ -68,7 +69,7 @@
 
 	{% if messages %}
 	<div class="alert" id="message">
-		<div class="messages">
+		<div class="messages white-text">
 			{% for message in messages %}
 			{{ message }}
 			{% endfor %}
@@ -78,18 +79,7 @@
 	{% block content %}
 	{% endblock %}
 
-	<script>
-
-// hide show comments
-function toggleComment(elem) {
-  if($(elem).parent().siblings(".comment-block").css('display') == 'none') {
-    $(elem).parent().siblings(".comment-block").css('display', 'block');
-  } else {
-    $(elem).parent().siblings(".comment-block").css('display', 'none');
-  }
-}
- 
-	</script>
+	<script src="/static/js/comment.js"></script></script>
 </body>
 <footer>
 	<nav class="navbar navbar-fixed-bottom social-nav">
