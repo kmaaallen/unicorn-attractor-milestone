@@ -174,3 +174,13 @@ using the form
 30/01/20
 - Need to add favicon
 - Need to suss out media queries - margins etc. Margins generally on the page -somewhat inconsistent.
+
+2/2/20
+- Need to add subscribe price somewhere
+- Need to sort after visited links turn blue.
+- Need to sort out margins landing page mobile.
+- Need to create favicon
+- Add to deployment write up about getting postgres url etc. and creative env file.
+- Update how to run this project locally.
+- Need to style password reset page.
+- Need to style thank you your pw has been reset page.

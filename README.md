@@ -1,4 +1,298 @@
-# This Project
+# Unicorn Attractor
+Unicorn Attractor is a site designed to allow users of the Unicorn Attractor software to log issues and request new features.
+
+It can be viewed [here](https://unicorn-attractor-milestone.herokuapp.com/).
 
 This project is a full-stack frameworks milestone project for code institute.
 Built using the GITPOD template provided by Code Institute.
+
+Without signing in users can view the website to find out more about the software, view already logged issues, contact the company or sign up for an account.
+Once signed up for an account users can upvote current issues or create their own. They can also view but not request or vote on features already requested.
+Users can then subscribe to a monthly payment plan to gain access to upvoting and requesting new features.
+
+At any time, subscribed users can unsubscribe or update their card details.
+
+On the issues and feature overview pages users can see the progress of the ticket as either reported/requested, in progress or completed.
+Users can also see how many votes a ticket has, its priority level and any comments added to the ticket.
+
+## UX
+### Goals
+The goal of this site is to allow users of the fictonal 'Unicorn attractor' software to report issues and request new features.
+The owners of the software use this information to improve their tool and provide new features. Allowing new feature requests only
+by subscription funds the developers, allowing them to continue to expand the tool.
+
+The site provides this information in a single place and the developers (as admins) can view, update and move tickets as they work on them.
+
+### User Stories
+I used the below user stories to help plan my features:
+
+- As a unicorn attractor user I want to be able to report an issue
+- As a unicorn attractor user I want to be able to request new features
+- As a unicorn attractor user I want to be able to contact the owners of the software
+- As a unicorn attractor user I want to be able to move reported issues up the queue by upvoting
+- As a unicorn attractor user I want to see all reported issues and relevant information about the tickets
+- As a unicorn attractor user I want to be able to comment on tickets to add more information
+- As a unicorn attractor user I want to be able to manage my account to that I can reset my password if I forget, cancel my subscription or update my card details
+
+
+- As a unicorn attractor developer I want to be able to see tickets from end users
+- As a unicorn attractor developer I want to be able to collect payment to fund extra work to fix issues and develop new requests
+- As a unicorn attractor developer I want to be able to update all tickets, move them to the appropriate queue and add additional information
+- As a unicorn attractor developer I want to be able to collect subscription payments securely and have a view of my subscribers
+- As a unicorn attractor developer I want to restrict access to the features module based on subscription level.
+- As a unicorn attractor developer I want to recieve messages from users via a contact form so I can act on them if necessary
+
+
+I also created some basic wireframes, which I used as the starting point for my designs. 
+I wanted to use a kanban style board to display tickets as I find this visually appealing and it seems logical to have this as a quick view of where tickets are sitting.
+I wanted to keep the design relatively simple and with high contrast colours.
+
+## Layout
+I wanted to keep the layout consistent and intuitive.
+
+### The wireframes:
+I created the wireframes using the online tool [Figma](https://www.figma.com/)
+The initial wireframes can be viewed [here](https://www.figma.com/file/HLjbWF3MYQlBCk8PHbH5Oa/Untitled?node-id=0%3A1).
+
+### Design decisions
+#### Font
+
+- I wanted to keep the design of the site fairly simple so I kept to 'Helvetica Neue' which was the default font style.
+
+#### Colours
+
+- I also wanted to use web-safe colours where possible to keep the user experience consistent between browsers.
+- Using [color-hex](color-hex.com/216-web-safe-colors/) I chose a dark web safe colour as my base. Purple, #330066, this would be the main background colour. I then used [sessions](sessions,edu/color-calculator/) to generate a complimentary colour palette which included a green and a pink.
+- Using https://www.colortools.net/color_make_web-safe.html I tried to match the green and pink to a web-safe colour and then checked the contrast using a [constrast checker](https://webaim.org/resources/contrastchecker/) to check which colours would work best together according to WCAG AA and WCAG AAA..
+- The final colour palette ended up being:
+    Purple #330066
+    Pink #CC0099
+    Green #008500
+    White #FFFFFF
+- The rest of the palette is made up of two web safe greys.
+
+## Features
+### Existing Features
+#### Common features (across all pages)
+
+##### Top Navbar (Desktop)
+- This site is responsive and as such has two navigation bars. The desktop navigation will display on screen sizes of 993px or wider.
+- It always contains the ‘Unicorn Attractor’ logo in the top left corner which is a link back to the homepage when clicked.
+- Grouped to the right of the navigation bar (to make viewing easier) are several links that will depend on whether the user is logged in or not.
+- If the user is NOT logged in, there will be five links to the right.
+    - ‘Find out more' - Will take the user to the 'Find out More' page
+    - 'Issues' - Will take the user to the issues overview page
+    - 'Features' - Will redirect the user to sign in page as is restricted content
+    - 'Sign Up' - Will take the user to the sign up form
+    - 'Sign In' - Will take the user to the sign in form.
+
+- If the user IS logged in there will be five links to the right.
+    - ‘Find out more' - Will take the user to the 'Find out More' page
+    - 'Issues' - Will take the user to the issues overview page - they will now be able to vote on issues and see the 'report an issue' button
+    - 'Features' - Will take the user to the feature overview page. If the user is subscribed they will see the 'request a new feature' button and be able
+        to vote and comment on existing features. If the user is not subscribed they will see the overview but will not be able to request, vote or comment.
+    - '{Username}' - This will show a person icon with the logged in user's username. This takes the user to their profile page.
+    - 'Logout' - This logs the user out and redirects them to the sign-in page.
+
+##### Mobile Navbar (Mobile)
+
+- The mobile navbar will display on screens 992px wide or narrower.
+- It always contains the ‘Unicorn Attractor’ logo in the top left corner which is a link back to the homepage when clicked. This is consistent with the desktop navigation bar.
+- In this nav all links are collapsed under a single menu to the right of the navbar denoted by 'Menu'.
+- The same links as described above apply in mobile view.
+
+All links in the navigation bars become underlined when hovered over. This is for consistent styling and so the user can clearly see what they are hovering over whilst remaining subtle enough so as not to distract from the rest of the site.
+
+##### Footer (Mobile and Desktop)
+The footer contains three social media icons (instagram, twitter and facebook)
+-  As no social media pages exist for this fictional software company, these links currently open their respective social media homepages in a new tab.
+
+##### Landing Page (Homepage)
+
+- Unicorn Attractor Logo
+    - Main image
+    - Hidden on extra-small and small screens
+
+- Unicorn Attractor main text
+    - Clearly states what this website is for.
+    - If a user is logged in, above this text there will be displayed: 'Hi {username}, welcome to'
+
+- Enter Button
+    - Takes the user to the 'Find out more' page
+
+- Second Button
+    - The content of this button will differ depending on whether the user is logged in or not.
+    - If the user is not logged in, this button will show 'Sign up/Sign In' and will take the user to the sign up form.
+    - If the user is logged in, this button with show 'Logout' and will log the user out and redirect them to the sign in form.
+
+
+##### Find out more
+- The Find out more page contains some text about the fictional software company and contains two buttons.
+
+- Contact Us button
+    - This button takes the user to the contact form
+    - This contact form allows the user to fill in a name, email and message.
+    - Upon submission this form sends an email to the company's email address with the following template:
+        Subject: Contact form
+        Message:
+        {name} has sent you a new message
+        {message}
+        Their contact email is: {email}
+
+- The second button
+    - The content of this button changes depending on which type of user is logged in.
+    - If the user is not logged in, it will show 'Sign Up' and will redirect the user to the sign up form
+    - If the user is logged in, but is not a subscriber it will show 'Subscribe+' and will redirect the user to the subscription form
+    - If the user is logged in and a subscriber it will show 'Manage Subscription' and will redirect the user to their user profile page.
+
+##### User profile page
+- This shows the following information:
+    {username}'s profile
+    Name: {Full name}
+    Username: {username}
+    Email: {user's email}
+    Subscriptions:
+- If the user is not subscribed, the profile will say 'Subscriptions: None' and there will be a 'Subscribe+' button underneath
+- If the user is subscribed, the profile will say ' Subscriptions: Monthly feature subscription' and there will be two buttons underneath.
+    - The first button will say 'Unsubscribe'. Clicking this unsubscribed the user and the profile view changes appropriately.
+    - The second button will say 'Update card details'. Clicking this will take the user to the 'Update Card Details' form where they can enter their new card details
+    which will then be updated on their Stripe customer account and their next monthly subscription payment will come out of this new card. 
+    - Underneath these two buttons is some disclaimer text on when subscription payments will be cancelled for user information as well as a link to the contact form in case users wish to provide feedback on why they are unsubscribing.
+
+
+##### Password reset page
+
+##### Sign in page
+- 
+
+##### Sign up page
+- 
+
+##### Issues page
+- 
+- Mobile
+
+##### Full Issue page
+- 
+
+##### Features page
+- 
+- Mobile
+
+##### Full Feature Page
+- 
+
+
+##### Features Left to Implement
+- User profile picture
+
+## Technologies Used
+### Cloud9 on AWS
+This project was written on [Gitpod](https://gitpod.io) using the Code Institute Gitpod template.
+
+### Heroku
+This project was deployed using Heroku : [https://id.heroku.com/login](https://id.heroku.com/login">https://id.heroku.com/login)
+
+### Languages
+#### Python
+Used to write backend functionality in Django application: [https://www.python.org/](https://www.python.org/)
+
+#### JavaScript
+Used as a base language to provide functionality and logic :[https://www.w3schools.com/js/default.asp](https://www.w3schools.com/js/default.asp)
+
+#### JQuery
+This project uses JQuery to assist in execution of javaScript features:[https://jquery.com/](https://jquery.com/)
+
+#### HTML
+Used as a baseline to structure pages:[https://www.w3.org/TR/html/](https://www.w3.org/TR/html/)
+
+
+#### CSS
+Used to style pages:[https://www.w3.org/Style/CSS/Overview.en.html](https://www.w3.org/Style/CSS/Overview.en.html)
+
+
+#### Django Template Language
+Used as a templating language with Python to render HTML on site:[https://docs.djangoproject.com/en/3.0/ref/templates/language/](https://docs.djangoproject.com/en/3.0/ref/templates/language/)
+
+### Validators
+Online validators were used to check code was valid for HTML and CSS and to help catch errors in Javascript and Python.
+- HTML validator:[https://validator.w3.org](https://validator.w3.org">https://validator.w3.org)
+- CSS Validator:[http://jigsaw.w3.org/css-validator/](http://jigsaw.w3.org/css-validator/)
+- JavaScript correction tool:[https://jshint.com/](https://jshint.com/)
+- Python validator:[http://pep8online.com/checkresult](http://pep8online.com/checkresult)
+
+### Libraries
+#### Bootstrap
+Used to build a responsive site:[https://getbootstrap.com/](https://getbootstrap.com/)
+
+#### Icons
+
+### Frameworks
+#### Django
+Web framework used to construct and render pages and to run automated tests:[https://www.djangoproject.com/](https://www.djangoproject.com/)
+
+### Payement Platform
+#### Stripe 
+I used the Stripe payment platform to collect subscriptions from users, available here: [https://stripe.com/gb](https://stripe.com/gb)
+
+### Version control
+Git was used for version control and a local git repository was pushed to a remote repository on GitHub:
+
+[https://git-scm.com/](https://git-scm.com/)
+
+[https://github.com/](https://github.com/)
+
+### Tools
+An online favicon generator was used to create a favicon for my site.The favicon image can be viewed [here](https://github.com/kmaaallen/bake_book/blob/master/static/favicon.ico).
+
+The online generator tool is available at: [https://www.favicongenerator.com/](https://www.favicongenerator.com/)
+
+### Database
+MongoDB Atlas was used as the database for this project :[https://www.mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas)
+
+## Testing
+
+### Manual Testing
+
+#### Interesting bugs / bugs not fixed
+
+### Automated testing
+
+#### What was tested:
+
+
+#### How to run these tests
+
+## Deployment
+### How to deploy this project to Heroku
+1. Go to the Heroku website (https://id.heroku.com/login) and login to your account.
+2. Create a new application by clicking “New” in your dashboard. Name this app and set the region to Europe.
+3. Configure the deployment option for your app to be direct from GitHub and link to your repository containing the project code.
+4. Set configuration variables in Heroku by going to the ‘settings’ section of your application. Set them as follows:
+
+- IP	0.0.0.0
+- PORT	5000
+- DATABASE_URL
+- EMAIL_ADDRESS
+- EMAIL_PASSWORD
+- SECRET_KEY
+- STRIPE_PUBLISHABLE
+- STRIPE_SECRET
+
+- In order to deploy to Heroku you need to make sure your project has a requirements.txt file
+- Create by running the following command in your terminal:
+ > pip freeze –local  > requirements.txt
+- You will also need a Procfile
+    - Create by running the following command in your terminal:
+> Echo web: python app.py > Procfile (where app.py is the name of your python file for the app.
+- Add, commit and push those additions to your GitHub repo
+
+### How to run this project locally
+- 
+
+## Credits
+### Content
+
+### Media
+
+## Acknowledgements
