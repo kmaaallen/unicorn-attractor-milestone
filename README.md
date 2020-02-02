@@ -161,33 +161,98 @@ The footer contains three social media icons (instagram, twitter and facebook)
 
 
 ##### Password reset page
+- Allows a user to enter their email and recieve a link to reset their password for the site
 
 ##### Sign in page
-- 
+- Allows a user to sign in using their username and password
 
 ##### Sign up page
-- 
+- Allows a user to sign up to an account for the site by filling in the following details:
+    - First name, last name, username, email, password
+    - User has to confirm password and meet password criteria
+    - Username has to be unique as does email
+    - Email has to be a valid email address
 
 ##### Issues page
-- 
-- Mobile
+- This page provides an overview of all the issues reported for the Unicorn Attractor Software.
+- The issues are divided between three swim lanes: 'Reported', 'In Progress' and 'Completed'.
+- Only admins of the site (i.e. the software developers) can change the state of these issues in the Django admin backend
+- Each issue displays the following fields:
+    - Title, Issue description, Votes, Priority
+    - In addition when a user is logged in, the following links are also displayed:
+        - Upvote or the text 'You have laready voted on this issue' if the user has already upvoted, Comments, Add comment
+        - Clicking the comments drop down shows a list of comments for that issue or 'No comments yet'
+        - Clicking 'Add Comment' redirects the user to the add comment form
+        - Whenever a user upvotes an issue, their vote is added to that issue and they are returned to the full issue overview page.
+- The page shows a 'Sign in' button on the right if the user is not logged in, this will direct to the sign in form
+- If the user is signed in already, this button will say '+ Report and Issue' and direct the user to the report an issue form
+- Within swimlanes issues are sorted by which has the highest number of votes. 
+
+- Mobile view
+    - On small and extra small screens this kanban-style board changes into three toggle buttons, which allow the user to
+      select and collapse each of the three swimlanes to see tickets.
 
 ##### Full Issue page
-- 
+- Users can open an issue in a full page view by clicking on the title of that issue.
+- This takes them to the full issue view, which contains the same issue components as outlined above but in full page view.
+- Whenever a user upvotes an issue they are returned to the full issue overview page.
+
+##### Report an Issue page
+- The report an issue page shows a form where a user can enter a title, a description of the issue and assign a priority.
+- The choices of priority are LOW, MEDIUM, HIGH and LOW is set by default.
+- Underneath the form disclaimer text informs users the priority may be changed by the developers
+- Upon submitting an issue the user is redirected to the full issues view.
 
 ##### Features page
-- 
-- Mobile
+- This page provides an overview of all the features requested for the Unicorn Attractor Software.
+- To access the lowest level of this page users must be logged in.
+- To access the full content of this page users must be logged in and subscribed.
+- The features are divided between three swim lanes: 'Requested', 'In Progress' and 'Completed'.
+- Only admins of the site (i.e. the software developers) can change the state of these features in the Django admin backend
+- Each feature displays the following fields:
+    - Title, Feature description, Votes, Priority
+    - In addition when a user is logged in and subscribed, the following links are also displayed:
+        - Upvote or the text 'You have laready voted on this feature' if the user has already upvoted, Comments, Add comment
+        - Clicking the comments drop down shows a list of comments for that feature or 'No comments yet'
+        - Clicking 'Add Comment' redirects the user to the add comment form
+        - Whenever a user upvotes a feature, their vote is added to that issue and they are returned to the feature overview page.
+- The page shows a 'Subscribe' button on the right if the user is not subscribed, this will direct to the subscription form
+- If the user is subscribed already, this button will say '+ Request a feature' and direct the user to the request a feature form
+- Within swimlanes features are sorted by which has the highest number of votes. 
+
+- Mobile view
+    - On small and extra small screens this kanban-style board changes into three toggle buttons, which allow the user to
+      select and collapse each of the three swimlanes to see tickets.
 
 ##### Full Feature Page
-- 
+- Users can open a feature in a full page view by clicking on the title of that feature.
+- This takes them to the full feature view, which contains the same feature components as outlined above but in full page view.
+- Whenever a user upvotes a feature they are returned to the feature overview page.
 
+##### Request a Feature page
+- The request a feature page shows a form where a user can enter a title, a description of the feature and assign a priority.
+- The choices of priority are LOW, MEDIUM, HIGH and LOW is set by default.
+- Upon submitting a feature the user is redirected to the all features view.
+
+##### Add comment form
+- This form allows users to add a comment to a particular issue or feature.
+- The basic form is duplicated across both the issue and features apps and follows the same format.
+- The title of the issue/feature is displayed as well as a comment field where a user can add their comment.
+- Submitting the form redirects the user to the full issues or full features page respectively.
+- The comment if expanded on the ticket will show date of submission, the username of the user who commented and the comment.
+- Comments are sorted so that the most recent comments appear at the top.
+
+##### Subscribe form
+- The subscribe form allows logged in users to sign up to a monthly subscription managed through Stripe.
+- The user can input their card details which will be securely handled by stripe.
+- Once subscribed the user sees a message at the top of the subscribe form 'You have successfully subscribed'
+- If there are any errors with the card or submititng the form error message will appear.
 
 ##### Features Left to Implement
 - User profile picture
 
 ## Technologies Used
-### Cloud9 on AWS
+### Gitpod
 This project was written on [Gitpod](https://gitpod.io) using the Code Institute Gitpod template.
 
 ### Heroku

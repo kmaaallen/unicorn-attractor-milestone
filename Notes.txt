@@ -184,3 +184,5 @@ using the form
 - Update how to run this project locally.
 - Need to style password reset page.
 - Need to style thank you your pw has been reset page.
+- Need to order issues in swimlanes
+- User shouldn't be able to access subscribe form if they are already subscribed

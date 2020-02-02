@@ -5,7 +5,7 @@
 {% block page_heading %} Add comment {% endblock %}
 {% block content %}
 <div class="issue-form">
-	<h1>Add a comment to issue: " {{ issue.title }} "</h1>
+	<h1 class="white-text">Add a comment to issue: " {{ issue.title }} "</h1>
 	<form method="POST" enctype="multipart/form-data">
 		{% csrf_token %}
 		{{ form | as_bootstrap }}
