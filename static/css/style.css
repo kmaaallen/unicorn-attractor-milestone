@@ -19,6 +19,10 @@ a:hover{
 .white-text{
     color: #ffffff;
 }
+
+.margin-left{
+    margin-left:25px;
+}
 /* Landing page styling */
 .top-div-home{
     background-color: #ffffff;
