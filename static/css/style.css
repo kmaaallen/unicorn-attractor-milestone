@@ -15,6 +15,10 @@ a:hover{
     color: #ffffff;
     text-decoration: underline;
 }
+
+.white-text{
+    color: #ffffff;
+}
 /* Landing page styling */
 .top-div-home{
     background-color: #ffffff;
@@ -61,7 +65,7 @@ h1.landing-title{
     height:40px;
     color: #ffffff;
     border-radius: 26px;
-    background-color:#990066;
+    background-color:#CC0099;
 }
 
 .landing-btn-div{
@@ -176,10 +180,11 @@ h1.landing-title{
 /* form styling */
 
 .accountform{
-    width: 80%;
+    width: 100%;
     color:#ffffff;
     margin-left:auto;
     margin-right:auto;
+    margin-top: -10px;
 }
 
 #id_description{
@@ -231,7 +236,7 @@ h1.landing-title{
     height:40px;
     color: #ffffff;
     border-radius: 26px;
-    background-color:#00CC00;
+    background-color:#008500;
     margin-bottom: 50px;
 }
 
@@ -366,7 +371,7 @@ h1.landing-title{
     height:40px;
     color: #ffffff;
     border-radius: 26px;
-    background-color:#00CC00;
+    background-color:#008500;
     margin-top:22px;
 }
 
