@@ -32,24 +32,24 @@
 				{% if feature.state == 'REQUESTED' %}
 				<div class="col-xs-12 display panel panel-default">
 					<div class="panel-body">
-						<h3><a class="upvote-link"
+						<h3><a class="grey-link"
 								href="{% url 'full_feature' feature_id=feature.id%}">{{ feature.title }}</a></h3>
 						<p>{{ feature.description }}</p>
 						<p>Priority: {{ feature.priority }}</p>
 						<p>Votes: {{ feature.votes }}</p>
 						{% if request.user|in_group:"Subscribers" %}
 						{% if user in feature.voters.all %}
-						<p class="already-voted">You have already voted on this feature</p>
+						<p class="italic-text">You have already voted on this feature</p>
 						{% else %}
-						<p><a class="upvote-link" href="upvote/{{ feature.id }}">Upvote
+						<p><a class="grey-link" href="upvote/{{ feature.id }}">Upvote
 								<i class="fa fa-arrow-up"></i></a>
 						</p>
 						{% endif %}
 						<div>
-							<a class="comment-link" onClick="toggleComment(this)">Comments
+							<a class="grey-link" onClick="toggleComment(this)">Comments
 								<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
 							</br>
-							<a class="comment-link" href="{% url 'add_feature_comment' feature_id=feature.id %}">Add
+							<a class="grey-link" href="{% url 'add_feature_comment' feature_id=feature.id %}">Add
 								Comment
 								<i class="fa fa-plus" aria-hidden="true"></i></a>
 						</div>
@@ -62,7 +62,7 @@
 								<hr />
 								{% empty %}
 								<div>
-									<p class="sub-text">No comments yet</p>
+									<p class="italic-text">No comments yet</p>
 								</div>
 								{% endfor %}
 							</div>
@@ -82,26 +82,26 @@
 				{% if feature.state == 'IN PROGRESS' %}
 				<div class="col-xs-12 display panel panel-default">
 					<div class="panel-body">
-						<h3><a class="upvote-link"
+						<h3><a class="grey-link"
 								href="{% url 'full_feature' feature_id=feature.id%}">{{ feature.title }}</a></h3>
-						<h3 class="upvote-link" href="{% url 'full_feature' feature_id=feature.id%}">{{ feature.title }}
+						<h3 class="grey-link" href="{% url 'full_feature' feature_id=feature.id%}">{{ feature.title }}
 						</h3>
 						<p>{{ feature.description }}</p>
 						<p>Priority: {{ feature.priority }}</p>
 						<p>Votes: {{ feature.votes }}</p>
 						{% if request.user|in_group:"Subscribers" %}
 						{% if user in feature.voters.all %}
-						<p class="already-voted">You have already voted on this feature</p>
+						<p class="italic-text">You have already voted on this feature</p>
 						{% else %}
-						<p><a class="upvote-link" href="upvote/{{ feature.id }}">Upvote
+						<p><a class="grey-link" href="upvote/{{ feature.id }}">Upvote
 								<i class="fa fa-arrow-up"></i></a>
 						</p>
 						{% endif %}
 						<div>
-							<a class="comment-link" onClick="toggleComment(this)">Comments
+							<a class="grey-link" onClick="toggleComment(this)">Comments
 								<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
 							</br>
-							<a class="comment-link" href="{% url 'add_feature_comment' feature_id=feature.id%}">Add
+							<a class="grey-link" href="{% url 'add_feature_comment' feature_id=feature.id%}">Add
 								Comment
 								<i class="fa fa-plus" aria-hidden="true"></i></a>
 						</div>
@@ -114,7 +114,7 @@
 								<hr />
 								{% empty %}
 								<div>
-									<p class="sub-text">No comments yet</p>
+									<p class="italic-text">No comments yet</p>
 								</div>
 								{% endfor %}
 							</div>
@@ -133,24 +133,24 @@
 				{% if feature.state == 'COMPLETED' %}
 				<div class="col-xs-12 display panel panel-default">
 					<div class="panel-body">
-						<h3><a class="upvote-link"
+						<h3><a class="grey-link"
 								href="{% url 'full_feature' feature_id=feature.id%}">{{ feature.title }}</a></h3>
 						<p class="">{{ feature.description }}</p>
 						<p>Priority: {{ feature.priority }}</p>
 						<p>Votes: {{ feature.votes }}</p>
 						{% if request.user|in_group:"Subscribers" %}
 						{% if user in feature.voters.all %}
-						<p class="already-voted">You have already voted on this feature</p>
+						<p class="italic-text">You have already voted on this feature</p>
 						{% else %}
-						<p><a class="upvote-link" href="upvote/{{ feature.id }}">Upvote
+						<p><a class="grey-link" href="upvote/{{ feature.id }}">Upvote
 								<i class="fa fa-arrow-up"></i></a>
 						</p>
 						{% endif %}
 						<div>
-							<a class="comment-link" onClick="toggleComment(this)">Comments
+							<a class="grey-link" onClick="toggleComment(this)">Comments
 								<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
 							</br>
-							<a class="comment-link" href="{% url 'add_feature_comment' feature_id=feature.id%}">Add
+							<a class="grey-link" href="{% url 'add_feature_comment' feature_id=feature.id%}">Add
 								Comment
 								<i class="fa fa-plus" aria-hidden="true"></i></a>
 						</div>
@@ -163,7 +163,7 @@
 								<hr />
 								{% empty %}
 								<div>
-									<p class="sub-text">No comments yet</p>
+									<p class="italic-text">No comments yet</p>
 								</div>
 								{% endfor %}
 							</div>
@@ -199,7 +199,7 @@
 							{% if feature.state == 'REQUESTED' %}
 							<div class="col-xs-12 display panel panel-default">
 								<div class="panel-body">
-									<h3><a class="upvote-link"
+									<h3><a class="grey-link"
 											href="{% url 'full_feature' feature_id=feature.id%}">{{ feature.title }}</a>
 									</h3>
 									<p class="">{{ feature.description }}</p>
@@ -207,16 +207,16 @@
 									<p>Votes: {{ feature.votes }}</p>
 									{% if user.is_authenticated %}
 									{% if user in feature.voters.all %}
-									<p class="already-voted">You have already voted on this feature</p>
+									<p class="italic-text">You have already voted on this feature</p>
 									{% else %}
-									<p><a class="upvote-link" href="upvote/{{ feature.id }}">Upvote
+									<p><a class="grey-link" href="upvote/{{ feature.id }}">Upvote
 											<i class="fa fa-arrow-up"></i></a></p>
 									{% endif %}
 									<div>
-										<a class="comment-link" onClick="toggleComment(this)">Comments
+										<a class="grey-link" onClick="toggleComment(this)">Comments
 											<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
 										</br>
-										<a class="comment-link" href="{% url 'add_feature_comment' feature_id=feature.id%}">Add
+										<a class="grey-link" href="{% url 'add_feature_comment' feature_id=feature.id%}">Add
 											Comment
 											<i class="fa fa-plus" aria-hidden="true"></i></a>
 									</div>
@@ -229,7 +229,7 @@
 											<hr />
 											{% empty %}
 											<div>
-												<p class="sub-text">No comments yet</p>
+												<p class="italic-text">No comments yet</p>
 											</div>
 											{% endfor %}
 										</div>
@@ -261,7 +261,7 @@
 								{% if feature.state == 'IN PROGRESS' %}
 								<div class="col-xs-12 display panel panel-default">
 									<div class="panel-body">
-										<h3><a class="upvote-link"
+										<h3><a class="grey-link"
 												href="{% url 'full_feature' feature_id=feature.id%}">{{ feature.title }}</a>
 										</h3>
 										<p class="">{{ feature.description }}</p>
@@ -269,16 +269,16 @@
 										<p>Votes: {{ feature.votes }}</p>
 										{% if user.is_authenticated %}
 										{% if user in feature.voters.all %}
-										<p class="already-voted">You have already voted on this feature</p>
+										<p class="italic-text">You have already voted on this feature</p>
 										{% else %}
-										<p><a class="upvote-link" href="upvote/{{ feature.id }}">Upvote
+										<p><a class="grey-link" href="upvote/{{ feature.id }}">Upvote
 												<i class="fa fa-arrow-up"></i></a></p>
 										{% endif %}
 										<div>
-											<a class="comment-link" onClick="toggleComment(this)">Comments
+											<a class="grey-link" onClick="toggleComment(this)">Comments
 												<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
 											</br>
-											<a class="comment-link"
+											<a class="grey-link"
 												href="{% url 'add_feature_comment' feature_id=feature.id%}">Add
 												Comment
 												<i class="fa fa-plus" aria-hidden="true"></i></a>
@@ -292,7 +292,7 @@
 												<hr />
 												{% empty %}
 												<div>
-													<p class="sub-text">No comments yet</p>
+													<p class="italic-text">No comments yet</p>
 												</div>
 												{% endfor %}
 											</div>
@@ -325,7 +325,7 @@
 								{% if feature.state == 'COMPLETED' %}
 								<div class="col-xs-12 display panel panel-default">
 									<div class="panel-body">
-										<h3><a class="upvote-link"
+										<h3><a class="grey-link"
 												href="{% url 'full_feature' feature_id=feature.id%}">{{ feature.title }}</a>
 										</h3>
 										<p class="">{{ feature.description }}</p>
@@ -333,16 +333,16 @@
 										<p>Votes: {{ feature.votes }}</p>
 										{% if user.is_authenticated %}
 										{% if user in feature.voters.all %}
-										<p class="already-voted">You have already voted on this feature</p>
+										<p class="italic-text">You have already voted on this feature</p>
 										{% else %}
-										<p><a class="upvote-link" href="upvote/{{ feature.id }}">Upvote
+										<p><a class="grey-link" href="upvote/{{ feature.id }}">Upvote
 												<i class="fa fa-arrow-up"></i></a></p>
 										{% endif %}
 										<div>
-											<a class="comment-link" onClick="toggleComment(this)">Comments
+											<a class="grey-link" onClick="toggleComment(this)">Comments
 												<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
 											</br>
-											<a class="comment-link"
+											<a class="grey-link"
 												href="{% url 'add_feature_comment' feature_id=feature.id%}">Add
 												Comment
 												<i class="fa fa-plus" aria-hidden="true"></i></a>
@@ -356,7 +356,7 @@
 												<hr />
 												{% empty %}
 												<div>
-													<p class="sub-text">No comments yet</p>
+													<p class="italic-text">No comments yet</p>
 												</div>
 												{% endfor %}
 											</div>

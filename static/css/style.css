@@ -3,12 +3,18 @@ body{
     padding-top: 50px;
 }
 
-a {
+/* Utility classes - used frequently */
+a , .white-text, a:hover{
     color: #ffffff;
 }
 
-a:hover{
-    color: #ffffff;
+.grey-link{
+    color: #555555;
+}
+
+.grey-link:hover{
+    color: #555555;
+    text-decoration: underline;
 }
 
 .link-underline{
@@ -16,12 +22,12 @@ a:hover{
     text-decoration: underline;
 }
 
-.white-text{
-    color: #ffffff;
-}
-
 .margin-left{
     margin-left:25px;
+}
+
+.italic-text{
+    font-style: italic;
 }
 /* Landing page styling */
 .top-div-home{
@@ -48,6 +54,7 @@ a:hover{
     margin: 0px;
     text-align:center;
 }
+
 h1.landing-title{
     font-size: 72px;
 }
@@ -81,6 +88,7 @@ h1.landing-title{
     color:#ffffff;
     text-decoration:none;
 }
+
 /* Navbar styling*/
 .navbar{
     border-bottom: none;
@@ -180,7 +188,6 @@ h1.landing-title{
 }
 
 
-
 /* form styling */
 
 .accountform{
@@ -258,10 +265,6 @@ h1.landing-title{
 }
 
 /* Find out more page styling */
-.more-content, .more-content>h1, .more-content>h3, .more-content>p{
-    color: #ffffff;
-    margin-left: 25px;
-}
 
 .more-btn{
     margin-right: 20px;
@@ -295,21 +298,8 @@ h1.landing-title{
     padding-left: 0px;
 }
 
-.upvote-link, .comment-link{
-    color: #555555;
-}
-
-.upvote-link:hover, .comment-link:hover{
-    color: #555555;
-    text-decoration: underline;
-}
-
 #accordion{
     transform:translateY(-50px);
-}
-
-.already-voted{
-    font-style:italic;
 }
 
 /* Report an Issue Form styling */
@@ -317,10 +307,6 @@ h1.landing-title{
     color: #ffffff;
     width: 80%;
     margin-left: 25px;
-}
-
-.issue-form>h1{
-    color: #ffffff;
 }
 
 /* Full Issue form */
@@ -358,16 +344,7 @@ h1.landing-title{
     font-weight: bold;
 }
 
-.sub-text{
-    font-style:italic;
-}
-
 /* password reset styling */
-
-.password-reset-done{
-    color: #ffffff;
-    margin-left:25px;
-}
 
 .reset-btn{
     width:150px;
@@ -398,13 +375,7 @@ h1.landing-title{
 /* profile styling */
 
 .profile{
-    color:#ffffff;
-    margin-left: 25px;
     margin-top: 50px;
-}
-
-.profile h1{
-    color:#ffffff;
 }
 
 /* Media Queries */

@@ -5,8 +5,8 @@
 {% block page_title %}{{user}}'s' Profile{% endblock %}
 {% block page_heading %}{{user}}'s Profile'}}{% endblock %}
 {% block content %}
-<div class="profile">
-	<h1>{{user}}'s Profile</h1>
+<div class="profile white-text margin-left">
+	<h1 class="white-text">{{user}}'s Profile</h1>
 	<p>Name: {{ user.first_name }} {{user.last_name}}</p>
 	<p>Username: {{ user.username }}</p>
 	<p>Email: {{ user.email }}</p>
