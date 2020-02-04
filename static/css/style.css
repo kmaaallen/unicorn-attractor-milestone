@@ -8,7 +8,7 @@ a , .white-text, a:hover{
     color: #ffffff;
 }
 
-.grey-link{
+.grey-link, .grey-link:focus{
     color: #555555;
 }
 
@@ -116,7 +116,7 @@ h1.landing-title{
     color: #330066;
 }
 
-.navbar-brand, .nav-item{
+.navbar-brand, .nav-item, .nav-item:focus{
     color: #330066;
     text-shadow: none;
 }
