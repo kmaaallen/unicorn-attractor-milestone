@@ -11,7 +11,7 @@
 	<p>Username: {{ user.username }}</p>
 	<p>Email: {{ user.email }}</p>
 	{% if request.user|in_group:"Subscribers" %}
-	<p>Subscriptions: Monthly Feature subscription</p>
+	<p>Subscriptions: Monthly Feature subscription £25.00 per month</p>
     <p><a href="{% url 'unsubscribe' %}" class="btn landing-btn" role="button">Unsubscribe</a></p>
     <p><a href="{% url 'update_card_details' %}" class="btn landing-btn" role="button">Update Card Details</a></p>
     <p>Please note subscriptions will be cancelled from the next due payment. Any funds already processed will not be cancelled.</p>
