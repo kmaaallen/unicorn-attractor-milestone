@@ -178,13 +178,15 @@ using the form
 2/2/20
 - Need to add subscribe price somewhere - Done
 - Need to sort after visited links turn blue. - Done - may need to catch a few more.
-- Need to sort out margins landing page mobile.
+- Need to sort out margins landing page mobile. Done
 - Need to create favicon - Done
+
+
+4/2/2020
+TO DO:
 - Add to deployment write up about getting postgres url etc. and creative env file.
 - Update how to run this project locally.
 - Need to style password reset page.
 - Need to style thank you your pw has been reset page.
 - Need to order issues in swimlanes
 - User shouldn't be able to access subscribe form if they are already subscribed
-
-4/2/2020
