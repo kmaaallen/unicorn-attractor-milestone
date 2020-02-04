@@ -402,4 +402,13 @@ h1.landing-title{
         background-color: transparent;
         outline: none;
     }
+
+}
+
+@media(max-width: 1200px){
+     .home-unicorn{
+    height:80vh;
+    margin-top: 30px;
+    margin-left: -50px;
+    }
 }

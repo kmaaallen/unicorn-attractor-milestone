@@ -179,7 +179,7 @@ using the form
 - Need to add subscribe price somewhere - Done
 - Need to sort after visited links turn blue. - Done - may need to catch a few more.
 - Need to sort out margins landing page mobile.
-- Need to create favicon
+- Need to create favicon - Done
 - Add to deployment write up about getting postgres url etc. and creative env file.
 - Update how to run this project locally.
 - Need to style password reset page.
