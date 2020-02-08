@@ -1,19 +1,16 @@
 # Unicorn Attractor
-Unicorn Attractor is a site designed to allow users of the Unicorn Attractor software to log issues and request new features.
+Unicorn Attractor is a site designed to allow users of the fictional 'Unicorn Attractor' software to log issues and request new features. On the issues and feature overview pages users can see the progress of the ticket as either reported/requested, in progress or completed. Users can also see how many votes a ticket has, its priority level and any comments added to the ticket depending on their level of access.
 
-It can be viewed [here](https://unicorn-attractor-milestone.herokuapp.com/).
+In order to be able to request new features users subscribe to a monthly payment which allows them full access to the features module. At any time, subscribed users can unsubscribe or update their card details.
+
+Non-subscribed users with an account are able to view the features requested but can neither upvote, comment nor request new ones. The intention behind being able to view these was to give users an idea of what kind of access they could have if they subscribed to the service. Once subscribed, users are able to request new features which will improve the software and allow users to better use the software in their business.
+
+The site owner is able to use the money from these subscriptions to fund development on these new requests as well as bug fixes. They pledge to spend 50% of their working hours working on the new requests and the remainder goes on bug fixes.
+
+The site can be viewed [here](https://unicorn-attractor-milestone.herokuapp.com/).
 
 This project is a full-stack frameworks milestone project for code institute.
 Built using the GITPOD template provided by Code Institute.
-
-Without signing in users can view the website to find out more about the software, view already logged issues, contact the company or sign up for an account.
-Once signed up for an account users can upvote current issues or create their own. They can also view but not request or vote on features already requested.
-Users can then subscribe to a monthly payment plan to gain access to upvoting and requesting new features.
-
-At any time, subscribed users can unsubscribe or update their card details.
-
-On the issues and feature overview pages users can see the progress of the ticket as either reported/requested, in progress or completed.
-Users can also see how many votes a ticket has, its priority level and any comments added to the ticket.
 
 ## UX
 ### Goals
@@ -36,14 +33,15 @@ I used the below user stories to help plan my features:
 
 
 - As a unicorn attractor developer I want to be able to see tickets from end users
-- As a unicorn attractor developer I want to be able to collect payment to fund extra work to fix issues and develop new requests
+- As a unicorn attractor developer I want to be able to collect payment to fund work to fix issues and develop new requests
 - As a unicorn attractor developer I want to be able to update all tickets, move them to the appropriate queue and add additional information
 - As a unicorn attractor developer I want to be able to collect subscription payments securely and have a view of my subscribers
 - As a unicorn attractor developer I want to restrict access to the features module based on subscription level.
 - As a unicorn attractor developer I want to recieve messages from users via a contact form so I can act on them if necessary
 
 
-I also created some basic wireframes, which I used as the starting point for my designs. 
+I also created some basic wireframes, which I used as the starting point for my designs.
+ 
 I wanted to use a kanban style board to display tickets as I find this visually appealing and it seems logical to have this as a quick view of where tickets are sitting.
 I wanted to keep the design relatively simple and with high contrast colours.
 
@@ -52,7 +50,7 @@ I wanted to keep the layout consistent and intuitive.
 
 ### The wireframes:
 I created the wireframes using the online tool [Figma](https://www.figma.com/)
-The initial wireframes can be viewed [here](https://www.figma.com/file/HLjbWF3MYQlBCk8PHbH5Oa/Untitled?node-id=0%3A1).
+The initial wireframes can be viewed [here](TO BE UPDATED).
 
 ### Design decisions
 #### Font
