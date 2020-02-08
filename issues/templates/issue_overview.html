@@ -13,12 +13,18 @@
 			<p>To report an issue, add comments or upvote you must be signed in.</p>
 		</div>
 		<div class="col-md-6">
-			{% if user.is_authenticated %}
-			<a href="{% url 'report_issue' %}" class="btn sign-up-btn report-issue-btn" role="button">+ Report an
-				Issue</a>
-			{% else %}
-			<a href="{% url 'sign_in' %}" class="btn sign-up-btn report-issue-btn" role="button">Sign In</a>
-			{% endif %}
+			<div class="row">
+				{% if user.is_authenticated %}
+				<a href="{% url 'report_issue' %}" class="btn sign-up-btn report-issue-btn" role="button">+ Report an
+					Issue</a>
+				{% else %}
+				<a href="{% url 'sign_in' %}" class="btn sign-up-btn report-issue-btn" role="button">Sign In</a>
+				{% endif %}
+			</div>
+			<div class="row">
+                <a href="{% url 'my_issues' %}" class="link-underline float-right {{ issue_view }}" id="my_issues">My Issues</a>
+                <a href="{% url 'issues' %}" class="link-underline float-right {{ issue_view }}" id="all_issues">All Issues</a>
+			</div>
 		</div>
 	</div>
 	<div class="row hidden-xs hidden-sm">

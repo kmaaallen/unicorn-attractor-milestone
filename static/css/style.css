@@ -29,6 +29,11 @@ a , .white-text, a:hover{
 .italic-text{
     font-style: italic;
 }
+
+.float-right{
+    float:right;
+    margin-left: 10px;
+}
 /* Landing page styling */
 .top-div-home{
     background-color: #ffffff;
@@ -300,6 +305,11 @@ h1.landing-title{
 
 #accordion{
     transform:translateY(-50px);
+}
+
+.all, .mine{
+    background-color: #ffffff;
+    color: #330066;
 }
 
 /* Report an Issue Form styling */

@@ -50,7 +50,7 @@ I wanted to keep the layout consistent and intuitive.
 
 ### The wireframes:
 I created the wireframes using the online tool [Figma](https://www.figma.com/)
-The initial wireframes can be viewed [here](TO BE UPDATED).
+The initial wireframes can be viewed [here](https://github.com/kmaaallen/unicorn-attractor-milestone/blob/master/static/wireframes/Figma%20Unicorn.pdf).
 
 ### Design decisions
 #### Font

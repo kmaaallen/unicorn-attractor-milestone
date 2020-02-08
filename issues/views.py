@@ -7,7 +7,19 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 def all_issues(request):
     issues = Issue.objects.all()
-    return render(request, "issue_overview.html", {"issues": issues})
+    context = {
+        'issue_view': 'all'
+    }
+    return render(request, "issue_overview.html", {"issues": issues}, context)
+
+
+@login_required
+def my_issues(request):
+    issues = Issue.objects.filter(reported_by=request.user)
+    context = {
+        'issue_view': 'mine'
+    }
+    return render(request, "issue_overview.html", {"issues": issues}, context)
 
 
 @login_required
@@ -20,6 +32,8 @@ def report_issue(request, pk=None):
         form = AddIssueForm(request.POST, request.FILES, instance=issue)
         if form.is_valid():
             issue = form.save()
+            issue.reported_by = request.user
+            issue.save()
             return redirect('issues')
     else:
         form = AddIssueForm(instance=issue)

@@ -32,6 +32,9 @@ class Issue(models.Model):
                              default=REPORTED,)
     votes = models.IntegerField(default=0)
     voters = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
+    reported_by = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                    related_name='reported_by', null=True,
+                                    blank=True)
 
     class Meta:
         ordering = ('-votes',)
