@@ -5,9 +5,9 @@
 {% block page_title %}Contact Us{% endblock %}
 {% block page_heading %}Contact Us{% endblock %}
 {% block content %}
-<div class="issue-form">
-	<h1 class="white-text">Contact Us</h1>
-	<form method="POST" enctype="multipart/form-data">
+<div class="container">
+	<h1 class="white-text">Contact Us:</h1>
+	<form method="POST" enctype="multipart/form-data" class="accountform">
 		{% csrf_token %}
 		{{ contact_form | as_bootstrap }}
 		<button type="submit" class="sign-up-btn">Contact Us</button>

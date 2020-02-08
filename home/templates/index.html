@@ -16,34 +16,36 @@
 
 <body>
 	<div class="top-div-home">
-		<div class="col-md-6 hidden-xs hidden-sm">
-        <img src='{% static "images/unicorn-logo.png" %}' class="home-unicorn" alt="unicorn logo">
-		</div>
-		<div class="col-md-6 title-div">
-        {% if user.is_authenticated %}
-        <div class="row">
+		<div class="col-xs-12 title-div">
+			{% if user.is_authenticated %}
+			<div class="row">
 				<p class="welcome-name">Hi {{ user.username }}, welcome to</p>
 			</div>
-            {% endif %}
+			{% endif %}
 			<div class="row">
 				<h1 class="landing-title">Unicorn Attractor</h1>
 			</div>
 			<div class="row">
 				<h3 class="landing-title">Free Software</h3>
 			</div>
-            <div class="row landing-btn-div">
-            <a href="{% url 'find_out_more' %}" class="btn landing-btn" role="button">Enter</a>
-            {% if user.is_authenticated %}
-            <a href="{% url 'sign_out' %}" class="btn landing-btn" role="button">Logout</a>
-            {% else %}
-            <a href="{% url 'sign_up' %}" class="btn landing-btn" role="button">Sign Up / Sign In</a>
-            {% endif %}
-            </div>
+			<div class="row landing-btn-div">
+				<a href="{% url 'find_out_more' %}" class="btn landing-btn" role="button">Enter</a>
+				{% if user.is_authenticated %}
+				<a href="{% url 'sign_out' %}" class="btn landing-btn" role="button">Logout</a>
+				{% else %}
+				<a href="{% url 'sign_up' %}" class="btn landing-btn" role="button">Sign Up / Sign In</a>
+				{% endif %}
+			</div>
 		</div>
 
 
 	</div>
-	<div class="bottom-div-home"></div>
+	<div class="bottom-div-home">
+		<div class="row landing-btn-div">
+			<p class="white-text margin-top">Looking for the perfect fit for your business? <a class="link-underline"
+					href="#">Download</a> our free software and find your unicorn. </p>
+		</div>
+	</div>
 
 </body>
 <footer>

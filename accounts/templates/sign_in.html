@@ -7,13 +7,10 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-6 hidden-xs hidden-sm">
-			<img src='{% static "images/unicorn-logo.png" %}' class="sign-up-unicorn" alt="unicorn logo">
-    </div>
-			<div class=" form-div col-md-6">
-
+			<div class="col-md-12">
+            <h1 class="white-text">Sign In:</h1>
+            <p class="white-text">Sign in to your account to log issues and maintain your subscription.</p>
 				<form method="POST" class="accountform">
-					<h3>Sign In:</h3>
 					{% csrf_token %}
 					{{ sign_in_form | as_bootstrap }}
 					<div class="row">

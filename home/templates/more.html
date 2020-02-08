@@ -5,50 +5,46 @@
 {% block page_title %}About{% endblock %}
 {% block page_heading %}About{% endblock %}
 {% block content %}
-<div class="col-md-8 margin-left white-text">
-	<div class="row">
-		<h1 class="white-text">Unicorn Attractor</h1>
-	</div>
-	<div class="row">
-		<h3 class="white-text">Free Software</h3>
-	</div>
-	<div>
-		<p>
-			Unicorn Attractor is free software available to download. It simplifies your search for the perfect
-			employee, using advanced search and analytics to find your unicorn!
-		</p>
-		<p>
-			Key Features:
-		</p>
-		<p>
-			<ul>
-				<li>Free and easy download and set up</li>
-				<li>Free bug fixes</li>
-				<li>Subscribe to request new features</li>
-			</ul>
-		</p>
-
-		<p>
-			Sign up to a free account to report issues, comment on existing issues and upvote issues to get them fixed,
-			faster.
-			Subscribe to a £25.00 per month plan to request new features and upvote existing feature requests to get them fixed
-			faster.
-		</p>
-	</div>
-	<div class="row more-btn-div">
-		<div class="col-md-3">
-			<form action="{% url 'contact_us' %}">
-				<input  class="sign-up-btn more-btn" type="submit" value="Contact Us" />
-		    </form>
+<div class="container">
+	<div class="col-md-8 white-text">
+		<div class="row">
+			<h1 class="white-text">Unicorn Attractor</h1>
 		</div>
-		<div class="col-md-3">
-			{% if request.user|in_group:"Subscribers" %}
-			<a href="{% url 'profile' %}" class="btn landing-btn" role="button">Manage Subscription</a>
-			{% elif user.is_authenticated %}
-			<a href="{% url 'subscribe' %}" class="btn landing-btn" role="button">+ Subscribe</a>
-			{% else %}
-			<a href="{% url 'sign_up' %}" class="btn landing-btn" role="button">Sign Up</a>
-			{% endif %}
+		<div class="row">
+			<h3 class="white-text">Free Software</h3>
+		</div>
+		<div>
+			<p>Unicorn Attractor is free software available to download. It simplifies your search for the perfect
+				employee, using advanced search and analytics to find your unicorn!</p>
+			<p>Key Features:</p>
+			<p>
+				<ul>
+					<li>Free and easy download and set up</li>
+					<li>Free bug fixes</li>
+					<li>Subscribe to request new features</li>
+				</ul>
+			</p>
+
+			<p>Sign up to a free account to report issues, comment on existing issues and upvote issues to get them
+				fixed, faster.</p>
+			<p>Subscribe to a £25.00 per month plan to request new features and upvote existing feature requests to get
+				them fixed faster.</p>
+		</div>
+		<div class="row more-btn-div">
+			<div class="col-md-3">
+				<form action="{% url 'contact_us' %}">
+					<input  class="sign-up-btn more-btn green-btn" type="submit" value="Contact Us" />
+		    </form>
+			</div>
+			<div class="col-md-3">
+				{% if request.user|in_group:"Subscribers" %}
+				<a href="{% url 'profile' %}" class="btn landing-btn" role="button">Manage Subscription</a>
+				{% elif user.is_authenticated %}
+				<a href="{% url 'subscribe' %}" class="btn landing-btn" role="button">+ Subscribe</a>
+				{% else %}
+				<a href="{% url 'sign_up' %}" class="btn landing-btn" role="button">Sign Up</a>
+				{% endif %}
+			</div>
 		</div>
 	</div>
 </div>

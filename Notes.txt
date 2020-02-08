@@ -194,3 +194,6 @@ TO DO:
 8/2/20
 - Swim lane titles should stay at top when user scrolling issue
 - added my features / issues toggle
+- need to do add s3? 
+- manual testing doc.
+- get something for filling space where forms.

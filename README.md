@@ -81,7 +81,6 @@ The initial wireframes can be viewed [here](https://github.com/kmaaallen/unicorn
 - If the user is NOT logged in, there will be five links to the right.
     - ‘Find out more' - Will take the user to the 'Find out More' page
     - 'Issues' - Will take the user to the issues overview page
-    - 'Features' - Will redirect the user to sign in page as is restricted content
     - 'Sign Up' - Will take the user to the sign up form
     - 'Sign In' - Will take the user to the sign in form.
 
@@ -186,7 +185,7 @@ The footer contains three social media icons (instagram, twitter and facebook)
 - The page shows a 'Sign in' button on the right if the user is not logged in, this will direct to the sign in form
 - If the user is signed in already, this button will say '+ Report and Issue' and direct the user to the report an issue form
 - Within swimlanes issues are sorted by which has the highest number of votes. 
-- A user can tab between 'My Issues' and 'All Issues' that are displayed in the swimlanes.
+- A user can tab between 'My Issues' and 'All Issues' that are displayed in the swimlanes. If not logged in, clicking the 'my issues' will direct the user to sign in.
 
 - Mobile view
     - On small and extra small screens this kanban-style board changes into three toggle buttons, which allow the user to

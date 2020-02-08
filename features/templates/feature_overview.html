@@ -19,12 +19,20 @@
 				<a href="{% url 'request_feature' %}" class="btn sign-up-btn report-issue-btn" role="button">+ Request a
 					Feature</a>
 				{% elif user.is_authenticated %}
-				<a href="{% url 'subscribe' %}" class="btn landing-btn report-issue-btn" role="button">+ Subscribe</a>
+				<a href="{% url 'subscribe' %}" class="btn landing-btn margin-bottom report-issue-btn" role="button">+
+					Subscribe</a>
 				{% else %}
 				{% endif %}
 			</div>
 			{% if request.user|in_group:"Subscribers" %}
-			<div class="row">
+			<div class="row hidden-md hidden-lg hidden-xl margin-bottom">
+				<a href="{% url 'my_issues' %}"
+					class="link-underline {% if request.path == '/issues/my_issues/'%}toggled{% endif %}"
+					id="my_issues">My Issues</a>
+				<a href="{% url 'issues' %}" class="link-underline {% if request.path == '/issues/'%}toggled{% endif %}"
+					id="all_issues">All Issues</a>
+			</div>
+			<div class="row hidden-sm hidden-xs">
 				<a href="{% url 'my_features' %}"
 					class="link-underline float-right {% if request.path == '/features/my_features/'%}toggled{% endif %}"
 					id="my_features">My Features</a>
@@ -218,6 +226,7 @@
 									<p>Priority: {{ feature.priority }}</p>
 									<p>Votes: {{ feature.votes }}</p>
 									{% if user.is_authenticated %}
+									{% if request.user|in_group:"Subscribers" %}
 									{% if user in feature.voters.all %}
 									<p class="italic-text">You have already voted on this feature</p>
 									{% else %}
@@ -251,6 +260,7 @@
 								</div>
 							</div>
 							{% endif %}
+							{% endif %}
 							{% endfor %}
 						</div>
 					</div>
@@ -281,6 +291,7 @@
 										<p>Priority: {{ feature.priority }}</p>
 										<p>Votes: {{ feature.votes }}</p>
 										{% if user.is_authenticated %}
+										{% if request.user|in_group:"Subscribers" %}
 										{% if user in feature.voters.all %}
 										<p class="italic-text">You have already voted on this feature</p>
 										{% else %}
@@ -314,6 +325,7 @@
 									</div>
 								</div>
 								{% endif %}
+								{% endif %}
 								{% endfor %}
 							</div>
 						</div>
@@ -345,6 +357,7 @@
 										<p>Priority: {{ feature.priority }}</p>
 										<p>Votes: {{ feature.votes }}</p>
 										{% if user.is_authenticated %}
+										{% if request.user|in_group:"Subscribers" %}
 										{% if user in feature.voters.all %}
 										<p class="italic-text">You have already voted on this feature</p>
 										{% else %}
@@ -377,6 +390,7 @@
 										{% endif %}
 									</div>
 								</div>
+								{% endif %}
 								{% endif %}
 								{% endfor %}
 							</div>

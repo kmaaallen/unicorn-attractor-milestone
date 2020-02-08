@@ -17,7 +17,7 @@
 	<h1 class="white-text">Subscribe</h1>
 	<p>Subscribe to monthly payments to access our features section, where you can request and upvote new features.</p>
     <p>The subscription costs £25.00 per month and can be cancelled at any time. No minimum subscription period.</p>
-	<form method="POST" enctype="multipart/form-data" id="subscription-form">
+	<form method="POST" enctype="multipart/form-data" id="subscription-form" class="accountform">
 		{% csrf_token %}
 		{{ form | as_bootstrap }}
 		<div id="credit-card-errors" style="display:none;">

@@ -14,9 +14,9 @@
 {% endblock head_js %}
 {% block content %}
 <div class="issue-form">
-	<h1>Update Card Details</h1>
+	<h1 class="white-text">Update Card Details</h1>
 	<p>Fill in the form to update your card details for subscription payments.</p>
-	<form method="POST" enctype="multipart/form-data" id="subscription-form">
+	<form method="POST" enctype="multipart/form-data" id="subscription-form" class="accountform">
 		{% csrf_token %}
 		{{ form | as_bootstrap }}
 		<div id="credit-card-errors" style="display:none;">

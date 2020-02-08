@@ -21,9 +21,21 @@
 				<a href="{% url 'sign_in' %}" class="btn sign-up-btn report-issue-btn" role="button">Sign In</a>
 				{% endif %}
 			</div>
-			<div class="row">
-                <a href="{% url 'my_issues' %}" class="link-underline float-right {% if request.path == '/issues/my_issues/'%}toggled{% endif %}" id="my_issues">My Issues</a>
-                <a href="{% url 'issues' %}" class="link-underline float-right {% if request.path == '/issues/'%}toggled{% endif %}" id="all_issues">All Issues</a>
+			<div class="row hidden-md hidden-lg hidden-xl margin-bottom">
+				<a href="{% url 'my_issues' %}"
+					class="link-underline {% if request.path == '/issues/my_issues/'%}toggled{% endif %}"
+					id="my_issues">My Issues</a>
+				<a href="{% url 'issues' %}"
+					class="link-underline {% if request.path == '/issues/'%}toggled{% endif %}"
+					id="all_issues">All Issues</a>
+			</div>
+			<div class="row hidden-xs hidden-sm">
+				<a href="{% url 'my_issues' %}"
+					class="link-underline float-right {% if request.path == '/issues/my_issues/'%}toggled{% endif %}"
+					id="my_issues">My Issues</a>
+				<a href="{% url 'issues' %}"
+					class="link-underline float-right {% if request.path == '/issues/'%}toggled{% endif %}"
+					id="all_issues">All Issues</a>
 			</div>
 		</div>
 	</div>
@@ -174,6 +186,7 @@
 
 	<!-- Mobile view of issues board -->
 	<div id="accordion" class="hidden-md hidden-lg hidden-xl">
+
 		<div class="card">
 			<div class="card-header" id="headingOne">
 				<h5 class="mb-0">

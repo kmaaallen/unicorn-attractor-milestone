@@ -26,6 +26,10 @@ a , .white-text, a:hover{
     margin-left:25px;
 }
 
+.margin-bottom{
+    margin-bottom: 50px;
+}
+
 .italic-text{
     font-style: italic;
 }
@@ -35,6 +39,15 @@ a , .white-text, a:hover{
     margin-left: 10px;
     margin-right:2px;
 }
+
+.margin-top{
+    margin-top:25px;
+}
+
+.purple-text{
+    color:#330066;
+}
+
 /* Landing page styling */
 .top-div-home{
     background-color: #ffffff;
@@ -83,7 +96,6 @@ h1.landing-title{
     color: #ffffff;
     border-radius: 26px;
     background-color:#CC0099;
-    margin-bottom: 50px;
 }
 
 .landing-btn-div{
@@ -199,10 +211,11 @@ h1.landing-title{
 
 .accountform{
     width: 100%;
-    color:#ffffff;
-    margin-left:auto;
-    margin-right:auto;
-    margin-top: -10px;
+    color:#330066;
+    padding:10px 20px 0px 20px;
+    margin-bottom:60px;
+    border-radius: 10px;
+    background-color: #ffffff;
 }
 
 #id_description{
@@ -212,7 +225,6 @@ h1.landing-title{
 .password-reset-form{
     width: 100%;
     color:#ffffff;
-    margin-left:25px;
     margin-top: 50px;
 }
 
@@ -255,7 +267,7 @@ h1.landing-title{
     color: #ffffff;
     border-radius: 26px;
     background-color:#008500;
-    margin-bottom: 50px;
+    margin-bottom:50px;
 }
 
 .sign-in-link{
@@ -267,10 +279,6 @@ h1.landing-title{
     text-decoration: underline;
 }
 
-.accountform>h3 {
-    color: #ffffff;
-}
-
 /* Find out more page styling */
 
 .more-btn{
@@ -278,15 +286,13 @@ h1.landing-title{
 }
 
 .more-btn-div{
-    align-content: left;
-    margin-left: 50px;
     margin-top: 50px;
 }
 
 /* issues board */
 .swim-lane{
     background-color: #ffffff;
-    height: 65vh;
+    height: 60vh;
     border: solid 2px #330066;
     overflow-y:scroll;
     border-top:none;
@@ -399,10 +405,15 @@ h1.landing-title{
 
 /* Media Queries */
 @media(max-width: 992px){
+    .container{
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     .report-issue-btn {
-        margin-left: -15px;
         float: left;
         margin-top: 0px;
+        margin-bottom:10px;
     }
     
     .card-header {
@@ -425,9 +436,7 @@ h1.landing-title{
 }
 
 @media(max-width: 1200px){
-     .home-unicorn{
-    height:80vh;
-    margin-top: 30px;
-    margin-left: -50px;
+    .green-btn{
+        margin-bottom:10px;
     }
 }
