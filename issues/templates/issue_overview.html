@@ -22,8 +22,8 @@
 				{% endif %}
 			</div>
 			<div class="row">
-                <a href="{% url 'my_issues' %}" class="link-underline float-right {{ issue_view }}" id="my_issues">My Issues</a>
-                <a href="{% url 'issues' %}" class="link-underline float-right {{ issue_view }}" id="all_issues">All Issues</a>
+                <a href="{% url 'my_issues' %}" class="link-underline float-right {% if request.path == '/issues/my_issues/'%}toggled{% endif %}" id="my_issues">My Issues</a>
+                <a href="{% url 'issues' %}" class="link-underline float-right {% if request.path == '/issues/'%}toggled{% endif %}" id="all_issues">All Issues</a>
 			</div>
 		</div>
 	</div>

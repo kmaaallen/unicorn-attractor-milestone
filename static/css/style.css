@@ -33,6 +33,7 @@ a , .white-text, a:hover{
 .float-right{
     float:right;
     margin-left: 10px;
+    margin-right:2px;
 }
 /* Landing page styling */
 .top-div-home{
@@ -82,6 +83,7 @@ h1.landing-title{
     color: #ffffff;
     border-radius: 26px;
     background-color:#CC0099;
+    margin-bottom: 50px;
 }
 
 .landing-btn-div{
@@ -287,6 +289,7 @@ h1.landing-title{
     height: 65vh;
     border: solid 2px #330066;
     overflow-y:scroll;
+    border-top:none;
 }
 
 .lane-title{
@@ -307,8 +310,14 @@ h1.landing-title{
     transform:translateY(-50px);
 }
 
-.all, .mine{
+.toggled{
     background-color: #ffffff;
+    color: #330066;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+.toggled:hover{
     color: #330066;
 }
 

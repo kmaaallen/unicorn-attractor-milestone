@@ -14,12 +14,24 @@
 			<p>To request, upvote or comment on a feature you must be subscribed.</p>
 		</div>
 		<div class="col-md-6">
+			<div class="row">
+				{% if request.user|in_group:"Subscribers" %}
+				<a href="{% url 'request_feature' %}" class="btn sign-up-btn report-issue-btn" role="button">+ Request a
+					Feature</a>
+				{% elif user.is_authenticated %}
+				<a href="{% url 'subscribe' %}" class="btn landing-btn report-issue-btn" role="button">+ Subscribe</a>
+				{% else %}
+				{% endif %}
+			</div>
 			{% if request.user|in_group:"Subscribers" %}
-			<a href="{% url 'request_feature' %}" class="btn sign-up-btn report-issue-btn" role="button">+ Request a
-				Feature</a>
-			{% elif user.is_authenticated %}
-			<a href="{% url 'subscribe' %}" class="btn landing-btn report-issue-btn" role="button">+ Subscribe</a>
-			{% else %}
+			<div class="row">
+				<a href="{% url 'my_features' %}"
+					class="link-underline float-right {% if request.path == '/features/my_features/'%}toggled{% endif %}"
+					id="my_features">My Features</a>
+				<a href="{% url 'features' %}"
+					class="link-underline float-right {% if request.path == '/features/'%}toggled{% endif %}"
+					id="all_features">All Features</a>
+			</div>
 			{% endif %}
 		</div>
 	</div>
@@ -216,7 +228,8 @@
 										<a class="grey-link" onClick="toggleComment(this)">Comments
 											<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
 										</br>
-										<a class="grey-link" href="{% url 'add_feature_comment' feature_id=feature.id%}">Add
+										<a class="grey-link"
+											href="{% url 'add_feature_comment' feature_id=feature.id%}">Add
 											Comment
 											<i class="fa fa-plus" aria-hidden="true"></i></a>
 									</div>

@@ -32,6 +32,9 @@ class Feature(models.Model):
                              default=REQUESTED,)
     votes = models.IntegerField(default=0)
     voters = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
+    reported_by = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                    related_name='feature_reported_by',
+                                    null=True, blank=True)
 
     def __str__(self):
         return self.title

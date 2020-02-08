@@ -13,6 +13,12 @@ def all_features(request):
 
 
 @login_required
+def my_features(request):
+    features = Feature.objects.filter(reported_by=request.user)
+    return render(request, "feature_overview.html", {"features": features},)
+
+
+@login_required
 def full_feature(request, feature_id):
     """
     Create a view that allows users to view a feature in full page

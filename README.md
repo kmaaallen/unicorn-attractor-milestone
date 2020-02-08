@@ -30,6 +30,7 @@ I used the below user stories to help plan my features:
 - As a unicorn attractor user I want to see all reported issues and relevant information about the tickets
 - As a unicorn attractor user I want to be able to comment on tickets to add more information
 - As a unicorn attractor user I want to be able to manage my account to that I can reset my password if I forget, cancel my subscription or update my card details
+- As a unicron attractor user I want to view my specific issues and tickets
 
 
 - As a unicorn attractor developer I want to be able to see tickets from end users
@@ -185,6 +186,7 @@ The footer contains three social media icons (instagram, twitter and facebook)
 - The page shows a 'Sign in' button on the right if the user is not logged in, this will direct to the sign in form
 - If the user is signed in already, this button will say '+ Report and Issue' and direct the user to the report an issue form
 - Within swimlanes issues are sorted by which has the highest number of votes. 
+- A user can tab between 'My Issues' and 'All Issues' that are displayed in the swimlanes.
 
 - Mobile view
     - On small and extra small screens this kanban-style board changes into three toggle buttons, which allow the user to
@@ -217,6 +219,8 @@ The footer contains three social media icons (instagram, twitter and facebook)
 - The page shows a 'Subscribe' button on the right if the user is not subscribed, this will direct to the subscription form
 - If the user is subscribed already, this button will say '+ Request a feature' and direct the user to the request a feature form
 - Within swimlanes features are sorted by which has the highest number of votes. 
+- A user can tab between 'My Features' and 'All Features' that are displayed in the swimlanes.
+- These tabs are only visible if the user is subscribed to the features module.
 
 - Mobile view
     - On small and extra small screens this kanban-style board changes into three toggle buttons, which allow the user to
