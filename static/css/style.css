@@ -1,5 +1,5 @@
 body{
-    background-color: #330066;
+    background-color: #f9f9f9;
     padding-top: 50px;
 }
 
@@ -46,6 +46,22 @@ a , .white-text, a:hover{
 
 .purple-text{
     color:#330066;
+}
+
+.align-text-center {
+    text-align: center;
+}
+
+.align-text-left {
+    text-align: left;
+}
+
+.display-inline-block {
+    display: inline-block;
+}
+
+.no-list-style{
+    list-style: none;
 }
 
 /* Landing page styling */
@@ -96,6 +112,11 @@ h1.landing-title{
     color: #ffffff;
     border-radius: 26px;
     background-color:#CC0099;
+    margin-bottom:10px;
+}
+
+.landing-btn:hover {
+    background-color: #a3007a;
 }
 
 .landing-btn-div{
@@ -116,7 +137,7 @@ h1.landing-title{
     margin-bottom:0px;
 }
 .unicorn-nav{
-    background-color:#ffffff;
+    background-color:#330066;
     background-image: none;
 }
 
@@ -132,11 +153,11 @@ h1.landing-title{
 }
 
 .navbar-brand:hover{
-    color: #330066;
+    color: #ffffff;
 }
 
 .navbar-brand, .nav-item, .nav-item:focus{
-    color: #330066;
+    color: #ffffff;
     text-shadow: none;
 }
 
@@ -157,14 +178,26 @@ h1.landing-title{
 }
 
 .social-link{
-    color:#ffffff;
+    color:#330066;
     float: right;
     margin-right:25px;
     font-size: 20px;
 }
 
 .social-nav{
+    background-color: #f9f9f9;
+    box-shadow: none;
+}
+
+.index-bottom-nav {
     background-color: #330066;
+}
+
+.index-social-links {
+    color: #fff;
+    float: right;
+    margin-right:25px;
+    font-size: 20px;
 }
 
 .dropdown-menu {
@@ -267,7 +300,11 @@ h1.landing-title{
     color: #ffffff;
     border-radius: 26px;
     background-color:#008500;
-    margin-bottom:50px;
+    margin-bottom: 10px;
+}
+
+.sign-up-btn:hover {
+    background-color: #006a00;
 }
 
 .sign-in-link{
@@ -435,8 +472,3 @@ h1.landing-title{
 
 }
 
-@media(max-width: 1200px){
-    .green-btn{
-        margin-bottom:10px;
-    }
-}

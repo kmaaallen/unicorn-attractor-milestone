@@ -6,7 +6,7 @@
 {% block page_heading %}Contact Us{% endblock %}
 {% block content %}
 <div class="container">
-	<h1 class="white-text">Contact Us:</h1>
+	<h1 class="purple-text">Contact Us:</h1>
 	<form method="POST" enctype="multipart/form-data" class="accountform">
 		{% csrf_token %}
 		{{ contact_form | as_bootstrap }}
