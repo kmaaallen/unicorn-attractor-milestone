@@ -44,7 +44,8 @@ a , .white-text, a:hover{
     margin-top:25px;
 }
 
-.purple-text{
+.purple-text,
+.purple-text:hover{
     color:#330066;
 }
 
@@ -167,7 +168,7 @@ h1.landing-title{
 }
 
 .nav-item>a:hover{
-    color: #330066;
+    color: #ffffff;
     text-decoration: underline;
 }
 
@@ -327,16 +328,17 @@ h1.landing-title{
 }
 
 /* issues board */
+.issue-header-div {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
 .swim-lane{
-    background-color: #ffffff;
+    background-color: #330066;
     height: 60vh;
     border: solid 2px #330066;
     overflow-y:scroll;
     border-top:none;
-}
-
-.lane-title{
-    color:#330066;
 }
 
 .report-issue-btn{
@@ -345,7 +347,7 @@ h1.landing-title{
 }
 
 .report-issue-header, .report-issue-header>h1, .btn-link{
-    color: #ffffff;
+    color: #330066;
     padding-left: 0px;
 }
 
@@ -358,6 +360,8 @@ h1.landing-title{
     color: #330066;
     padding-left:10px;
     padding-right:10px;
+    border: 1px solid #330066;
+    border-radius: 10px;
 }
 
 .toggled:hover{
@@ -374,9 +378,15 @@ h1.landing-title{
 /* Full Issue form */
 .full-issue{
     margin-top: 20px;
-    background-color: #ffffff;
-    padding-bottom: 100px;
-    border-radius:20px;
+    background-color: #330066;
+    padding-bottom: 20px;
+}
+
+.full-issue-sub-div{
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px 10px 50px 10px;
+    margin-top: 20px;
 }
 
 .issue-bottom-margin{

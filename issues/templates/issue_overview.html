@@ -22,27 +22,31 @@
 				{% endif %}
 			</div>
 			<div class="row hidden-md hidden-lg hidden-xl margin-bottom">
-				<a href="{% url 'my_issues' %}"
-					class="link-underline {% if request.path == '/issues/my_issues/'%}toggled{% endif %}"
-					id="my_issues">My Issues</a>
-				<a href="{% url 'issues' %}"
-					class="link-underline {% if request.path == '/issues/'%}toggled{% endif %}"
-					id="all_issues">All Issues</a>
+				<div class="col-md-12">
+					<a href="{% url 'my_issues' %}"
+						class="purple-text {% if request.path == '/issues/my_issues/'%}toggled{% endif %}"
+						id="my_issues">My Issues</a>
+					<a href="{% url 'issues' %}"
+						class="purple-text {% if request.path == '/issues/'%}toggled{% endif %}" id="all_issues">All
+						Issues</a>
+				</div>
 			</div>
 			<div class="row hidden-xs hidden-sm">
-				<a href="{% url 'my_issues' %}"
-					class="link-underline float-right {% if request.path == '/issues/my_issues/'%}toggled{% endif %}"
-					id="my_issues">My Issues</a>
-				<a href="{% url 'issues' %}"
-					class="link-underline float-right {% if request.path == '/issues/'%}toggled{% endif %}"
-					id="all_issues">All Issues</a>
+				<div class="col-md-12">
+					<a href="{% url 'my_issues' %}"
+						class="purple-text float-right {% if request.path == '/issues/my_issues/'%}toggled{% endif %}"
+						id="my_issues">My Issues</a>
+					<a href="{% url 'issues' %}"
+						class="purple-text float-right {% if request.path == '/issues/'%}toggled{% endif %}"
+						id="all_issues">All Issues</a>
+				</div>
 			</div>
 		</div>
 	</div>
 	<div class="row hidden-xs hidden-sm">
 		<div class="col-md-4 swim-lane">
 			<div class="lane-title-div">
-				<h3 class="lane-title">Reported</h3>
+				<h3 class="white-text">Reported</h3>
 				{% for issue in issues|dictsortreversed:"votes"  %}
 				{% if issue.state == 'REPORTED' %}
 				<div class="col-xs-12 display panel panel-default">
@@ -89,7 +93,7 @@
 		</div>
 		<div class="col-md-4 swim-lane">
 			<div class="lane-title-div">
-				<h3 class="lane-title">In Progress</h3>
+				<h3 class="white-text">In Progress</h3>
 				{% for issue in issues|dictsortreversed:"votes"  %}
 				{% if issue.state == 'IN PROGRESS' %}
 				<div class="col-xs-12 display panel panel-default">
@@ -136,7 +140,7 @@
 		</div>
 		<div class="col-md-4 swim-lane">
 			<div class="lane-title-div">
-				<h3 class="lane-title">Completed</h3>
+				<h3 class="white-text">Completed</h3>
 				{% for issue in issues|dictsortreversed:"votes"  %}
 				{% if issue.state == 'COMPLETED' %}
 				<div class="col-xs-12 display panel panel-default">
@@ -201,7 +205,7 @@
 				<div class="card-body">
 					<div class="col-md-4 swim-lane">
 						<div class="lane-title-div">
-							<h3 class="lane-title">Reported</h3>
+							<h3 class="white-text">Reported</h3>
 							{% for issue in issues|dictsortreversed:"votes"  %}
 							{% if issue.state == 'REPORTED' %}
 							<div class="col-xs-12 display panel panel-default">
@@ -262,7 +266,7 @@
 					<div class="card-body">
 						<div class="col-md-4 swim-lane">
 							<div class="lane-title-div">
-								<h3 class="lane-title">In Progress</h3>
+								<h3 class="white-text">In Progress</h3>
 								{% for issue in issues|dictsortreversed:"votes"  %}
 								{% if issue.state == 'IN PROGRESS' %}
 								<div class="col-xs-12 display panel panel-default">
@@ -325,7 +329,7 @@
 					<div class="card-body">
 						<div class="col-md-4 swim-lane">
 							<div class="lane-title-div">
-								<h3 class="lane-title">Completed</h3>
+								<h3 class="white-text">Completed</h3>
 								{% for issue in issues|dictsortreversed:"votes"  %}
 								{% if issue.state == 'COMPLETED' %}
 								<div class="col-xs-12 display panel panel-default">

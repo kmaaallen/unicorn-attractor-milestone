@@ -5,42 +5,45 @@
 {% block page_heading %} Full Issue {% endblock %}
 {% block content %}
 <div class="container full-issue">
-	<h1 class="grey-link issue-bottom-margin">Issue: {{ issue.title }}</h1>
-	<div>
-		<p class="issue-bottom-margin">{{ issue.description }}</p>
-		<p class="issue-bottom-margin">Priority: {{ issue.priority }}</p>
-		<p class="issue-bottom-margin">Votes: {{ issue.votes }}</p>
-		{% if user.is_authenticated %}
-        {% if user in issue.voters.all %}
-        <p class="italic-text">You have already voted on this issue</p>
-        {% else %}
-        <p><a class="grey-link" href="{% url 'upvote' issue_id=issue.id%}">Upvote <i class="fa fa-arrow-up"></i></a></p>
-        {% endif %}
-		
+	<div class="full-issue-sub-div">
+		<h1 class="grey-link issue-bottom-margin">Issue: {{ issue.title }}</h1>
 		<div>
-                        <a class="grey-link" onClick="toggleComment(this)">Comments
-                            <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-                        </br>
-                        <a class="grey-link" href="{% url 'add_comment' issue_id=issue.id%}">Add Comment
-                            <i class="fa fa-plus" aria-hidden="true"></i></a>
-                    </div>
-                    <div class="comment-block">
-                        <div class="comments">
-                            {% for comment in issue.comments.all %}
-                            <div class="comment-bold">{{ comment.created }}</div>
-                            <p class="comment-bold"> User: {{ comment.commenter }}</p>
-                            <p> Comment: {{ comment.comment }}</p>
-                            <hr />
-                            {% empty %}
-                            <div>
-                                <p class="italic-text">No comments yet</p>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
+			<p class="issue-bottom-margin">{{ issue.description }}</p>
+			<p class="issue-bottom-margin">Priority: {{ issue.priority }}</p>
+			<p class="issue-bottom-margin">Votes: {{ issue.votes }}</p>
+			{% if user.is_authenticated %}
+			{% if user in issue.voters.all %}
+			<p class="italic-text">You have already voted on this issue</p>
+			{% else %}
+			<p><a class="grey-link" href="{% url 'upvote' issue_id=issue.id%}">Upvote <i class="fa fa-arrow-up"></i></a>
+			</p>
+			{% endif %}
+
+			<div>
+				<a class="grey-link" onClick="toggleComment(this)">Comments
+					<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+				</br>
+				<a class="grey-link" href="{% url 'add_comment' issue_id=issue.id%}">Add Comment
+					<i class="fa fa-plus" aria-hidden="true"></i></a>
+			</div>
+			<div class="comment-block">
+				<div class="comments">
+					{% for comment in issue.comments.all %}
+					<div class="comment-bold">{{ comment.created }}</div>
+					<p class="comment-bold"> User: {{ comment.commenter }}</p>
+					<p> Comment: {{ comment.comment }}</p>
+					<hr />
+					{% empty %}
+					<div>
+						<p class="italic-text">No comments yet</p>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
 			{% endif %}
 		</div>
 	</div>
+</div>
 </div>
 
 {% endblock %}
