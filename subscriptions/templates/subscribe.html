@@ -13,17 +13,26 @@
 <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
 {% endblock head_js %}
 {% block content %}
-<div class="issue-form">
-	<h1 class="white-text">Subscribe</h1>
-	<p>Subscribe to monthly payments to access our features section, where you can request and upvote new features.</p>
-    <p>The subscription costs £25.00 per month and can be cancelled at any time. No minimum subscription period.</p>
-	<form method="POST" enctype="multipart/form-data" id="subscription-form" class="accountform">
-		{% csrf_token %}
-		{{ form | as_bootstrap }}
-		<div id="credit-card-errors" style="display:none;">
-			<div class="alert-message block-message error" id="stripe-error-message"></div>
+<div class="container">
+	<div class="row">
+		<div class=" col-md-12">
+			<div class="issue-form">
+				<h1 class="purple-text">Subscribe</h1>
+				<p class="purple-text">Subscribe to monthly payments to access our features section, where you can
+					request and upvote new features.</p>
+				<p class="purple-text">The subscription costs £25.00 per month and can be cancelled at any time. No
+					minimum subscription period.</p>
+				<form method="POST" enctype="multipart/form-data" id="subscription-form"
+					class="accountform purple-text">
+					{% csrf_token %}
+					{{ form | as_bootstrap }}
+					<div id="credit-card-errors" style="display:none;">
+						<div class="alert-message block-message error" id="stripe-error-message"></div>
+					</div>
+					<button type="submit" class="sign-up-btn">Subscribe</button>
+				</form>
+			</div>
 		</div>
-		<button type="submit" class="sign-up-btn">Subscribe</button>
-	</form>
+	</div>
 </div>
 {% endblock %}

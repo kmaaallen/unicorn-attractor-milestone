@@ -371,22 +371,16 @@ h1.landing-title{
 /* Report an Issue Form styling */
 .issue-form{
     color: #ffffff;
-    width: 80%;
-    margin-left: 25px;
+    width: 100%;
 }
 
 /* Full Issue form */
 .full-issue{
     margin-top: 20px;
-    background-color: #330066;
+    background-color: #ffffff;
     padding-bottom: 20px;
-}
-
-.full-issue-sub-div{
-    background-color: #fff;
+    border: 2px solid #330066;
     border-radius: 10px;
-    padding: 10px 10px 50px 10px;
-    margin-top: 20px;
 }
 
 .issue-bottom-margin{

@@ -200,3 +200,5 @@ TO DO:
 
 15/02/20
 - changed colour scheme - more page fixed - better spacing and central
+
+18/02/2020 - this week - styling changes.

@@ -5,8 +5,7 @@
 {% block page_heading %} Full Issue {% endblock %}
 {% block content %}
 <div class="container full-issue">
-	<div class="full-issue-sub-div">
-		<h1 class="grey-link issue-bottom-margin">Issue: {{ issue.title }}</h1>
+		<h1 class="purple-text issue-bottom-margin">Issue: {{ issue.title }}</h1>
 		<div>
 			<p class="issue-bottom-margin">{{ issue.description }}</p>
 			<p class="issue-bottom-margin">Priority: {{ issue.priority }}</p>
@@ -15,15 +14,15 @@
 			{% if user in issue.voters.all %}
 			<p class="italic-text">You have already voted on this issue</p>
 			{% else %}
-			<p><a class="grey-link" href="{% url 'upvote' issue_id=issue.id%}">Upvote <i class="fa fa-arrow-up"></i></a>
+			<p><a class="purple-text" href="{% url 'upvote' issue_id=issue.id%}">Upvote <i class="fa fa-arrow-up"></i></a>
 			</p>
 			{% endif %}
 
 			<div>
-				<a class="grey-link" onClick="toggleComment(this)">Comments
+				<a class="purple-text" onClick="toggleComment(this)">Comments
 					<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
 				</br>
-				<a class="grey-link" href="{% url 'add_comment' issue_id=issue.id%}">Add Comment
+				<a class="purple-text" href="{% url 'add_comment' issue_id=issue.id%}">Add Comment
 					<i class="fa fa-plus" aria-hidden="true"></i></a>
 			</div>
 			<div class="comment-block">
@@ -44,6 +43,6 @@
 		</div>
 	</div>
 </div>
-</div>
+
 
 {% endblock %}

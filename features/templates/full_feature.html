@@ -5,7 +5,7 @@
 {% block page_heading %} Full Feature {% endblock %}
 {% block content %}
 <div class="container full-issue">
-	<h1 class="grey-link issue-bottom-margin">Feature: {{ feature.title }}</h1>
+	<h1 class="purple-text issue-bottom-margin">Feature: {{ feature.title }}</h1>
 	<div>
 		<p class="issue-bottom-margin">{{ feature.description }}</p>
 		<p class="issue-bottom-margin">Priority: {{ feature.priority }}</p>
@@ -14,14 +14,14 @@
         {% if user in feature.voters.all %}
         <p class="italic-text">You have already voted on this feature</p>
         {% else %}
-        <p><a class="grey-link" href="{% url 'upvote' feature_id=feature.id%}">Upvote <i class="fa fa-arrow-up"></i></a></p>
+        <p><a class="purple-text" href="{% url 'upvote' feature_id=feature.id%}">Upvote <i class="fa fa-arrow-up"></i></a></p>
         {% endif %}
 		
 		<div>
-                        <a class="grey-link" onClick="toggleComment(this)">Comments
+                        <a class="purple-text" onClick="toggleComment(this)">Comments
                             <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
                         </br>
-                        <a class="grey-link" href="{% url 'add_feature_comment' feature_id=feature.id%}">Add Comment
+                        <a class="purple-text" href="{% url 'add_feature_comment' feature_id=feature.id%}">Add Comment
                             <i class="fa fa-plus" aria-hidden="true"></i></a>
                     </div>
                     <div class="comment-block">
