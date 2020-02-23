@@ -332,19 +332,19 @@ I used Django's automated testing framework.
 #### What was tested:
 I tested the following and achieved the following coverages with automated testing:
 
-ISSUES:
-Coverage report: 99%
-Module	            statements	missing	    excluded	coverage
-issues/admin.py	        5	        0	        0	        100%
-issues/apps.py	        3	        0	        0	        100%
-issues/forms.py	        10	        0	        0	        100%
-issues/models.py	    36	        0	        0	        100%
-issues/test_app.py	    7	        0	        0	        100%
-issues/test_forms.py	43	        0	        0	        100%
-issues/tests.py	        60	        0	        0	        100%
-issues/urls.py	        3	        0	        0	        100%
-issues/views.py	        53	        3	        0	        94%
-Total	                386	        3	        0	        99%
+| ISSUES: | Coverage report: 99% |            |         |          |          |
+|---------|----------------------|------------|---------|----------|----------|
+|         | Module               | statements | missing | excluded | coverage |
+|         | issues/admin.py      | 5          | 0       | 0        | 100%     |
+|         | issues/apps.py       | 3          | 0       | 0        | 100%     |
+|         | issues/forms.py      | 10         | 0       | 0        | 100%     |
+|         | issues/models.py     | 36         | 0       | 0        | 100%     |
+|         | issues/test_app.py   | 7          | 0       | 0        | 100%     |
+|         | issues/test_forms.py | 43         | 0       | 0        | 100%     |
+|         | issues/tests.py      | 60         | 0       | 0        | 100%     |
+|         | issues/urls.py       | 3          | 0       | 0        | 100%     |
+|         | issues/views.py      | 53         | 3       | 0        | 94%      |
+|         | TOTAL                | 386        | 3       | 0        | 99%      |
 
 Name                                           Stmts   Miss  Cover
 ------------------------------------------------------------------
