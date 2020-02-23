@@ -1,4 +1,3 @@
 *.sqlite3
-Notes.txt
 env.py
 __pycache__

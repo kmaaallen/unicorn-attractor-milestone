@@ -126,3 +126,20 @@ class TestUpvote(TestCase):
         self.assertEqual(len(messages), 1)
         self.assertEqual(str(messages[0]), 'You have already voted on this feature')
 
+
+class TestMyFeatures(TestCase):
+    def test_my_features_function(self):
+        # set up and login user
+        test_user1 = User.objects.create_user(username='testuser',
+                                              password='password')
+        test_user1.save()
+        self.client.login(username='testuser', password='password')
+        # set up and add user to subscribers group
+        subscriber_group = Group.objects.create(name='Subscribers')
+        subscriber_group.user_set.add(test_user1)
+        # set up features
+        test_feature = Feature.objects.create(title='test feature', description='test', votes=1, reported_by=test_user1)
+        test_feature.save()
+
+        test_feature_2 = Feature.objects.create(title='test feature', description='test', votes=1, reported_by='bob')
+        test_feature_2.save()

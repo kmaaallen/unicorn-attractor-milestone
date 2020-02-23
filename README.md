@@ -52,22 +52,24 @@ I wanted to keep the layout consistent and intuitive.
 ### The wireframes:
 I created the wireframes using the online tool [Figma](https://www.figma.com/)
 The initial wireframes can be viewed [here](https://github.com/kmaaallen/unicorn-attractor-milestone/blob/master/static/wireframes/Figma%20Unicorn.pdf).
+I ultimately decided to change the colour scheme during my development process as the dark background was a little too dark for my liking as I was navigating through the site.
 
 ### Design decisions
 #### Font
 
 - I wanted to keep the design of the site fairly simple so I kept to 'Helvetica Neue' which was the default font style.
 
-#### Colours
+#### Colours 
 
 - I also wanted to use web-safe colours where possible to keep the user experience consistent between browsers.
-- Using [color-hex](color-hex.com/216-web-safe-colors/) I chose a dark web safe colour as my base. Purple, #330066, this would be the main background colour. I then used [sessions](sessions,edu/color-calculator/) to generate a complimentary colour palette which included a green and a pink.
+- Using [color-hex](color-hex.com/216-web-safe-colors/) I initially chose a dark web safe colour as my base. Purple, #330066, I did use this in my final design but as an accent colour, by background colour ended up being #f9f9f9, which I still checked for contrast. I also used [sessions](sessions,edu/color-calculator/) to generate a complimentary colour palette which included a green and a pink.
 - Using https://www.colortools.net/color_make_web-safe.html I tried to match the green and pink to a web-safe colour and then checked the contrast using a [constrast checker](https://webaim.org/resources/contrastchecker/) to check which colours would work best together according to WCAG AA and WCAG AAA..
 - The final colour palette ended up being:
     Purple #330066
     Pink #CC0099
     Green #008500
     White #FFFFFF
+    Off White #F9F9F9
 - The rest of the palette is made up of two web safe greys.
 
 ## Features
@@ -251,6 +253,7 @@ The footer contains three social media icons (instagram, twitter and facebook)
 
 ##### Features Left to Implement
 - User profile picture
+- Dashboard with data on speed of resolution etc.
 
 ## Technologies Used
 ### Gitpod
@@ -319,15 +322,79 @@ MongoDB Atlas was used as the database for this project :[https://www.mongodb.co
 ## Testing
 
 ### Manual Testing
+The manual testing document can be viewed [here](https://github.com/kmaaallen/unicorn-attractor-milestone/blob/master/unicorn_attractor/Documentation/Manual%20Testing%20Unicorn%20Attractor.xlsx)
 
 #### Interesting bugs / bugs not fixed
 
 ### Automated testing
+I used Django's automated testing framework.
 
 #### What was tested:
+I tested the following and achieved the following coverages with automated testing:
+Name                                           Stmts   Miss  Cover
+------------------------------------------------------------------
+issues/__init__.py                                 0      0   100%
+issues/admin.py                                    5      0   100%
+issues/apps.py                                     3      0   100%
+issues/forms.py                                   10      0   100%
+issues/models.py                                  36      0   100%
+issues/test_app.py                                 7      0   100%
+issues/test_forms.py                              43      0   100%
+issues/tests.py                                   60      0   100%
+issues/urls.py                                     3      0   100%
+issues/views.py                                   53      3    94%
+------------------------------------------------------------------
+TOTAL                                            386      3    99%
 
+Name                                              Stmts   Miss  Cover
+---------------------------------------------------------------------
+features/admin.py                                     5      0   100%
+features/apps.py                                      3      0   100%
+features/forms.py                                    10      0   100%
+features/models.py                                   34      0   100%
+features/test_apps.py                                 7      0   100%
+features/test_forms.py                               47      0   100%
+features/tests.py                                    82      1    99%
+features/urls.py                                      3      0   100%
+features/views.py                                    53      4    92%
+---------------------------------------------------------------------
+TOTAL                                               270      5    98%
 
+Name                              Stmts   Miss  Cover
+-----------------------------------------------------
+accounts/admin.py                     1      0   100%
+accounts/apps.py                      3      0   100%
+accounts/forms.py                    28      0   100%
+accounts/models.py                    1      0   100%
+accounts/test_apps.py                 7      0   100%
+accounts/test_forms.py               81      0   100%
+accounts/tests.py                    50      0   100%
+accounts/url_reset.py                 4      0   100%
+accounts/urls.py                      4      0   100%
+accounts/views.py                    38      1    97%
+-----------------------------------------------------
+TOTAL                               217      1    99%
+
+Name                              Stmts   Miss  Cover
+-----------------------------------------------------
+home/admin.py                         1      0   100%
+home/apps.py                          3      0   100%
+home/forms.py                         6      0   100%
+home/models.py                        5      0   100%
+home/test_apps.py                     7      0   100%
+home/test_forms.py                   25      0   100%
+home/tests.py                        35      0   100%
+home/urls.py                          3      0   100%
+home/views.py                        24      0   100%
+-----------------------------------------------------
+TOTAL                               115      0   100%
+
+SUBSCRIPTIONS MODULE TO GO IN HERE WHEN TESTS DONE
 #### How to run these tests
+In order to run these tests you must use the project locally and in your environment variables comment out the postgres database and use the sqlite database that comes with django.
+You must also pip3 install coverage
+To generate the reports run the following command: $ coverage run --source='<app-name>' manage.py test <app-name>
+Then $ coverage report
 
 ## Deployment
 ### How to deploy this project to Heroku

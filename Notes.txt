@@ -206,3 +206,5 @@ TO DO:
 23/02/20
 - styling changes a few picked up
 - wrote manual testing documentation.
+
+Need to complete testing write up - particularly the subscriptions module - tests failing.
