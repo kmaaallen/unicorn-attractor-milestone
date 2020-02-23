@@ -334,7 +334,6 @@ I tested the following and achieved the following coverages with automated testi
 
 | ISSUES:              |            |         |          |
 |----------------------|------------|---------|----------|
-| Coverage report: 99% |            |         |          |
 | Module               | statements | missing | coverage |
 | issues/admin.py      | 5          | 0       | 100%     |
 | issues/apps.py       | 3          | 0       | 100%     |
@@ -349,7 +348,6 @@ I tested the following and achieved the following coverages with automated testi
 
 | FEATURES:              |            |         |          |
 |------------------------|------------|---------|----------|
-| Coverage report: 98%   |            |         |          |
 | Module                 | statements | missing | coverage |
 | features/admin.py      | 5          | 0       | 100%     |
 | features/apps.py       | 3          | 0       | 100%     |
@@ -364,7 +362,6 @@ I tested the following and achieved the following coverages with automated testi
 
 | ACCOUNTS:              |            |         |          |
 |------------------------|------------|---------|----------|
-| Coverage report: 98%   |            |         |          |
 | Module                 | statements | missing | coverage |
 | accounts/admin.py      | 1          | 0       | 100%     |
 | accounts/apps.py       | 3          | 0       | 100%     |
@@ -380,7 +377,6 @@ I tested the following and achieved the following coverages with automated testi
 
 | HOME:                  |            |         |          |
 |------------------------|------------|---------|----------|
-| Coverage report: 98%   |            |         |          |
 | Module                 | statements | missing | coverage |
 | home/admin.py          | 1          | 0       | 100%     |
 | home/apps.py           | 3          | 0       | 100%     |
