@@ -202,3 +202,7 @@ TO DO:
 - changed colour scheme - more page fixed - better spacing and central
 
 18/02/2020 - this week - styling changes.
+
+23/02/20
+- styling changes a few picked up
+- wrote manual testing documentation.

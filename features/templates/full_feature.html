@@ -1,46 +1,51 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load extra_filters %}
 {% load bootstrap_tags %}
 {% block page_title %} Full Feature {% endblock %}
 {% block page_heading %} Full Feature {% endblock %}
 {% block content %}
-<div class="container full-issue">
+<div class="container full-issue margin-bottom">
 	<h1 class="purple-text issue-bottom-margin">Feature: {{ feature.title }}</h1>
 	<div>
+		{% if user.is_authenticated %}
 		<p class="issue-bottom-margin">{{ feature.description }}</p>
 		<p class="issue-bottom-margin">Priority: {{ feature.priority }}</p>
 		<p class="issue-bottom-margin">Votes: {{ feature.votes }}</p>
-		{% if user.is_authenticated %}
-        {% if user in feature.voters.all %}
-        <p class="italic-text">You have already voted on this feature</p>
-        {% else %}
-        <p><a class="purple-text" href="{% url 'upvote' feature_id=feature.id%}">Upvote <i class="fa fa-arrow-up"></i></a></p>
-        {% endif %}
-		
+		{% if request.user|in_group:"Subscribers" %}
+		{% if feature.reported_by == request.user %}
+		<p class="italic-text">You requested this feature</p>
+		{% elif user in feature.voters.all %}
+		<p class="italic-text">You have already voted on this feature</p>
+		{% else %}
+		<p><a class="grey-link" href="upvote/{{ feature.id }}">Upvote
+				<i class="fa fa-arrow-up"></i></a>
+		</p>
+		{% endif %}
 		<div>
-                        <a class="purple-text" onClick="toggleComment(this)">Comments
-                            <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-                        </br>
-                        <a class="purple-text" href="{% url 'add_feature_comment' feature_id=feature.id%}">Add Comment
-                            <i class="fa fa-plus" aria-hidden="true"></i></a>
-                    </div>
-                    <div class="comment-block">
-                        <div class="comments">
-                            {% for comment in feature.comments.all %}
-                            <div class="comment-bold">{{ comment.created }}</div>
-                            <p class="comment-bold"> User: {{ comment.commenter }}</p>
-                            <p> Comment: {{ comment.comment }}</p>
-                            <hr />
-                            {% empty %}
-                            <div>
-                                <p class="italic-text">No comments yet</p>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-			{% endif %}
+			<a class="grey-link" onClick="toggleComment(this)">Comments
+				<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+			</br>
+			<a class="grey-link" href="{% url 'add_feature_comment' feature_id=feature.id %}">Add
+				Comment
+				<i class="fa fa-plus" aria-hidden="true"></i></a>
 		</div>
+		<div class="comment-block">
+			<div class="comments">
+				{% for comment in feature.comments.all %}
+				<div class="comment-bold">{{ comment.created }}</div>
+				<p class="comment-bold"> User: {{ comment.commenter }}</p>
+				<p> Comment: {{ comment.comment }}</p>
+				<hr />
+				{% empty %}
+				<div>
+					<p class="italic-text">No comments yet</p>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+		{% endif %}
 	</div>
 </div>
-
+{% endif %}
 {% endblock %}

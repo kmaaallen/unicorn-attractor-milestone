@@ -37,6 +37,8 @@ def request_feature(request, pk=None):
         form = AddFeatureForm(request.POST, request.FILES, instance=feature)
         if form.is_valid():
             feature = form.save()
+            feature.reported_by = request.user
+            feature.save()
             return redirect('features')
     else:
         form = AddFeatureForm(instance=feature)

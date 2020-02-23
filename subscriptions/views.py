@@ -11,17 +11,18 @@ import stripe
 stripe.api_key = settings.STRIPE_SECRET
 
 
-# Create your views here.
-
-
 @login_required
 def new_subscription(request):
     """
     Create a view that allows users to subscribe to feature support/requests
     """
     plan = "plan_GRYCbL4JOJXYi1"
+    # redirect users if they are already subscribed so they cannot access form
+    user = request.user
+    if user.groups.filter(name='Subscribers').exists():
+        return render(request, "user_profile.html")
 
-    if request.method == 'POST':
+    elif request.method == 'POST':
         subscribe_form = SubscriptionForm(request.POST)
         if subscribe_form.is_valid():
             try:
@@ -41,9 +42,12 @@ def new_subscription(request):
                     customer=subscriber.customer_id,
                     items=[{"plan": plan}],
                 )
-                Subscriber.objects.filter(user=request.user.id).update(subscription_id=subscription.id)
-                Subscriber.objects.filter(user=request.user.id).update(card_id=card.id)
-                Subscriber.objects.filter(user=request.user.id).update(active=True)
+                Subscriber.objects.filter(user=request.user.id).update(
+                    subscription_id=subscription.id)
+                Subscriber.objects.filter(
+                    user=request.user.id).update(card_id=card.id)
+                Subscriber.objects.filter(
+                    user=request.user.id).update(active=True)
                 subscriber_group = Group.objects.get(name='Subscribers')
                 subscriber_group.user_set.add(request.user)
                 messages.error(request, "You have successfully subscribed.")
@@ -68,10 +72,11 @@ def new_subscription(request):
                                               active=True)
                     subscriber_group = Group.objects.get(name='Subscribers')
                     subscriber_group.user_set.add(request.user)
-                    messages.error(request, "You have successfully subscribed.")
+                    messages.error(
+                        request, "You have successfully subscribed.")
                     return render(request, "subscribe.html",
                                   {'form': subscribe_form,
-                                  'publishable': settings.STRIPE_PUBLISHABLE})
+                                   'publishable': settings.STRIPE_PUBLISHABLE})
                 except stripe.error.CardError:
                     messages.error(request, "Your card was declined.")
         else:
@@ -123,7 +128,8 @@ def update_card_details(request):
                     subscriber.customer_id,
                     customer.default_source,
                 )
-                Subscriber.objects.filter(user=request.user.id).update(card_id=card.id)
+                Subscriber.objects.filter(
+                    user=request.user.id).update(card_id=card.id)
             except stripe.error.CardError:
                 messages.error(request, "Unable to update card details.")
             return render(request, "user_profile.html")

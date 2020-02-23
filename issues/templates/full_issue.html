@@ -11,7 +11,9 @@
 			<p class="issue-bottom-margin">Priority: {{ issue.priority }}</p>
 			<p class="issue-bottom-margin">Votes: {{ issue.votes }}</p>
 			{% if user.is_authenticated %}
-			{% if user in issue.voters.all %}
+			{% if feature.reported_by == request.user %}
+            <p class="italic-text">You requested this feature</p>
+			{% elif user in feature.voters.all %}
 			<p class="italic-text">You have already voted on this issue</p>
 			{% else %}
 			<p><a class="purple-text" href="{% url 'upvote' issue_id=issue.id%}">Upvote <i class="fa fa-arrow-up"></i></a>

@@ -26,11 +26,11 @@
 			</div>
 			{% if request.user|in_group:"Subscribers" %}
 			<div class="row hidden-md hidden-lg hidden-xl margin-bottom">
-				<a href="{% url 'my_issues' %}"
-					class="purple-text {% if request.path == '/issues/my_issues/'%}toggled{% endif %}"
-					id="my_issues">My Issues</a>
-				<a href="{% url 'issues' %}" class="purple-text {% if request.path == '/issues/'%}toggled{% endif %}"
-					id="all_issues">All Issues</a>
+				<a href="{% url 'my_features' %}"
+					class="purple-text {% if request.path == '/features/my_features/'%}toggled{% endif %}"
+					id="my_features">My Features</a>
+				<a href="{% url 'features' %}" class="purple-text {% if request.path == '/features/'%}toggled{% endif %}"
+					id="all_features">All Features</a>
 			</div>
 			<div class="row hidden-sm hidden-xs">
 				<a href="{% url 'my_features' %}"
@@ -58,7 +58,9 @@
 						<p>Priority: {{ feature.priority }}</p>
 						<p>Votes: {{ feature.votes }}</p>
 						{% if request.user|in_group:"Subscribers" %}
-						{% if user in feature.voters.all %}
+                        {% if feature.reported_by == request.user %}
+                        <p class="italic-text">You requested this feature</p>
+						{% elif user in feature.voters.all %}
 						<p class="italic-text">You have already voted on this feature</p>
 						{% else %}
 						<p><a class="grey-link" href="upvote/{{ feature.id }}">Upvote
@@ -110,7 +112,9 @@
 						<p>Priority: {{ feature.priority }}</p>
 						<p>Votes: {{ feature.votes }}</p>
 						{% if request.user|in_group:"Subscribers" %}
-						{% if user in feature.voters.all %}
+						{% if feature.reported_by == request.user %}
+                        <p class="italic-text">You requested this feature</p>
+						{% elif user in feature.voters.all %}
 						<p class="italic-text">You have already voted on this feature</p>
 						{% else %}
 						<p><a class="grey-link" href="upvote/{{ feature.id }}">Upvote
@@ -159,7 +163,9 @@
 						<p>Priority: {{ feature.priority }}</p>
 						<p>Votes: {{ feature.votes }}</p>
 						{% if request.user|in_group:"Subscribers" %}
-						{% if user in feature.voters.all %}
+						{% if feature.reported_by == request.user %}
+                        <p class="italic-text">You requested this feature</p>
+						{% elif user in feature.voters.all %}
 						<p class="italic-text">You have already voted on this feature</p>
 						{% else %}
 						<p><a class="grey-link" href="upvote/{{ feature.id }}">Upvote
@@ -204,7 +210,7 @@
 			<div class="card-header" id="headingOne">
 				<h5 class="mb-0">
 					<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-        Reported
+        Requested
         <i class="fa fa-caret-down"></i>
     </button>
 				</h5>
@@ -214,7 +220,7 @@
 				<div class="card-body">
 					<div class="col-md-4 swim-lane">
 						<div class="lane-title-div">
-							<h3 class="white-text">Reported</h3>
+							<h3 class="white-text">Requested</h3>
 							{% for feature in features %}
 							{% if feature.state == 'REQUESTED' %}
 							<div class="col-xs-12 display panel panel-default">
@@ -227,7 +233,9 @@
 									<p>Votes: {{ feature.votes }}</p>
 									{% if user.is_authenticated %}
 									{% if request.user|in_group:"Subscribers" %}
-									{% if user in feature.voters.all %}
+									{% if feature.reported_by == request.user %}
+                                    <p class="italic-text">You requested this feature</p>
+						            {% elif user in feature.voters.all %}
 									<p class="italic-text">You have already voted on this feature</p>
 									{% else %}
 									<p><a class="grey-link" href="upvote/{{ feature.id }}">Upvote
@@ -292,7 +300,9 @@
 										<p>Votes: {{ feature.votes }}</p>
 										{% if user.is_authenticated %}
 										{% if request.user|in_group:"Subscribers" %}
-										{% if user in feature.voters.all %}
+										{% if feature.reported_by == request.user %}
+                                        <p class="italic-text">You requested this feature</p>
+                                        {% elif user in feature.voters.all %}
 										<p class="italic-text">You have already voted on this feature</p>
 										{% else %}
 										<p><a class="grey-link" href="upvote/{{ feature.id }}">Upvote
@@ -358,7 +368,9 @@
 										<p>Votes: {{ feature.votes }}</p>
 										{% if user.is_authenticated %}
 										{% if request.user|in_group:"Subscribers" %}
-										{% if user in feature.voters.all %}
+										{% if feature.reported_by == request.user %}
+                                        <p class="italic-text">You requested this feature</p>
+                                        {% elif user in feature.voters.all %}
 										<p class="italic-text">You have already voted on this feature</p>
 										{% else %}
 										<p><a class="grey-link" href="upvote/{{ feature.id }}">Upvote

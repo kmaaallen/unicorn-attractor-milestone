@@ -22,6 +22,7 @@
 				{% endif %}
 			</div>
 			<div class="row hidden-md hidden-lg hidden-xl margin-bottom">
+            {% if user.is_authenticated %}
 				<div class="col-md-12">
 					<a href="{% url 'my_issues' %}"
 						class="purple-text {% if request.path == '/issues/my_issues/'%}toggled{% endif %}"
@@ -30,8 +31,10 @@
 						class="purple-text {% if request.path == '/issues/'%}toggled{% endif %}" id="all_issues">All
 						Issues</a>
 				</div>
+            {% endif %}
 			</div>
 			<div class="row hidden-xs hidden-sm">
+            {% if user.is_authenticated %}
 				<div class="col-md-12">
 					<a href="{% url 'my_issues' %}"
 						class="purple-text float-right {% if request.path == '/issues/my_issues/'%}toggled{% endif %}"
@@ -40,6 +43,7 @@
 						class="purple-text float-right {% if request.path == '/issues/'%}toggled{% endif %}"
 						id="all_issues">All Issues</a>
 				</div>
+            {% endif %}
 			</div>
 		</div>
 	</div>
@@ -57,7 +61,9 @@
 						<p>Priority: {{ issue.priority }}</p>
 						<p>Votes: {{ issue.votes }}</p>
 						{% if user.is_authenticated %}
-						{% if user in issue.voters.all %}
+                        {% if issue.reported_by == request.user %}
+                        <p class="italic-text">You reported this issue</p>
+						{% elif user in issue.voters.all %}
 						<p class="italic-text">You have already voted on this issue</p>
 						{% else %}
 						<p><a class="grey-link" href="upvote/{{ issue.id }}">Upvote <i class="fa fa-arrow-up"></i></a>
@@ -104,7 +110,9 @@
 						<p>Priority: {{ issue.priority }}</p>
 						<p>Votes: {{ issue.votes }}</p>
 						{% if user.is_authenticated %}
-						{% if user in issue.voters.all %}
+                        {% if issue.reported_by == request.user %}
+                        <p class="italic-text">You reported this issue</p>
+						{% elif user in issue.voters.all %}
 						<p class="italic-text">You have already voted on this issue</p>
 						{% else %}
 						<p><a class="grey-link" href="upvote/{{ issue.id }}">Upvote <i class="fa fa-arrow-up"></i></a>
@@ -151,7 +159,9 @@
 						<p>Priority: {{ issue.priority }}</p>
 						<p>Votes: {{ issue.votes }}</p>
 						{% if user.is_authenticated %}
-						{% if user in issue.voters.all %}
+						{% if issue.reported_by == request.user %}
+                        <p class="italic-text">You reported this issue</p>
+						{% elif user in issue.voters.all %}
 						<p class="italic-text">You have already voted on this issue</p>
 						{% else %}
 						<p><a class="grey-link" href="upvote/{{ issue.id }}">Upvote <i class="fa fa-arrow-up"></i></a>
@@ -216,7 +226,9 @@
 									<p>Priority: {{ issue.priority }}</p>
 									<p>Votes: {{ issue.votes }}</p>
 									{% if user.is_authenticated %}
-									{% if user in issue.voters.all %}
+									{% if issue.reported_by == request.user %}
+                                    <p class="italic-text">You reported this issue</p>
+						            {% elif user in issue.voters.all %}
 									<p class="italic-text">You have already voted on this issue</p>
 									{% else %}
 									<p><a class="grey-link" href="upvote/{{ issue.id }}">Upvote
@@ -278,7 +290,9 @@
 										<p>Priority: {{ issue.priority }}</p>
 										<p>Votes: {{ issue.votes }}</p>
 										{% if user.is_authenticated %}
-										{% if user in issue.voters.all %}
+										{% if issue.reported_by == request.user %}
+                                        <p class="italic-text">You reported this issue</p>
+						                {% elif user in issue.voters.all %}
 										<p class="italic-text">You have already voted on this issue</p>
 										{% else %}
 										<p><a class="grey-link" href="upvote/{{ issue.id }}">Upvote
@@ -341,7 +355,9 @@
 										<p>Priority: {{ issue.priority }}</p>
 										<p>Votes: {{ issue.votes }}</p>
 										{% if user.is_authenticated %}
-										{% if user in issue.voters.all %}
+                                        {% if issue.reported_by == request.user %}
+                                        <p class="italic-text">You reported this issue</p>
+                                        {% elif user in issue.voters.all %}
 										<p class="italic-text">You have already voted on this issue</p>
 										{% else %}
 										<p><a class="grey-link" href="upvote/{{ issue.id }}">Upvote
