@@ -332,77 +332,68 @@ I used Django's automated testing framework.
 #### What was tested:
 I tested the following and achieved the following coverages with automated testing:
 
-| ISSUES: | Coverage report: 99% |            |         |          |          |
-|---------|----------------------|------------|---------|----------|----------|
-|         | Module               | statements | missing | excluded | coverage |
-|         | issues/admin.py      | 5          | 0       | 0        | 100%     |
-|         | issues/apps.py       | 3          | 0       | 0        | 100%     |
-|         | issues/forms.py      | 10         | 0       | 0        | 100%     |
-|         | issues/models.py     | 36         | 0       | 0        | 100%     |
-|         | issues/test_app.py   | 7          | 0       | 0        | 100%     |
-|         | issues/test_forms.py | 43         | 0       | 0        | 100%     |
-|         | issues/tests.py      | 60         | 0       | 0        | 100%     |
-|         | issues/urls.py       | 3          | 0       | 0        | 100%     |
-|         | issues/views.py      | 53         | 3       | 0        | 94%      |
-|         | TOTAL                | 386        | 3       | 0        | 99%      |
+| ISSUES:              |            |         |          |
+|----------------------|------------|---------|----------|
+| Coverage report: 99% |            |         |          |
+| Module               | statements | missing | coverage |
+| issues/admin.py      | 5          | 0       | 100%     |
+| issues/apps.py       | 3          | 0       | 100%     |
+| issues/forms.py      | 10         | 0       | 100%     |
+| issues/models.py     | 36         | 0       | 100%     |
+| issues/test_apps.py  | 7          | 0       | 100%     |
+| issues/test_forms.py | 43         | 0       | 100%     |
+| issues/tests.py      | 60         | 0       | 100%     |
+| issues/urls.py       | 3          | 0       | 100%     |
+| issues/views.py      | 53         | 3       | 94%      |
+| TOTAL                | 386        | 3       | 99%      |
 
-Name                                           Stmts   Miss  Cover
-------------------------------------------------------------------
-issues/__init__.py                                 0      0   100%
-issues/admin.py                                    5      0   100%
-issues/apps.py                                     3      0   100%
-issues/forms.py                                   10      0   100%
-issues/models.py                                  36      0   100%
-issues/test_app.py                                 7      0   100%
-issues/test_forms.py                              43      0   100%
-issues/tests.py                                   60      0   100%
-issues/urls.py                                     3      0   100%
-issues/views.py                                   53      3    94%
-------------------------------------------------------------------
-TOTAL                                            386      3    99%
+| FEATURES:              |            |         |          |
+|------------------------|------------|---------|----------|
+| Coverage report: 98%   |            |         |          |
+| Module                 | statements | missing | coverage |
+| features/admin.py      | 5          | 0       | 100%     |
+| features/apps.py       | 3          | 0       | 100%     |
+| features/forms.py      | 10         | 0       | 100%     |
+| features/models.py     | 34         | 0       | 100%     |
+| features/test_apps.py  | 7          | 0       | 100%     |
+| features/test_forms.py | 47         | 0       | 100%     |
+| features/tests.py      | 82         | 1       | 99%      |
+| features/urls.py       | 3          | 0       | 100%     |
+| features/views.py      | 53         | 4       | 92%      |
+| TOTAL                  | 270        | 5       | 98%      |
 
-Name                                              Stmts   Miss  Cover
----------------------------------------------------------------------
-features/admin.py                                     5      0   100%
-features/apps.py                                      3      0   100%
-features/forms.py                                    10      0   100%
-features/models.py                                   34      0   100%
-features/test_apps.py                                 7      0   100%
-features/test_forms.py                               47      0   100%
-features/tests.py                                    82      1    99%
-features/urls.py                                      3      0   100%
-features/views.py                                    53      4    92%
----------------------------------------------------------------------
-TOTAL                                               270      5    98%
+| ACCOUNTS:              |            |         |          |
+|------------------------|------------|---------|----------|
+| Coverage report: 98%   |            |         |          |
+| Module                 | statements | missing | coverage |
+| accounts/admin.py      | 1          | 0       | 100%     |
+| accounts/apps.py       | 3          | 0       | 100%     |
+| accounts/forms.py      | 28         | 0       | 100%     |
+| accounts/models.py     | 1          | 0       | 100%     |
+| accounts/test_apps.py  | 7          | 0       | 100%     |
+| accounts/test_forms.py | 81         | 0       | 100%     |
+| accounts/tests.py      | 50         | 0       | 100%     |
+| accounts/url_reset.py  | 4          | 0       | 100%     |
+| accounts/urls.py       | 4          | 0       | 100%     |
+| accounts/views.py      | 38         | 1       | 97%      |
+| TOTAL                  | 217        | 1       | 99%      |
 
-Name                              Stmts   Miss  Cover
------------------------------------------------------
-accounts/admin.py                     1      0   100%
-accounts/apps.py                      3      0   100%
-accounts/forms.py                    28      0   100%
-accounts/models.py                    1      0   100%
-accounts/test_apps.py                 7      0   100%
-accounts/test_forms.py               81      0   100%
-accounts/tests.py                    50      0   100%
-accounts/url_reset.py                 4      0   100%
-accounts/urls.py                      4      0   100%
-accounts/views.py                    38      1    97%
------------------------------------------------------
-TOTAL                               217      1    99%
+| HOME:                  |            |         |          |
+|------------------------|------------|---------|----------|
+| Coverage report: 98%   |            |         |          |
+| Module                 | statements | missing | coverage |
+| home/admin.py          | 1          | 0       | 100%     |
+| home/apps.py           | 3          | 0       | 100%     |
+| home/forms.py          | 6          | 0       | 100%     |
+| home/models.py         | 5          | 0       | 100%     |
+| home/test_apps.py      | 7          | 0       | 100%     |
+| home/test_forms.py     | 25         | 0       | 100%     |
+| home/tests.py          | 35         | 0       | 100%     |
+| home/urls.py           | 3          | 0       | 100%     |
+| home/views.py          | 24         | 0       | 100%     |
+| TOTAL                  | 115        | 0       | 100%     |
 
-Name                              Stmts   Miss  Cover
------------------------------------------------------
-home/admin.py                         1      0   100%
-home/apps.py                          3      0   100%
-home/forms.py                         6      0   100%
-home/models.py                        5      0   100%
-home/test_apps.py                     7      0   100%
-home/test_forms.py                   25      0   100%
-home/tests.py                        35      0   100%
-home/urls.py                          3      0   100%
-home/views.py                        24      0   100%
------------------------------------------------------
-TOTAL                               115      0   100%
+
 
 SUBSCRIPTIONS MODULE TO GO IN HERE WHEN TESTS DONE
 #### How to run these tests
