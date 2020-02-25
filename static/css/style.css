@@ -30,6 +30,11 @@ a:hover {
 	margin-left: 25px;
 }
 
+.margin-left-right {
+    margin-left: 20px;
+    margin-right:20px;
+}
+
 .margin-bottom {
 	margin-bottom: 50px;
 }
