@@ -244,7 +244,7 @@ h1.landing-title {
 .dropdown-toggle {
 	background-color: #ffffff;
 	color: #330066;
-	margin-top: 5px;
+	margin: 5px 5px 0 0;
 }
 
 .dropdown-toggle:hover {
