@@ -21,6 +21,7 @@ from accounts import urls as urls_accounts
 from issues import urls as urls_issues
 from features import urls as urls_features
 from subscriptions import urls as urls_subscriptions
+from tickets import urls as urls_tickets
 
 
 urlpatterns = [
@@ -31,4 +32,5 @@ urlpatterns = [
     url(r'^issues/', include(urls_issues)),
     url(r'^features/', include(urls_features)),
     url(r'^subscribe/', include(urls_subscriptions)),
+    url(r'^tickets/', include(urls_subscriptions)),
 ]

@@ -1,0 +1,460 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load extra_filters %}
+{% load bootstrap_tags %}
+{% block page_title %}Ticket Overview{% endblock %}
+{% block page_heading %}Ticket Overview{% endblock %}
+{% block content %}
+
+<div class="container">
+	<div class="row issue-header-div">
+		<div class="col-md-6 report-issue-header">
+			<h1>Tickets</h1>
+			<p>Log, comment and upvote issues free of charge.</p>
+            <p>For full access to the features module subscribe to our monthly plan.</p>
+		</div>
+		<div class="col-md-6">
+			<div class="row">
+				{% if request.user|in_group:"Subscribers" %}
+				<a href="{% url 'request_feature' %}" class="btn sign-up-btn report-issue-btn" role="button">+ Request a
+					Feature</a>
+				{% elif user.is_authenticated %}
+				<a href="{% url 'subscribe' %}" class="btn landing-btn margin-bottom report-issue-btn" role="button">+
+					Subscribe</a>
+				{% else %}
+				{% endif %}
+            <div class="row">
+            {% if user.is_authenticated %}
+            <a href="{% url 'report_issue' %}" class="btn sign-up-btn report-issue-btn" role="button">+ Report an
+					Issue</a>
+            {% endif %}
+            </div>
+			</div>
+			{% if request.user|in_group:"Subscribers" %}
+			<div class="row hidden-md hidden-lg hidden-xl margin-bottom">
+				<a href="{% url 'my_features' %}"
+					class="purple-text {% if request.path == '/features/my_features/'%}toggled{% endif %}"
+					id="my_features">My Tickets</a>
+				<a href="{% url 'features' %}" class="purple-text {% if request.path == '/features/'%}toggled{% endif %}"
+					id="all_features">All Tickets</a>
+			</div>
+			<div class="row hidden-sm hidden-xs">
+				<a href="{% url 'my_features' %}"
+					class="purple-text float-right {% if request.path == '/features/my_features/'%}toggled{% endif %}"
+					id="my_features">My Tickets</a>
+				<a href="{% url 'features' %}"
+					class="purple-text float-right {% if request.path == '/features/'%}toggled{% endif %}"
+					id="all_features">All Tickets</a>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+	<div class="row hidden-xs hidden-sm">
+		<div class="col-md-4 swim-lane">
+			<div class="white-text-div">
+				<h3 class="white-text">Reported / Requested</h3>
+
+				{% for ticket in tickets|dictsortreversed:"votes" %}
+				{% if ticket.state == 'REQUESTED' || ticket.state == 'REPORTED' %}
+				<div class="col-xs-12 display panel panel-default">
+					<div class="panel-body">
+						<h3><a class="grey-link"
+								href="{% url 'full_ticket' ticket_id=ticket.id%}">{{ ticket.title }}</a></h3>
+						<p>{{ ticket.description }}</p>
+						<p>Priority: {{ ticket.priority }}</p>
+						<p>Votes: {{ ticket.votes }}</p>
+                        {% if ticket.category == 'FEATURE' %}
+						{% if request.user|in_group:"Subscribers" %}
+                        {% if ticket.reported_by == request.user %}
+                        <p class="italic-text">You requested this feature</p>
+						{% elif user in feature.voters.all %}
+						<p class="italic-text">You have already voted on this feature</p>
+						{% else %}
+						<p><a class="grey-link" href="upvote/{{ feature.id }}">Upvote
+								<i class="fa fa-arrow-up"></i></a>
+						</p>
+						{% endif %}
+                        {% endif %}
+                        {% else %}
+                        {% if user.is_authenticated %}
+                        {% if issue.reported_by == request.user %}
+                        <p class="italic-text">You reported this issue</p>
+						{% elif user in issue.voters.all %}
+						<p class="italic-text">You have already voted on this issue</p>
+						{% else %}
+						<p><a class="grey-link" href="upvote/{{ issue.id }}">Upvote <i class="fa fa-arrow-up"></i></a>
+						</p>
+						{% endif %}
+                        {% if ticket.category == 'ISSUE' && user.is_authenticated || ticket.category == 'FEATURE' && user.is_authenticated && request.user|in_group:"Subscribers" %}
+						<div>
+							<a class="grey-link" onClick="toggleComment(this)">Comments
+								<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+							</br>
+							<a class="grey-link" href="{% url 'add_feature_comment' feature_id=feature.id %}">Add
+								Comment
+								<i class="fa fa-plus" aria-hidden="true"></i></a>
+						</div>
+						<div class="comment-block">
+							<div class="comments">
+								{% for comment in ticket.comments.all %}
+								<div class="comment-bold">{{ comment.created }}</div>
+								<p class="comment-bold"> User: {{ comment.commenter }}</p>
+								<p> Comment: {{ comment.comment }}</p>
+								<hr />
+								{% empty %}
+								<div>
+									<p class="italic-text">No comments yet</p>
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+						{% endif %}
+					</div>
+				</div>
+				{% endfor %}
+
+			</div>
+		</div>
+		<div class="col-md-4 swim-lane">
+			<div class="lane-title-div">
+				<h3 class="white-text">In Progress</h3>
+				{% for ticket in tickets|dictsortreversed:"votes"  %}
+				{% if ticket.state == 'IN PROGRESS' || ticket.state == 'REPORTED'%}
+				<div class="col-xs-12 display panel panel-default">
+					<div class="panel-body">
+						<h3><a class="grey-link"
+								href="{% url 'full_ticket' ticket_id=ticket.id%}">{{ ticket.title }}</a></h3>
+						<p>{{ ticket.description }}</p>
+						<p>Priority: {{ ticket.priority }}</p>
+						<p>Votes: {{ ticket.votes }}</p>
+						{% if ticket.category == 'FEATURE' %}
+						{% if request.user|in_group:"Subscribers" %}
+                        {% if ticket.reported_by == request.user %}
+                        <p class="italic-text">You requested this feature</p>
+						{% elif user in feature.voters.all %}
+						<p class="italic-text">You have already voted on this feature</p>
+						{% else %}
+						<p><a class="grey-link" href="upvote/{{ feature.id }}">Upvote
+								<i class="fa fa-arrow-up"></i></a>
+						</p>
+						{% endif %}
+                        {% endif %}
+                        {% else %}
+                        {% if user.is_authenticated %}
+                        {% if issue.reported_by == request.user %}
+                        <p class="italic-text">You reported this issue</p>
+						{% elif user in issue.voters.all %}
+						<p class="italic-text">You have already voted on this issue</p>
+						{% else %}
+						<p><a class="grey-link" href="upvote/{{ issue.id }}">Upvote <i class="fa fa-arrow-up"></i></a>
+						</p>
+						{% endif %}
+                        {% if ticket.category == 'ISSUE' && user.is_authenticated || ticket.category == 'FEATURE' && user.is_authenticated && request.user|in_group:"Subscribers" %}
+						<div>
+							<a class="grey-link" onClick="toggleComment(this)">Comments
+								<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+							</br>
+							<a class="grey-link" href="{% url 'add_feature_comment' feature_id=feature.id %}">Add
+								Comment
+								<i class="fa fa-plus" aria-hidden="true"></i></a>
+						</div>
+						<div class="comment-block">
+							<div class="comments">
+								{% for comment in ticket.comments.all %}
+								<div class="comment-bold">{{ comment.created }}</div>
+								<p class="comment-bold"> User: {{ comment.commenter }}</p>
+								<p> Comment: {{ comment.comment }}</p>
+								<hr />
+								{% empty %}
+								<div>
+									<p class="italic-text">No comments yet</p>
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+						{% endif %}
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="col-md-4 swim-lane">
+			<div class="lane-title-div">
+				<h3 class="white-text">Completed</h3>
+				{% for ticket in tickets|dictsortreversed:"votes"  %}
+				{% if ticket.state == 'COMPLETED' %}
+				<div class="col-xs-12 display panel panel-default">
+					<div class="panel-body">
+						<h3><a class="grey-link"
+								href="{% url 'full_ticket' ticket_id=ticket.id%}">{{ ticket.title }}</a></h3>
+						<p class="">{{ ticket.description }}</p>
+						<p>Priority: {{ ticket.priority }}</p>
+						<p>Votes: {{ ticket.votes }}</p>
+						{% if ticket.category == 'FEATURE' %}
+						{% if request.user|in_group:"Subscribers" %}
+                        {% if ticket.reported_by == request.user %}
+                        <p class="italic-text">You requested this feature</p>
+						{% elif user in feature.voters.all %}
+						<p class="italic-text">You have already voted on this feature</p>
+						{% else %}
+						<p><a class="grey-link" href="upvote/{{ feature.id }}">Upvote
+								<i class="fa fa-arrow-up"></i></a>
+						</p>
+						{% endif %}
+                        {% endif %}
+                        {% else %}
+                        {% if user.is_authenticated %}
+                        {% if issue.reported_by == request.user %}
+                        <p class="italic-text">You reported this issue</p>
+						{% elif user in issue.voters.all %}
+						<p class="italic-text">You have already voted on this issue</p>
+						{% else %}
+						<p><a class="grey-link" href="upvote/{{ issue.id }}">Upvote <i class="fa fa-arrow-up"></i></a>
+						</p>
+						{% endif %}
+                        {% if ticket.category == 'ISSUE' && user.is_authenticated || ticket.category == 'FEATURE' && user.is_authenticated && request.user|in_group:"Subscribers" %}
+						<div>
+							<a class="grey-link" onClick="toggleComment(this)">Comments
+								<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+							</br>
+							<a class="grey-link" href="{% url 'add_feature_comment' feature_id=feature.id %}">Add
+								Comment
+								<i class="fa fa-plus" aria-hidden="true"></i></a>
+						</div>
+						<div class="comment-block">
+							<div class="comments">
+								{% for comment in ticket.comments.all %}
+								<div class="comment-bold">{{ comment.created }}</div>
+								<p class="comment-bold"> User: {{ comment.commenter }}</p>
+								<p> Comment: {{ comment.comment }}</p>
+								<hr />
+								{% empty %}
+								<div>
+									<p class="italic-text">No comments yet</p>
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+						{% endif %}
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+
+
+    <!-- getting desktop view owrking first -->
+	<!-- Mobile view of features board -->
+	<div id="accordion" class="hidden-md hidden-lg hidden-xl">
+		<div class="card">
+			<div class="card-header" id="headingOne">
+				<h5 class="mb-0">
+					<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+        Requested
+        <i class="fa fa-caret-down"></i>
+    </button>
+				</h5>
+			</div>
+
+			<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+				<div class="card-body">
+					<div class="col-md-4 swim-lane">
+						<div class="lane-title-div">
+							<h3 class="white-text">Requested</h3>
+							{% for feature in features %}
+							{% if feature.state == 'REQUESTED' %}
+							<div class="col-xs-12 display panel panel-default">
+								<div class="panel-body">
+									<h3><a class="grey-link"
+											href="{% url 'full_feature' feature_id=feature.id%}">{{ feature.title }}</a>
+									</h3>
+									<p class="">{{ feature.description }}</p>
+									<p>Priority: {{ feature.priority }}</p>
+									<p>Votes: {{ feature.votes }}</p>
+									{% if user.is_authenticated %}
+									{% if request.user|in_group:"Subscribers" %}
+									{% if feature.reported_by == request.user %}
+                                    <p class="italic-text">You requested this feature</p>
+						            {% elif user in feature.voters.all %}
+									<p class="italic-text">You have already voted on this feature</p>
+									{% else %}
+									<p><a class="grey-link" href="upvote/{{ feature.id }}">Upvote
+											<i class="fa fa-arrow-up"></i></a></p>
+									{% endif %}
+									<div>
+										<a class="grey-link" onClick="toggleComment(this)">Comments
+											<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+										</br>
+										<a class="grey-link"
+											href="{% url 'add_feature_comment' feature_id=feature.id%}">Add
+											Comment
+											<i class="fa fa-plus" aria-hidden="true"></i></a>
+									</div>
+									<div class="comment-block">
+										<div class="comments">
+											{% for comment in feature.comments.all %}
+											<div class="comment-bold">{{ comment.created }}</div>
+											<p class="comment-bold"> User: {{ comment.commenter }}</p>
+											<p> Comment: {{ comment.comment }}</p>
+											<hr />
+											{% empty %}
+											<div>
+												<p class="italic-text">No comments yet</p>
+											</div>
+											{% endfor %}
+										</div>
+									</div>
+									{% endif %}
+								</div>
+							</div>
+							{% endif %}
+							{% endif %}
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header" id="headingTwo">
+					<h5 class="mb-0">
+						<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        In Progress
+        <i class="fa fa-caret-down"></i>
+    </button>
+					</h5>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+					<div class="card-body">
+						<div class="col-md-4 swim-lane">
+							<div class="lane-title-div">
+								<h3 class="white-text">In Progress</h3>
+								{% for feature in features|dictsortreversed:"votes"  %}
+								{% if feature.state == 'IN PROGRESS' %}
+								<div class="col-xs-12 display panel panel-default">
+									<div class="panel-body">
+										<h3><a class="grey-link"
+												href="{% url 'full_feature' feature_id=feature.id%}">{{ feature.title }}</a>
+										</h3>
+										<p class="">{{ feature.description }}</p>
+										<p>Priority: {{ feature.priority }}</p>
+										<p>Votes: {{ feature.votes }}</p>
+										{% if user.is_authenticated %}
+										{% if request.user|in_group:"Subscribers" %}
+										{% if feature.reported_by == request.user %}
+                                        <p class="italic-text">You requested this feature</p>
+                                        {% elif user in feature.voters.all %}
+										<p class="italic-text">You have already voted on this feature</p>
+										{% else %}
+										<p><a class="grey-link" href="upvote/{{ feature.id }}">Upvote
+												<i class="fa fa-arrow-up"></i></a></p>
+										{% endif %}
+										<div>
+											<a class="grey-link" onClick="toggleComment(this)">Comments
+												<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+											</br>
+											<a class="grey-link"
+												href="{% url 'add_feature_comment' feature_id=feature.id%}">Add
+												Comment
+												<i class="fa fa-plus" aria-hidden="true"></i></a>
+										</div>
+										<div class="comment-block">
+											<div class="comments">
+												{% for comment in feature.comments.all %}
+												<div class="comment-bold">{{ comment.created }}</div>
+												<p class="comment-bold"> User: {{ comment.commenter }}</p>
+												<p> Comment: {{ comment.comment }}</p>
+												<hr />
+												{% empty %}
+												<div>
+													<p class="italic-text">No comments yet</p>
+												</div>
+												{% endfor %}
+											</div>
+										</div>
+										{% endif %}
+									</div>
+								</div>
+								{% endif %}
+								{% endif %}
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header" id="headingThree">
+					<h5 class="mb-0">
+						<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Completed
+        <i class="fa fa-caret-down"></i>
+    </button>
+					</h5>
+				</div>
+				<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+					<div class="card-body">
+						<div class="col-md-4 swim-lane">
+							<div class="lane-title-div">
+								<h3 class="white-text">Completed</h3>
+								{% for feature in features|dictsortreversed:"votes"  %}
+								{% if feature.state == 'COMPLETED' %}
+								<div class="col-xs-12 display panel panel-default">
+									<div class="panel-body">
+										<h3><a class="grey-link"
+												href="{% url 'full_feature' feature_id=feature.id%}">{{ feature.title }}</a>
+										</h3>
+										<p class="">{{ feature.description }}</p>
+										<p>Priority: {{ feature.priority }}</p>
+										<p>Votes: {{ feature.votes }}</p>
+										{% if user.is_authenticated %}
+										{% if request.user|in_group:"Subscribers" %}
+										{% if feature.reported_by == request.user %}
+                                        <p class="italic-text">You requested this feature</p>
+                                        {% elif user in feature.voters.all %}
+										<p class="italic-text">You have already voted on this feature</p>
+										{% else %}
+										<p><a class="grey-link" href="upvote/{{ feature.id }}">Upvote
+												<i class="fa fa-arrow-up"></i></a></p>
+										{% endif %}
+										<div>
+											<a class="grey-link" onClick="toggleComment(this)">Comments
+												<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+											</br>
+											<a class="grey-link"
+												href="{% url 'add_feature_comment' feature_id=feature.id%}">Add
+												Comment
+												<i class="fa fa-plus" aria-hidden="true"></i></a>
+										</div>
+										<div class="comment-block">
+											<div class="comments">
+												{% for comment in feature.comments.all %}
+												<div class="comment-bold">{{ comment.created }}</div>
+												<p class="comment-bold"> User: {{ comment.commenter }}</p>
+												<p> Comment: {{ comment.comment }}</p>
+												<hr />
+												{% empty %}
+												<div>
+													<p class="italic-text">No comments yet</p>
+												</div>
+												{% endfor %}
+											</div>
+										</div>
+										{% endif %}
+									</div>
+								</div>
+								{% endif %}
+								{% endif %}
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

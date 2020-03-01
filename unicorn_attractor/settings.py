@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'issues',
     'features',
     'subscriptions',
+    'tickets',
 ]
 
 MIDDLEWARE = [

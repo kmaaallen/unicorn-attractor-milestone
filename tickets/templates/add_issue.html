@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load bootstrap_tags %}
+{% block page_title %}Report an Issue{% endblock %}
+{% block page_heading %}Report an Issue{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class=" col-md-12">
+			<div class="issue-form">
+				<h1 class="purple-text">Report an Issue</h1>
+				<p class="purple-text">We provide Unicorn Attractor bug fixes free of charge, please fill in the form to
+					log your issue.</p>
+				<form method="POST" enctype="multipart/form-data" class="purple-text">
+					{% csrf_token %}
+					{{ form | as_bootstrap }}
+					<p class="purple-text">High priority issues will be dealt with first. Unicorn Attractor reserves the
+						right to downgrade issue priority if we feel it is not accurate.</p>
+					<button type="submit" class="sign-up-btn">Report</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
