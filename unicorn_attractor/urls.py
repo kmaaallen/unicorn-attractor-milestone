@@ -32,5 +32,5 @@ urlpatterns = [
     url(r'^issues/', include(urls_issues)),
     url(r'^features/', include(urls_features)),
     url(r'^subscribe/', include(urls_subscriptions)),
-    url(r'^tickets/', include(urls_subscriptions)),
+    url(r'^tickets/', include(urls_tickets)),
 ]

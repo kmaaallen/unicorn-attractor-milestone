@@ -10,7 +10,7 @@ def all_tickets(request):
     context = {
         'ticket_view': 'all'
     }
-    return render(request, "iticket_overview.html", {"tickets": tickets}, context)
+    return render(request, "ticket_overview.html", {"tickets": tickets}, context)
 
 
 @login_required
@@ -38,7 +38,7 @@ def report_issue(request, pk=None):
             return redirect('tickets')
     else:
         form = AddTicketForm(instance=issue)
-    return render(request, 'add_issue.html', {'form': form})
+    return render(request, 'add_ticket_issue.html', {'form': form})
 
 
 @login_required
@@ -57,7 +57,7 @@ def request_feature(request, pk=None):
             return redirect('tickets')
     else:
         form = AddTicketForm(instance=feature)
-    return render(request, 'add_feature.html', {'form': form})
+    return render(request, 'add_ticket_feature.html', {'form': form})
 
 
 @login_required
@@ -65,12 +65,12 @@ def full_ticket(request, ticket_id):
     """
     Create a view that allows users to view an ticket in full page
     """
-    issue = get_object_or_404(Issue, pk=issue_id)
-    return render(request, 'full_issue.html', {"issue": issue})
+    ticket = get_object_or_404(Ticket, pk=ticket_id)
+    return render(request, 'full_ticket.html', {"ticket": ticket})
 
 
 @login_required
-def add_comment(request, ticket_id, pk=None):
+def add_ticket_comment(request, ticket_id, pk=None):
     """
     Add a comment to a ticket
     """
@@ -88,7 +88,7 @@ def add_comment(request, ticket_id, pk=None):
             return redirect('tickets')
     else:
         form = AddCommentForm(instance=new_comment)
-    return render(request, 'add_comment.html', {'form': form, 'ticket': ticket})
+    return render(request, 'add_ticket_comment.html', {'form': form, 'ticket': ticket})
 
 
 @login_required

@@ -53,6 +53,10 @@ a:hover {
 	margin-top: 25px;
 }
 
+.no-col-padding {
+    padding: 0;
+}
+
 .purple-text,
 .purple-text:hover {
 	color: #330066;
@@ -72,6 +76,14 @@ a:hover {
 
 .no-list-style {
 	list-style: none;
+}
+
+.issue-colour {
+    color: red;
+}
+
+.feature-colour {
+    color: green;
 }
 
 
@@ -349,24 +361,27 @@ h1.landing-title {
 }
 
 
-/* issues board */
-
-.issue-header-div {
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 20px;
-}
+/* tickets board */
 
 .swim-lane {
 	background-color: #330066;
-	height: 60vh;
+	height: 65vh;
 	border: solid 2px #330066;
+    border-bottom: solid 20px #330066;
+    border-top: solid 20px #330066;
 	overflow-y: scroll;
-	border-top: none;
+    padding: 0 15px 0 15px; 
+}
+
+.swim-lane-header {
+	background-color: #330066;
+	border: solid 2px #330066;
+    padding: 0 15px 0 15px; 
 }
 
 .report-issue-btn {
 	margin-top: 30px;
+    margin-left: 5px;
 	float: right;
 }
 
@@ -403,14 +418,21 @@ h1.landing-title {
 }
 
 
-/* Full Issue form */
+/* Full Ticket Form */
 
-.full-issue {
+.full-ticket-header{
 	margin-top: 20px;
-	background-color: #ffffff;
-	padding-bottom: 20px;
-	border: 2px solid #330066;
-	border-radius: 10px;
+	background-color: #330066
+}
+
+.full-ticket-outer{
+	background-color: #330066;
+}
+
+.full-ticket-inner{
+	padding: 30px;
+	background-color: #fff;
+    margin-bottom:15px;
 }
 
 .issue-bottom-margin {
