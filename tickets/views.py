@@ -61,6 +61,33 @@ def request_feature(request, pk=None):
 
 
 @login_required
+def edit_ticket(request, ticket_id):
+    """
+    Create a view that allows users to edit their own tickets
+    """
+    ticket = get_object_or_404(Ticket, pk=ticket_id)
+    if request.method == 'POST':
+        form = AddTicketForm(request.POST, request.FILES, instance=ticket)
+        if form.is_valid():
+            ticket = form.save()
+            ticket.save()
+            return redirect('tickets')
+    else:
+        form = AddTicketForm(instance=ticket)
+    return render(request, 'edit_ticket.html', {'form': form})
+
+
+@login_required
+def delete_ticket(request, ticket_id):
+    """
+    Create a view that allows users to delete their own tickets
+    """
+    ticket = get_object_or_404(Ticket, pk=ticket_id)
+    ticket.delete()
+    return redirect(reverse('delete_ticket'))
+
+
+@login_required
 def full_ticket(request, ticket_id):
     """
     Create a view that allows users to view an ticket in full page

@@ -8,7 +8,7 @@
 
 <div class="container">
 	<div class="row">
-    <div class="col-md-6 hidden-xs hidden-sm no-col-padding">
+		<div class="col-md-6 hidden-xs hidden-sm no-col-padding">
 			<h1 class="purple-text">Tickets</h1>
 			<p>Log, comment and upvote issues free of charge.</p>
 			<p>For full access to the features module subscribe to our monthly plan.</p>
@@ -69,6 +69,10 @@
 					<div class="panel-body">
 						<h3><a class="grey-link"
 								href="{% url 'full_ticket' ticket_id=ticket.id%}">{{ ticket.title }}</a></h3>
+						{% if ticket.reported_by == request.user %}
+						<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm btn-warning"
+							role="button">Edit/Delete</a>
+						{% endif %}
 						<p>{{ ticket.description }}</p>
 						{% if ticket.category == 'ISSUE' %}
 						<p class="issue-colour">{{ ticket.category }}</p>
@@ -143,6 +147,10 @@
 						<h3><a class="grey-link"
 								href="{% url 'full_ticket' ticket_id=ticket.id%}">{{ ticket.title }}</a>
 						</h3>
+						{% if ticket.reported_by == request.user %}
+						<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm btn-warning"
+							role="button">Edit</a>
+						{% endif %}
 						<p>{{ ticket.description }}</p>
 						{% if ticket.category == 'ISSUE' %}
 						<p class="issue-colour">{{ ticket.category }}</p>
@@ -217,6 +225,10 @@
 						<h3><a class="grey-link"
 								href="{% url 'full_ticket' ticket_id=ticket.id%}">{{ ticket.title }}</a>
 						</h3>
+						{% if ticket.reported_by == request.user %}
+						<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm btn-warning"
+							role="button">Edit</a>
+						{% endif %}
 						<p>{{ ticket.description }}</p>
 						{% if ticket.category == 'ISSUE' %}
 						<p class="issue-colour">{{ ticket.category }}</p>
@@ -304,6 +316,10 @@
 									<h3><a class="grey-link"
 											href="{% url 'full_ticket' ticket_id=ticket.id%}">{{ ticket.title }}</a>
 									</h3>
+									{% if ticket.reported_by == request.user %}
+									<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm btn-warning"
+										role="button">Edit</a>
+									{% endif %}
 									<p>{{ ticket.description }}</p>
 									{% if ticket.category == 'ISSUE' %}
 									<p class="issue-colour">{{ ticket.category }}</p>
@@ -390,6 +406,10 @@
 										<h3><a class="grey-link"
 												href="{% url 'full_ticket' ticket_id=ticket.id%}">{{ ticket.title }}</a>
 										</h3>
+										{% if ticket.reported_by == request.user %}
+										<a href="{% url 'edit_ticket' ticket_id=ticket.id %}"
+											class="btn btn-sm btn-warning" role="button">Edit</a>
+										{% endif %}
 										<p>{{ ticket.description }}</p>
 										{% if ticket.category == 'ISSUE' %}
 										<p class="issue-colour">{{ ticket.category }}</p>
@@ -477,6 +497,10 @@
 										<h3><a class="grey-link"
 												href="{% url 'full_ticket' ticket_id=ticket.id%}">{{ ticket.title }}</a>
 										</h3>
+										{% if ticket.reported_by == request.user %}
+										<a href="{% url 'edit_ticket' ticket_id=ticket.id %}"
+											class="btn btn-sm btn-warning" role="button">Edit</a>
+										{% endif %}
 										<p>{{ ticket.description }}</p>
 										{% if ticket.category == 'ISSUE' %}
 										<p class="issue-colour">{{ ticket.category }}</p>

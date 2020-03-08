@@ -45,7 +45,8 @@ class Ticket(models.Model):
     votes = models.IntegerField(default=0)
     voters = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
     reported_by = models.ForeignKey(settings.AUTH_USER_MODEL,
-                                    related_name='ticket_reported_by', null=True,
+                                    related_name='ticket_reported_by',
+                                    null=True,
                                     blank=True)
 
     class Meta:
@@ -57,7 +58,8 @@ class Ticket(models.Model):
 
 class Vote(models.Model):
     ticket = models.ForeignKey('Ticket')
-    voter = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='ticket_voter', default='')
+    voter = models.ForeignKey(settings.AUTH_USER_MODEL,
+                              related_name='ticket_voter', default='')
 
     class Meta:
         unique_together = ('ticket', 'voter')
@@ -65,7 +67,8 @@ class Vote(models.Model):
 
 class Comment(models.Model):
     ticket = models.ForeignKey('Ticket', related_name='comments', default=None)
-    commenter = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='ticket_commenter', default=0)
+    commenter = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                  related_name='ticket_commenter', default=0)
     comment = models.TextField(max_length=300)
     created = models.DateTimeField(auto_now_add=True)
 

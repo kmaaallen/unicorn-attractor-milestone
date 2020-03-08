@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load bootstrap_tags %}
+{% block page_title %}Edit Ticket{% endblock %}
+{% block page_heading %}Edit Ticket{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class=" col-md-12">
+			<div class="issue-form">
+				<h1 class="purple-text">Edit your ticket</h1>
+				<p class="purple-text">Please edit this form to update your ticket.</p>
+				<form method="POST" enctype="multipart/form-data" class="purple-text">
+					{% csrf_token %}
+					{{ form | as_bootstrap }}
+					<button type="submit" class="sign-up-btn">Edit</button>
+				</form>
+                <p class="purple-text">Pressing delete will remove this ticket permanently. <a href="{% url 'delete_ticket' ticket_id=ticket.id%}" role="button" class="btn btn-sm btn-danger">Delete</a></p>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -409,6 +409,10 @@ h1.landing-title {
 	color: #330066;
 }
 
+.btn-sm {
+    border-radius: 20px !important;
+}
+
 
 /* Report an Issue Form styling */
 
