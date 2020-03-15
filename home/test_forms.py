@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .forms import ContactForm
+from home.forms import ContactForm
 from django.contrib.auth.models import User
 from django.core import mail
 from django.conf import settings

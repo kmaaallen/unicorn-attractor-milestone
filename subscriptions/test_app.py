@@ -1,6 +1,6 @@
 from django.apps import apps
 from django.test import TestCase
-from .apps import SubscriptionsConfig
+from subscriptions.apps import SubscriptionsConfig
 
 
 class TestHomeConfig(TestCase):

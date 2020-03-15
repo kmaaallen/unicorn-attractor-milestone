@@ -105,7 +105,9 @@
 								<i class="fa fa-arrow-up"></i></a>
 						</p>
 						{% endif %}
-						{% endif %}
+						{% else %}
+				        <p>You must <a class="link-underline purple-text" href="{% url 'subscribe' %}">subscribe</a> to vote or comment on feature tickets</p>
+				        {% endif %}
 						{% else %}
 						{% if user.is_authenticated %}
 						{% if ticket.reported_by == request.user %}
@@ -185,7 +187,9 @@
 								<i class="fa fa-arrow-up"></i></a>
 						</p>
 						{% endif %}
-						{% endif %}
+						{% else %}
+				        <p>You must <a class="link-underline purple-text" href="{% url 'subscribe' %}">subscribe</a> to vote or comment on feature tickets</p>
+				        {% endif %}
 						{% else %}
 						{% if user.is_authenticated %}
 						{% if ticket.reported_by == request.user %}
@@ -265,7 +269,9 @@
 								<i class="fa fa-arrow-up"></i></a>
 						</p>
 						{% endif %}
-						{% endif %}
+						{% else %}
+				        <p>You must <a class="link-underline purple-text" href="{% url 'subscribe' %}">subscribe</a> to vote or comment on feature tickets</p>
+				        {% endif %}
 						{% else %}
 						{% if user.is_authenticated %}
 						{% if ticket.reported_by == request.user %}
@@ -358,7 +364,9 @@
 											<i class="fa fa-arrow-up"></i></a>
 									</p>
 									{% endif %}
-									{% endif %}
+									{% else %}
+				                    <p>You must <a class="link-underline purple-text" href="{% url 'subscribe' %}">subscribe</a> to vote or comment on feature tickets</p>
+				                    {% endif %}
 									{% else %}
 									{% if user.is_authenticated %}
 									{% if ticket.reported_by == request.user %}
@@ -450,7 +458,9 @@
 												<i class="fa fa-arrow-up"></i></a>
 										</p>
 										{% endif %}
-										{% endif %}
+										{% else %}
+				                        <p>You must <a class="link-underline purple-text" href="{% url 'subscribe' %}">subscribe</a> to vote or comment on feature tickets</p>
+				                        {% endif %}
 										{% else %}
 										{% if user.is_authenticated %}
 										{% if ticket.reported_by == request.user %}
@@ -543,7 +553,9 @@
 												<i class="fa fa-arrow-up"></i></a>
 										</p>
 										{% endif %}
-										{% endif %}
+										{% else %}
+				                        <p>You must <a class="link-underline purple-text" href="{% url 'subscribe' %}">subscribe</a> to vote or comment on feature tickets</p>
+				                        {% endif %}
 										{% else %}
 										{% if user.is_authenticated %}
 										{% if ticket.reported_by == request.user %}

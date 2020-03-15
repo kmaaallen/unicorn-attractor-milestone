@@ -1,10 +1,11 @@
-from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Ticket, Vote, Comment
 from .forms import AddTicketForm, AddCommentForm
-from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 # Create your views here.
+
+
 def all_tickets(request):
     tickets = Ticket.objects.all()
     context = {
@@ -43,7 +44,7 @@ def issue_tickets(request):
 @login_required
 def report_issue(request, pk=None):
     """
-    Create a view that allows users to report or edit an issue
+    Create a view that allows users to report an issue
     """
     issue = get_object_or_404(Ticket, pk=pk) if pk else None
     if request.method == 'POST':
@@ -59,23 +60,26 @@ def report_issue(request, pk=None):
     return render(request, 'add_ticket_issue.html', {'form': form})
 
 
-@login_required
+@login_required(redirect_field_name=None)
 def request_feature(request, pk=None):
     """
-    Create a view that allows users to request or edit a feature
+    Create a view that allows users to request a feature
     """
-    feature = get_object_or_404(Ticket, pk=pk) if pk else None
-    if request.method == 'POST':
-        form = AddTicketForm(request.POST, request.FILES, instance=feature)
-        if form.is_valid():
-            feature = form.save()
-            feature.reported_by = request.user
-            feature.category = 'FEATURE'
-            feature.save()
-            return redirect('tickets')
+    if request.user.groups.filter(name = 'Subscribers').exists():
+        feature = get_object_or_404(Ticket, pk=pk) if pk else None
+        if request.method == 'POST':
+            form = AddTicketForm(request.POST, request.FILES, instance=feature)
+            if form.is_valid():
+                feature = form.save()
+                feature.reported_by = request.user
+                feature.category = 'FEATURE'
+                feature.save()
+                return redirect('tickets')
+        else:
+            form = AddTicketForm(instance=feature)
+        return render(request, 'add_ticket_feature.html', {'form': form})
     else:
-        form = AddTicketForm(instance=feature)
-    return render(request, 'add_ticket_feature.html', {'form': form})
+        return redirect('/subscribe/')
 
 
 @login_required
@@ -84,7 +88,6 @@ def edit_ticket(request, ticket_id):
     Create a view that allows users to edit their own tickets
     """
     ticket = get_object_or_404(Ticket, pk=ticket_id)
-    print(ticket_id)
     if request.method == 'POST':
         form = AddTicketForm(request.POST, request.FILES, instance=ticket)
         if form.is_valid():
@@ -101,9 +104,7 @@ def delete_ticket(request, ticket_id):
     """
     Create a view that allows users to delete their own tickets
     """
-    print(ticket_id)
     ticket = get_object_or_404(Ticket, pk=ticket_id)
-    print(ticket)
     ticket.delete()
     return redirect('tickets')
 

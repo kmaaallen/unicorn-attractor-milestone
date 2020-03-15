@@ -1,7 +1,7 @@
 # Unicorn Attractor
-Unicorn Attractor is a site designed to allow users of the fictional 'Unicorn Attractor' software to log issues and request new features. On the issues and feature overview pages users can see the progress of the ticket as either reported/requested, in progress or completed. Users can also see how many votes a ticket has, its priority level and any comments added to the ticket depending on their level of access.
+Unicorn Attractor is a site designed to allow users of the fictional 'Unicorn Attractor' software to log issues and request new features. On the tickets overview page users can see the progress of the ticket as either reported/requested, in progress or completed. Users can also see how many votes a ticket has, its priority level and any comments added to the ticket depending on their level of access.
 
-In order to be able to request new features users subscribe to a monthly payment which allows them full access to the features module. At any time, subscribed users can unsubscribe or update their card details.
+In order to be able to vote on, comment on and request new features users subscribe to a monthly payment which allows them full access to the features module. At any time, subscribed users can unsubscribe or update their card details.
 
 Non-subscribed users with an account are able to view the features requested but can neither upvote, comment nor request new ones. The intention behind being able to view these was to give users an idea of what kind of access they could have if they subscribed to the service. Once subscribed, users are able to request new features which will improve the software and allow users to better use the software in their business.
 
@@ -18,7 +18,7 @@ The goal of this site is to allow users of the fictonal 'Unicorn attractor' soft
 The owners of the software use this information to improve their tool and provide new features. Allowing new feature requests only
 by subscription funds the developers, allowing them to continue to expand the tool.
 
-The site provides this information in a single place and the developers (as admins) can view, update and move tickets as they work on them.
+The site provides this information in a single place and the developers (as admins) can view, update and move tickets as they work on them using Django's admin view.
 
 ### User Stories
 I used the below user stories to help plan my features:
@@ -62,15 +62,16 @@ I ultimately decided to change the colour scheme during my development process a
 #### Colours 
 
 - I also wanted to use web-safe colours where possible to keep the user experience consistent between browsers.
-- Using [color-hex](color-hex.com/216-web-safe-colors/) I initially chose a dark web safe colour as my base. Purple, #330066, I did use this in my final design but as an accent colour, by background colour ended up being #f9f9f9, which I still checked for contrast. I also used [sessions](sessions,edu/color-calculator/) to generate a complimentary colour palette which included a green and a pink.
-- Using https://www.colortools.net/color_make_web-safe.html I tried to match the green and pink to a web-safe colour and then checked the contrast using a [constrast checker](https://webaim.org/resources/contrastchecker/) to check which colours would work best together according to WCAG AA and WCAG AAA..
+- Using [color-hex](color-hex.com/216-web-safe-colors/) I initially chose a dark web safe colour as my base. Purple, #330066, I did use this in my final design but as an accent colour, my background colour ended up being #f9f9f9, which I still checked for contrast. I also used [sessions](sessions,edu/color-calculator/) to generate a complimentary colour palette which included a green and a pink.
+- Using https://www.colortools.net/color_make_web-safe.html I tried to match the green and pink to a web-safe colour and then checked the contrast using a [constrast checker](https://webaim.org/resources/contrastchecker/) to check which colours would work best together according to WCAG AA and WCAG AAA (where possible).
 - The final colour palette ended up being:
     Purple #330066
     Pink #CC0099
     Green #008500
     White #FFFFFF
     Off White #F9F9F9
-- The rest of the palette is made up of two web safe greys.
+    Red #CC0000
+- The rest of the palette is made up of web safe greys.
 
 ## Features
 ### Existing Features
@@ -82,15 +83,13 @@ I ultimately decided to change the colour scheme during my development process a
 - Grouped to the right of the navigation bar (to make viewing easier) are several links that will depend on whether the user is logged in or not.
 - If the user is NOT logged in, there will be five links to the right.
     - ‘Find out more' - Will take the user to the 'Find out More' page
-    - 'Issues' - Will take the user to the issues overview page
+    - 'Tickets' - Will take the user to the tickets overview page
     - 'Sign Up' - Will take the user to the sign up form
     - 'Sign In' - Will take the user to the sign in form.
 
 - If the user IS logged in there will be five links to the right.
     - ‘Find out more' - Will take the user to the 'Find out More' page
-    - 'Issues' - Will take the user to the issues overview page - they will now be able to vote on issues and see the 'report an issue' button
-    - 'Features' - Will take the user to the feature overview page. If the user is subscribed they will see the 'request a new feature' button and be able
-        to vote and comment on existing features. If the user is not subscribed they will see the overview but will not be able to request, vote or comment.
+    - 'Tickets' - Will take the user to the tickets overview page - they will now be able to vote on issues and see the 'report an issue' button
     - '{Username}' - This will show a person icon with the logged in user's username. This takes the user to their profile page.
     - 'Logout' - This logs the user out and redirects them to the sign-in page.
 
@@ -108,10 +107,6 @@ The footer contains three social media icons (instagram, twitter and facebook)
 -  As no social media pages exist for this fictional software company, these links currently open their respective social media homepages in a new tab.
 
 ##### Landing Page (Homepage)
-
-- Unicorn Attractor Logo
-    - Main image
-    - Hidden on extra-small and small screens
 
 - Unicorn Attractor main text
     - Clearly states what this website is for.
@@ -173,30 +168,45 @@ The footer contains three social media icons (instagram, twitter and facebook)
     - Username has to be unique as does email
     - Email has to be a valid email address
 
-##### Issues page
-- This page provides an overview of all the issues reported for the Unicorn Attractor Software.
-- The issues are divided between three swim lanes: 'Reported', 'In Progress' and 'Completed'.
+##### Tickets page
+- This page provides an overview of all the issues and features reported for the Unicorn Attractor Software.
+- The tickets are divided between three swim lanes: 'Reported/Requested', 'In Progress' and 'Completed'.
 - Only admins of the site (i.e. the software developers) can change the state of these issues in the Django admin backend
-- Each issue displays the following fields:
-    - Title, Issue description, Votes, Priority
+- Each ticket displays the following fields:
+    - Title, ticket description, ticket category (issue or feature), Votes, Priority
     - In addition when a user is logged in, the following links are also displayed:
-        - Upvote or the text 'You have laready voted on this issue' if the user has already upvoted, Comments, Add comment
+    Issues:
+        - Upvote or one of the following options depending on conditions:
+            - User has already voted: 'You have already voted on this issue'
+            - User created this ticket: 'You reported this issue'
+            - User hasn't already voted: 'Upvote'
+        - Comments, Add comment
         - Clicking the comments drop down shows a list of comments for that issue or 'No comments yet'
         - Clicking 'Add Comment' redirects the user to the add comment form
         - Whenever a user upvotes an issue, their vote is added to that issue and they are returned to the full issue overview page.
-- The page shows a 'Sign in' button on the right if the user is not logged in, this will direct to the sign in form
-- If the user is signed in already, this button will say '+ Report and Issue' and direct the user to the report an issue form
+    Features:
+        - Upvote or one of the following options depending on conditions:
+            - User is subscribed to features module and has already voted: 'You have already voted on this feature'
+            - User is subscribed to features module and created this ticket: 'You requested this feature'
+            - User is subscribed to the features module and hasn't already voted: 'Upvote'
+            - User is not subscribed to the features module: 'You must subscribe to vote or comment on feature tickets'
+        - If user is subscribed to the features module: Comments, Add comment
+        - Clicking the comments drop down shows a list of comments for that issue or 'No comments yet'
+        - Clicking 'Add Comment' redirects the user to the add comment form
+        - Whenever a user upvotes a ticket, their vote is added to that ticket and they are returned to the full ticket overview page.
+- If the user is signed in there will be two buttons, the first will say '+ Report an Issue' and direct the user to the report an issue form
+- The second will say either 'Subscribe+' (if user is not subscribed to features module) or 'Request a Feature' (if they are subscribed to the features module).
 - Within swimlanes issues are sorted by which has the highest number of votes. 
-- A user can tab between 'My Issues' and 'All Issues' that are displayed in the swimlanes. If not logged in, clicking the 'my issues' will direct the user to sign in.
+- A logged in user can toggle between 'All Tickets', 'Issues', 'Features' and 'My Tickets' that are displayed in the swimlanes. 
 
 - Mobile view
     - On small and extra small screens this kanban-style board changes into three toggle buttons, which allow the user to
       select and collapse each of the three swimlanes to see tickets.
 
-##### Full Issue page
-- Users can open an issue in a full page view by clicking on the title of that issue.
-- This takes them to the full issue view, which contains the same issue components as outlined above but in full page view.
-- Whenever a user upvotes an issue they are returned to the full issue overview page.
+##### Full Ticket page
+- Users can open a ticket in a full page view by clicking on the title of that ticket.
+- This takes them to the full ticket view, which contains the same ticket components as outlined above but in full page view.
+- Whenever a user upvotes a ticket they are returned to the ticket overview page.
 
 ##### Report an Issue page
 - The report an issue page shows a form where a user can enter a title, a description of the issue and assign a priority.
@@ -204,44 +214,15 @@ The footer contains three social media icons (instagram, twitter and facebook)
 - Underneath the form disclaimer text informs users the priority may be changed by the developers
 - Upon submitting an issue the user is redirected to the full issues view.
 
-##### Features page
-- This page provides an overview of all the features requested for the Unicorn Attractor Software.
-- To access the lowest level of this page users must be logged in.
-- To access the full content of this page users must be logged in and subscribed.
-- The features are divided between three swim lanes: 'Requested', 'In Progress' and 'Completed'.
-- Only admins of the site (i.e. the software developers) can change the state of these features in the Django admin backend
-- Each feature displays the following fields:
-    - Title, Feature description, Votes, Priority
-    - In addition when a user is logged in and subscribed, the following links are also displayed:
-        - Upvote or the text 'You have laready voted on this feature' if the user has already upvoted, Comments, Add comment
-        - Clicking the comments drop down shows a list of comments for that feature or 'No comments yet'
-        - Clicking 'Add Comment' redirects the user to the add comment form
-        - Whenever a user upvotes a feature, their vote is added to that issue and they are returned to the feature overview page.
-- The page shows a 'Subscribe' button on the right if the user is not subscribed, this will direct to the subscription form
-- If the user is subscribed already, this button will say '+ Request a feature' and direct the user to the request a feature form
-- Within swimlanes features are sorted by which has the highest number of votes. 
-- A user can tab between 'My Features' and 'All Features' that are displayed in the swimlanes.
-- These tabs are only visible if the user is subscribed to the features module.
-
-- Mobile view
-    - On small and extra small screens this kanban-style board changes into three toggle buttons, which allow the user to
-      select and collapse each of the three swimlanes to see tickets.
-
-##### Full Feature Page
-- Users can open a feature in a full page view by clicking on the title of that feature.
-- This takes them to the full feature view, which contains the same feature components as outlined above but in full page view.
-- Whenever a user upvotes a feature they are returned to the feature overview page.
-
 ##### Request a Feature page
 - The request a feature page shows a form where a user can enter a title, a description of the feature and assign a priority.
 - The choices of priority are LOW, MEDIUM, HIGH and LOW is set by default.
 - Upon submitting a feature the user is redirected to the all features view.
 
 ##### Add comment form
-- This form allows users to add a comment to a particular issue or feature.
-- The basic form is duplicated across both the issue and features apps and follows the same format.
-- The title of the issue/feature is displayed as well as a comment field where a user can add their comment.
-- Submitting the form redirects the user to the full issues or full features page respectively.
+- This form allows users to add a comment to a particular ticket.
+- The title of the ticket is displayed as well as a comment field where a user can add their comment.
+- Submitting the form redirects the user to the ticket overview page.
 - The comment if expanded on the ticket will show date of submission, the username of the user who commented and the comment.
 - Comments are sorted so that the most recent comments appear at the top.
 
@@ -250,6 +231,7 @@ The footer contains three social media icons (instagram, twitter and facebook)
 - The user can input their card details which will be securely handled by stripe.
 - Once subscribed the user sees a message at the top of the subscribe form 'You have successfully subscribed'
 - If there are any errors with the card or submititng the form error message will appear.
+- This same form is used to allow subscribed users to update their card details.
 
 ##### Features Left to Implement
 - User profile picture
@@ -275,10 +257,8 @@ This project uses JQuery to assist in execution of javaScript features:[https://
 #### HTML
 Used as a baseline to structure pages:[https://www.w3.org/TR/html/](https://www.w3.org/TR/html/)
 
-
 #### CSS
 Used to style pages:[https://www.w3.org/Style/CSS/Overview.en.html](https://www.w3.org/Style/CSS/Overview.en.html)
-
 
 #### Django Template Language
 Used as a templating language with Python to render HTML on site:[https://docs.djangoproject.com/en/3.0/ref/templates/language/](https://docs.djangoproject.com/en/3.0/ref/templates/language/)
@@ -295,6 +275,7 @@ Online validators were used to check code was valid for HTML and CSS and to help
 Used to build a responsive site:[https://getbootstrap.com/](https://getbootstrap.com/)
 
 #### Icons
+Used the Font Awesome library to provide icons:[https://fontawesome.com/](https://fontawesome.com/)
 
 ### Frameworks
 #### Django
@@ -317,7 +298,7 @@ An online favicon generator was used to create a favicon for my site.The favicon
 The online generator tool is available at: [https://www.favicongenerator.com/](https://www.favicongenerator.com/)
 
 ### Database
-MongoDB Atlas was used as the database for this project :[https://www.mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas)
+Postgresql was used as the database for this project, activated through Heroku :[https://www.postgresql.org/](https://www.postgresql.org/)
 
 ## Testing
 
@@ -332,33 +313,20 @@ I used Django's automated testing framework.
 #### What was tested:
 I tested the following and achieved the following coverages with automated testing:
 
-| ISSUES:              |            |         |          |
+| TICKETS:              |            |         |          |
 |----------------------|------------|---------|----------|
 | Module               | statements | missing | coverage |
-| issues/admin.py      | 5          | 0       | 100%     |
-| issues/apps.py       | 3          | 0       | 100%     |
-| issues/forms.py      | 10         | 0       | 100%     |
-| issues/models.py     | 36         | 0       | 100%     |
-| issues/test_apps.py  | 7          | 0       | 100%     |
-| issues/test_forms.py | 43         | 0       | 100%     |
-| issues/tests.py      | 60         | 0       | 100%     |
-| issues/urls.py       | 3          | 0       | 100%     |
-| issues/views.py      | 53         | 3       | 94%      |
-| TOTAL                | 386        | 3       | 99%      |
+| tickets/admin.py     | 5          | 0       | 100%     |
+| tickets/apps.py      | 3          | 0       | 100%     |
+| tickets/forms.py     | 10         | 0       | 100%     |
+| tickets/models.py    | 42         | 0       | 100%     |
+| tickets/test_app.py  | 7          | 0       | 100%     |
+| tickets/test_forms.py| 80         | 0       | 100%     |
+| tickets/tests.py     | 144        | 0       | 100%     |
+| tickets/urls.py      | 5          | 0       | 100%     |
+| tickets/views.py     | 91         | 0       | 100%     |
+| TOTAL                | 401        | 0       | 100%     |
 
-| FEATURES:              |            |         |          |
-|------------------------|------------|---------|----------|
-| Module                 | statements | missing | coverage |
-| features/admin.py      | 5          | 0       | 100%     |
-| features/apps.py       | 3          | 0       | 100%     |
-| features/forms.py      | 10         | 0       | 100%     |
-| features/models.py     | 34         | 0       | 100%     |
-| features/test_apps.py  | 7          | 0       | 100%     |
-| features/test_forms.py | 47         | 0       | 100%     |
-| features/tests.py      | 82         | 1       | 99%      |
-| features/urls.py       | 3          | 0       | 100%     |
-| features/views.py      | 53         | 4       | 92%      |
-| TOTAL                  | 270        | 5       | 98%      |
 
 | ACCOUNTS:              |            |         |          |
 |------------------------|------------|---------|----------|
