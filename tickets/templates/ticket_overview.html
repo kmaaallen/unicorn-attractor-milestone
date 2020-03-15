@@ -30,7 +30,7 @@
 				{% endif %}
 				<div class="row">
 					{% if user.is_authenticated %}
-					<a href="{% url 'report_issue' %}" class="btn red-btn ticket-form-btn" role="button">+ Report
+					<a href="{% url 'report_issue' %}" class="btn pink-btn ticket-form-btn" role="button">+ Report
 						an
 						Issue</a>
 					{% endif %}
@@ -81,7 +81,7 @@
 						<h3><a class="grey-link"
 								href="{% url 'full_ticket' ticket_id=ticket.id%}">{{ ticket.title }}</a></h3>
 						{% if ticket.reported_by == request.user %}
-						<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm orange-btn"
+						<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm grey-btn"
 							role="button">Edit</a>
 						<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn btn-sm red-btn"
 							role="button">Delete</a>
@@ -161,7 +161,7 @@
 								href="{% url 'full_ticket' ticket_id=ticket.id%}">{{ ticket.title }}</a>
 						</h3>
 						{% if ticket.reported_by == request.user %}
-						<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm orange-btn"
+						<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm grey-btn"
 							role="button">Edit</a>
 						<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn btn-sm red-btn"
 							role="button">Delete</a>
@@ -241,7 +241,7 @@
 								href="{% url 'full_ticket' ticket_id=ticket.id%}">{{ ticket.title }}</a>
 						</h3>
 						{% if ticket.reported_by == request.user %}
-						<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm orange-btn"
+						<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm grey-btn"
 							role="button">Edit</a>
 						<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn btn-sm red-btn"
 							role="button">Delete</a>
@@ -334,7 +334,7 @@
 											href="{% url 'full_ticket' ticket_id=ticket.id%}">{{ ticket.title }}</a>
 									</h3>
 									{% if ticket.reported_by == request.user %}
-									<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm orange-btn"
+									<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm grey-btn"
 										role="button">Edit</a>
 									<a href="{% url 'delete_ticket' ticket_id=ticket.id %}"
 										class="btn btn-sm red-btn" role="button">Delete</a>
@@ -427,7 +427,7 @@
 										</h3>
 										{% if ticket.reported_by == request.user %}
 										<a href="{% url 'edit_ticket' ticket_id=ticket.id %}"
-											class="btn btn-sm orange-btn" role="button">Edit</a>
+											class="btn btn-sm grey-btn" role="button">Edit</a>
 										<a href="{% url 'delete_ticket' ticket_id=ticket.id %}"
 											class="btn btn-sm red-btn" role="button">Delete</a>
 										{% endif %}
@@ -520,7 +520,7 @@
 										</h3>
 										{% if ticket.reported_by == request.user %}
 										<a href="{% url 'edit_ticket' ticket_id=ticket.id %}"
-											class="btn btn-sm orange-btn" role="button">Edit</a>
+											class="btn btn-sm grey-btn" role="button">Edit</a>
 										<a href="{% url 'delete_ticket' ticket_id=ticket.id %}"
 											class="btn btn-sm red-btn" role="button">Delete</a>
 										{% endif %}

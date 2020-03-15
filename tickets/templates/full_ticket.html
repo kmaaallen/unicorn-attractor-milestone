@@ -13,7 +13,7 @@
 		<div class="col-xs-12 full-ticket-outer">
 			<div class="full-ticket-inner">
 				{% if ticket.reported_by == request.user %}
-				<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn-sm orange-btn" role="button">Edit</a>
+				<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn-sm grey-btn" role="button">Edit</a>
 				<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn-sm red-btn"
 					role="button">Delete</a>
 				{% endif %}
