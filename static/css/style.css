@@ -86,26 +86,82 @@ a:hover {
     color: green;
 }
 
+/* Buttons */
+.btn,
+.btn:hover,
+.btn:focus {
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-bottom: 5px;
+    min-width: 150px;
+}
+
+.btn.btn-sm {
+    min-width: 60px;
+}
+
+.btn-sm:hover {
+    text-decoration: none;
+    background-color: rgba(0,0,0,0.2);
+}
+
+.pink-btn {
+	background-color: #CC0099;
+}
+
+.pink-btn:hover {
+    background-color: #a3007a;
+}
+
+.green-btn {
+	background-color: #008500;
+}
+
+.green-btn:hover {
+    background-color: #006a00;
+}
+
+.red-btn {
+    background-color: red;
+}
+
+.red-btn:hover {
+    background-color: darkred; 
+}
+
+.orange-btn {
+    background-color: orange;
+}
+
+.orange-btn:hover {
+    background-color: darkorange; 
+}
+
+.ticket-form-btn {
+	margin-top: 30px;
+    margin-left: 5px;
+	float: right;
+}
+
+.more-btn {
+	margin-right: 20px;
+}
+
+.more-btn-div {
+	margin-top: 50px;
+}
+
+.reset-btn {
+	margin-top: 22px;
+}
 
 /* Landing page styling */
 
 .top-div-home {
-	background-color: #ffffff;
-	height: 55vh;
-	width: 100vw;
-	padding-top: 50px;
+	background-color: #f9f9f9;
 	margin-top: -50px;
-}
-
-.bottom-div-home {
-	background-color: #330066;
-	height: 45vh;
-	width: 100vw;
-}
-
-.landing-nav {
-	background-color: #ffffff;
-	box-shadow: none;
 }
 
 .landing-title {
@@ -120,39 +176,8 @@ h1.landing-title {
 
 .title-div {
 	height: 100%;
-	margin-top: 100px;
+	margin-top: 300px;
 }
-
-.home-unicorn {
-	height: 100vh;
-	margin-top: -50px;
-	margin-left: -50px;
-}
-
-.landing-btn {
-	width: 150px;
-	border: none;
-	height: 40px;
-	color: #ffffff;
-	border-radius: 26px;
-	background-color: #CC0099;
-}
-
-.landing-btn:hover {
-	background-color: #a3007a;
-}
-
-.landing-btn-div {
-	margin-top: 30px;
-	text-align: center;
-}
-
-.btn:hover,
-.btn:focus {
-	color: #ffffff;
-	text-decoration: none;
-}
-
 
 /* Navbar styling*/
 
@@ -222,6 +247,7 @@ h1.landing-title {
 
 .index-bottom-nav {
 	background-color: #330066;
+    height: 50px;
 }
 
 .index-social-links {
@@ -229,6 +255,7 @@ h1.landing-title {
 	float: right;
 	margin-right: 25px;
 	font-size: 20px;
+    margin-top: 15px;;
 }
 
 .dropdown-menu {
@@ -315,29 +342,10 @@ h1.landing-title {
 
 /* sign-up-pages */
 
-.sign-up-unicorn {
-	height: 100%;
-	width: 100%;
-}
-
 .form-div {
 	color: #ffffff;
 	margin-top: 30px;
 	margin-bottom: 50px;
-}
-
-.sign-up-btn {
-	width: 150px;
-	border: none;
-	height: 40px;
-	color: #ffffff;
-	border-radius: 26px;
-	background-color: #008500;
-	margin-bottom: 10px;
-}
-
-.sign-up-btn:hover {
-	background-color: #006a00;
 }
 
 .sign-in-link {
@@ -347,17 +355,6 @@ h1.landing-title {
 .forgot-password {
 	margin-top: 10px;
 	text-decoration: underline;
-}
-
-
-/* Find out more page styling */
-
-.more-btn {
-	margin-right: 20px;
-}
-
-.more-btn-div {
-	margin-top: 50px;
 }
 
 
@@ -379,12 +376,6 @@ h1.landing-title {
     padding: 0 15px 0 15px; 
 }
 
-.report-issue-btn {
-	margin-top: 30px;
-    margin-left: 5px;
-	float: right;
-}
-
 .report-issue-header,
 .report-issue-header>h1,
 .btn-link {
@@ -402,15 +393,11 @@ h1.landing-title {
 	padding-left: 10px;
 	padding-right: 10px;
 	border: 1px solid #330066;
-	border-radius: 10px;
+	border-radius: 4px;
 }
 
 .toggled:hover {
 	color: #330066;
-}
-
-.btn-sm {
-    border-radius: 20px !important;
 }
 
 
@@ -469,19 +456,6 @@ h1.landing-title {
 }
 
 
-/* password reset styling */
-
-.reset-btn {
-	width: 150px;
-	border: none;
-	height: 40px;
-	color: #ffffff;
-	border-radius: 26px;
-	background-color: #008500;
-	margin-top: 22px;
-}
-
-
 /* No access message */
 
 .no-access-message {
@@ -515,7 +489,7 @@ h1.landing-title {
 		margin-left: auto;
 		margin-right: auto;
 	}
-	.report-issue-btn {
+	.ticket-form-btn {
 		float: left;
 		margin-top: 0px;
 	}

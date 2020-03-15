@@ -23,6 +23,24 @@ def my_tickets(request):
 
 
 @login_required
+def feature_tickets(request):
+    tickets = Ticket.objects.filter(category='FEATURE')
+    context = {
+        'ticket_view': 'features'
+    }
+    return render(request, "ticket_overview.html", {"tickets": tickets}, context)
+
+
+@login_required
+def issue_tickets(request):
+    tickets = Ticket.objects.filter(category='ISSUE')
+    context = {
+        'ticket_view': 'issues'
+    }
+    return render(request, "ticket_overview.html", {"tickets": tickets}, context)
+
+
+@login_required
 def report_issue(request, pk=None):
     """
     Create a view that allows users to report or edit an issue
@@ -66,6 +84,7 @@ def edit_ticket(request, ticket_id):
     Create a view that allows users to edit their own tickets
     """
     ticket = get_object_or_404(Ticket, pk=ticket_id)
+    print(ticket_id)
     if request.method == 'POST':
         form = AddTicketForm(request.POST, request.FILES, instance=ticket)
         if form.is_valid():
@@ -74,7 +93,7 @@ def edit_ticket(request, ticket_id):
             return redirect('tickets')
     else:
         form = AddTicketForm(instance=ticket)
-    return render(request, 'edit_ticket.html', {'form': form})
+    return render(request, 'edit_ticket.html', {'form': form}, ticket_id)
 
 
 @login_required
@@ -82,9 +101,11 @@ def delete_ticket(request, ticket_id):
     """
     Create a view that allows users to delete their own tickets
     """
+    print(ticket_id)
     ticket = get_object_or_404(Ticket, pk=ticket_id)
+    print(ticket)
     ticket.delete()
-    return redirect(reverse('delete_ticket'))
+    return redirect('tickets')
 
 
 @login_required

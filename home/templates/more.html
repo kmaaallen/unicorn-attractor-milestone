@@ -36,16 +36,16 @@
 		<div class="row more-btn-div margin-bottom">
 			<div class="col-md-3 col-md-offset-3">
 				<form action="{% url 'contact_us' %}">
-					<input class="sign-up-btn" type="submit" value="Contact Us"/>
+					<input class="btn green-btn" type="submit" value="Contact Us"/>
 		        </form>
 			</div>
 			<div class="col-md-3">
 				{% if request.user|in_group:"Subscribers" %}
-				<a href="{% url 'profile' %}" class="btn landing-btn" role="button">Manage Subscription</a>
+				<a href="{% url 'profile' %}" class="btn pink-btn" role="button">Manage Subscription</a>
 				{% elif user.is_authenticated %}
-				<a href="{% url 'subscribe' %}" class="btn landing-btn" role="button">+ Subscribe</a>
+				<a href="{% url 'subscribe' %}" class="btn pink-btn" role="button">+ Subscribe</a>
 				{% else %}
-				<a href="{% url 'sign_up' %}" class="btn landing-btn" role="button">Sign Up</a>
+				<a href="{% url 'sign_up' %}" class="btn pink-btn" role="button">Sign Up</a>
 				{% endif %}
 			</div>
 		</div>

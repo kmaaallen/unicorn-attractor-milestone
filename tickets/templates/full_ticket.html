@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load extra_filters %}
 {% load bootstrap_tags %}
 {% block page_title %} Full Ticket {% endblock %}
 {% block page_heading %} Full Ticket {% endblock %}
@@ -11,26 +12,48 @@
 		</div>
 		<div class="col-xs-12 full-ticket-outer">
 			<div class="full-ticket-inner">
-                <p class="issue-bottom-margin">Created on: {{ ticket.created_on }}</p>
+				{% if ticket.reported_by == request.user %}
+				<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn-sm orange-btn" role="button">Edit</a>
+				<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn-sm red-btn"
+					role="button">Delete</a>
+				{% endif %}
+				<p class="issue-bottom-margin">Created on: {{ ticket.created_on }}</p>
 				<p class="issue-bottom-margin">Description: {{ ticket.description }}</p>
 				<p class="issue-bottom-margin">Priority: {{ ticket.priority }}</p>
 				<p>Votes: {{ ticket.votes }}</p>
-				{% if user.is_authenticated %}
+				{% if ticket.category == 'FEATURE' %}
+				{% if request.user|in_group:"Subscribers" %}
 				{% if ticket.reported_by == request.user %}
-				<p class="italic-text issue-bottom-margin">You reported / requested this ticket</p>
+				<p class="italic-text">You requested this feature</p>
 				{% elif user in ticket.voters.all %}
-				<p class="italic-text issue-bottom-margin">You have already voted on this ticket</p>
+				<p class="italic-text">You have already voted on this feature</p>
 				{% else %}
-				<p><a class="purple-text issue-bottom-margin" href="{% url 'upvote' ticket_id=ticket.id%}">Upvote
+				<p><a class="grey-link" href="{% url 'upvote' ticket_id=ticket.id %}">Upvote
 						<i class="fa fa-arrow-up"></i></a>
 				</p>
 				{% endif %}
-
+				{% else %}
+				<p>You must <a class="link-underline purple-text" href="{% url 'subscribe' %}">subscribe</a> to vote or comment on feature tickets</p>
+				{% endif %}
+				{% else %}
+				{% if user.is_authenticated %}
+				{% if ticket.reported_by == request.user %}
+				<p class="italic-text">You reported this issue</p>
+				{% elif user in ticket.voters.all %}
+				<p class="italic-text">You have already voted on this issue</p>
+				{% else %}
+				<p><a class="grey-link" href="{% url 'upvote' ticket_id=ticket.id %}">Upvote <i class="fa fa-arrow-up"></i></a>
+				</p>
+				{% endif %}
+				{% endif %}
+				{% endif %}
+				{% if ticket.category == 'ISSUE' and user.is_authenticated or ticket.category == 'FEATURE' and user.is_authenticated and request.user|in_group:"Subscribers" %}
 				<div>
-					<a class="purple-text" onClick="toggleComment(this)">Comments
+					<a class="grey-link" onClick="toggleComment(this)">Comments
 						<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
 					</br>
-					<a class="purple-text" href="{% url 'add_ticket_comment' ticket_id=ticket.id%}">Add Comment
+					<a class="grey-link" href="{% url 'add_ticket_comment' ticket_id=ticket.id %}">Add
+						Comment
 						<i class="fa fa-plus" aria-hidden="true"></i></a>
 				</div>
 				<div class="comment-block">

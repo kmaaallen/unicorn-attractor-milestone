@@ -28,31 +28,36 @@
 			<div class="row">
 				<h3 class="landing-title">Free Software</h3>
 			</div>
-			<div class="row landing-btn-div">
-				<a href="{% url 'find_out_more' %}" class="btn landing-btn" role="button">Enter</a>
+			<div class="row align-text-center margin-top">
+				<a href="{% url 'find_out_more' %}" class="btn pink-btn margin-top margin-left-right "
+					role="button">Enter</a>
 				{% if user.is_authenticated %}
-				<a href="{% url 'sign_out' %}" class="btn landing-btn" role="button">Logout</a>
+				<a href="{% url 'sign_out' %}" class="btn pink-btn margin-top  margin-left-right "
+					role="button">Logout</a>
 				{% else %}
-				<a href="{% url 'sign_up' %}" class="btn landing-btn" role="button">Sign Up / Sign In</a>
+				<a href="{% url 'sign_up' %}" class="btn pink-btn margin-top margin-left-right " role="button">Sign Up /
+					Sign In</a>
 				{% endif %}
 			</div>
-		</div>
-
-
-	</div>
-	<div class="bottom-div-home">
-		<div class="row landing-btn-div">
-			<p class="white-text margin-top margin-left-right">Looking for the perfect fit for your business? <a class="link-underline"
-					href="#">Download</a> our free software and find your unicorn. </p>
+			<div class="row align-text-center margin-top">
+				<p class="purple-text margin-top margin-left-right">Looking for the perfect fit for your business? <a
+						class="purple-text link-underline" href="#">Download</a> our free software and find your
+					unicorn. </p>
+			</div>
 		</div>
 	</div>
+
+
+
 
 </body>
 <footer>
 	<nav class="navbar navbar-fixed-bottom index-bottom-nav">
-		<a class="index-social-links" target="_blank" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+		<a class="index-social-links" target="_blank"
+			href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
 		<a class="index-social-links" target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-		<a class="index-social-links" target="_blank" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+		<a class="index-social-links" target="_blank"
+			href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
 	</nav>
 </footer>
 

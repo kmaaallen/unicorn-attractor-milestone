@@ -21,35 +21,46 @@
 		<div class="col-md-6">
 			<div class="row">
 				{% if request.user|in_group:"Subscribers" %}
-				<a href="{% url 'request_feature' %}" class="btn sign-up-btn report-issue-btn" role="button">+ Request a
+				<a href="{% url 'request_feature' %}" class="btn green-btn ticket-form-btn" role="button">+ Request a
 					Feature</a>
 				{% elif user.is_authenticated %}
-				<a href="{% url 'subscribe' %}" class="btn landing-btn margin-bottom report-issue-btn" role="button">+
+				<a href="{% url 'subscribe' %}" class="btn green-btn margin-bottom ticket-form-btn" role="button">+
 					Subscribe</a>
 				{% else %}
 				{% endif %}
 				<div class="row">
 					{% if user.is_authenticated %}
-					<a href="{% url 'report_issue' %}" class="btn btn-danger sign-up-btn report-issue-btn"
-						role="button">+ Report
+					<a href="{% url 'report_issue' %}" class="btn red-btn ticket-form-btn" role="button">+ Report
 						an
 						Issue</a>
 					{% endif %}
 				</div>
 			</div>
-			{% if request.user|in_group:"Subscribers" %}
+			{% if user.is_authenticated %}
 			<div class="hidden-md hidden-lg hidden-xl margin-bottom">
 				<a href="{% url 'my_tickets' %}"
-					class="purple-text {% if request.path == '/tickets/my_tickets/'%}toggled{% endif %}"
-					id="my_tickets">My Tickets</a>
-				<a href="{% url 'tickets' %}" class="purple-text {% if request.path == '/tickets/'%}toggled{% endif %}"
-					id="all_tickets">All
-					Tickets</a>
+					class="purple-text float-right {% if request.path == '/tickets/my_tickets/'%}toggled{% endif %}"
+					id="my_features">My Tickets</a>
+				<a href="{% url 'feature_tickets' %}"
+					class="purple-text float-right {% if request.path == '/tickets/feature_tickets/'%}toggled{% endif %}"
+					id="feature_tickets">Features</a>
+				<a href="{% url 'issue_tickets' %}"
+					class="purple-text float-right {% if request.path == '/tickets/issue_tickets/'%}toggled{% endif %}"
+					id="issue_tickets">Issues</a>
+				<a href="{% url 'tickets' %}"
+					class="purple-text float-right {% if request.path == '/tickets/'%}toggled{% endif %}"
+					id="all_tickets">All Tickets</a>
 			</div>
 			<div class="row hidden-sm hidden-xs">
 				<a href="{% url 'my_tickets' %}"
 					class="purple-text float-right {% if request.path == '/tickets/my_tickets/'%}toggled{% endif %}"
 					id="my_features">My Tickets</a>
+				<a href="{% url 'feature_tickets' %}"
+					class="purple-text float-right {% if request.path == '/tickets/feature_tickets/'%}toggled{% endif %}"
+					id="feature_tickets">Features</a>
+				<a href="{% url 'issue_tickets' %}"
+					class="purple-text float-right {% if request.path == '/tickets/issue_tickets/'%}toggled{% endif %}"
+					id="issue_tickets">Issues</a>
 				<a href="{% url 'tickets' %}"
 					class="purple-text float-right {% if request.path == '/tickets/'%}toggled{% endif %}"
 					id="all_tickets">All Tickets</a>
@@ -70,8 +81,10 @@
 						<h3><a class="grey-link"
 								href="{% url 'full_ticket' ticket_id=ticket.id%}">{{ ticket.title }}</a></h3>
 						{% if ticket.reported_by == request.user %}
-						<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm btn-warning"
-							role="button">Edit/Delete</a>
+						<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm orange-btn"
+							role="button">Edit</a>
+						<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn btn-sm red-btn"
+							role="button">Delete</a>
 						{% endif %}
 						<p>{{ ticket.description }}</p>
 						{% if ticket.category == 'ISSUE' %}
@@ -148,8 +161,10 @@
 								href="{% url 'full_ticket' ticket_id=ticket.id%}">{{ ticket.title }}</a>
 						</h3>
 						{% if ticket.reported_by == request.user %}
-						<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm btn-warning"
+						<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm orange-btn"
 							role="button">Edit</a>
+						<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn btn-sm red-btn"
+							role="button">Delete</a>
 						{% endif %}
 						<p>{{ ticket.description }}</p>
 						{% if ticket.category == 'ISSUE' %}
@@ -226,8 +241,10 @@
 								href="{% url 'full_ticket' ticket_id=ticket.id%}">{{ ticket.title }}</a>
 						</h3>
 						{% if ticket.reported_by == request.user %}
-						<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm btn-warning"
+						<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm orange-btn"
 							role="button">Edit</a>
+						<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn btn-sm red-btn"
+							role="button">Delete</a>
 						{% endif %}
 						<p>{{ ticket.description }}</p>
 						{% if ticket.category == 'ISSUE' %}
@@ -317,8 +334,10 @@
 											href="{% url 'full_ticket' ticket_id=ticket.id%}">{{ ticket.title }}</a>
 									</h3>
 									{% if ticket.reported_by == request.user %}
-									<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm btn-warning"
+									<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm orange-btn"
 										role="button">Edit</a>
+									<a href="{% url 'delete_ticket' ticket_id=ticket.id %}"
+										class="btn btn-sm red-btn" role="button">Delete</a>
 									{% endif %}
 									<p>{{ ticket.description }}</p>
 									{% if ticket.category == 'ISSUE' %}
@@ -408,7 +427,9 @@
 										</h3>
 										{% if ticket.reported_by == request.user %}
 										<a href="{% url 'edit_ticket' ticket_id=ticket.id %}"
-											class="btn btn-sm btn-warning" role="button">Edit</a>
+											class="btn btn-sm orange-btn" role="button">Edit</a>
+										<a href="{% url 'delete_ticket' ticket_id=ticket.id %}"
+											class="btn btn-sm red-btn" role="button">Delete</a>
 										{% endif %}
 										<p>{{ ticket.description }}</p>
 										{% if ticket.category == 'ISSUE' %}
@@ -499,7 +520,9 @@
 										</h3>
 										{% if ticket.reported_by == request.user %}
 										<a href="{% url 'edit_ticket' ticket_id=ticket.id %}"
-											class="btn btn-sm btn-warning" role="button">Edit</a>
+											class="btn btn-sm orange-btn" role="button">Edit</a>
+										<a href="{% url 'delete_ticket' ticket_id=ticket.id %}"
+											class="btn btn-sm red-btn" role="button">Delete</a>
 										{% endif %}
 										<p>{{ ticket.description }}</p>
 										{% if ticket.category == 'ISSUE' %}

@@ -18,8 +18,6 @@ from django.contrib import admin
 from home.views import landing_page
 from home import urls as urls_home
 from accounts import urls as urls_accounts
-from issues import urls as urls_issues
-from features import urls as urls_features
 from subscriptions import urls as urls_subscriptions
 from tickets import urls as urls_tickets
 
@@ -29,8 +27,6 @@ urlpatterns = [
     url(r'^$', landing_page, name="landing_page"),
     url(r'^home/', include(urls_home)),
     url(r'^accounts/', include(urls_accounts)),
-    url(r'^issues/', include(urls_issues)),
-    url(r'^features/', include(urls_features)),
     url(r'^subscribe/', include(urls_subscriptions)),
     url(r'^tickets/', include(urls_tickets)),
 ]
