@@ -1,7 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.models import User, Group
 from tickets.models import Ticket, Vote
-from django.core.urlresolvers import reverse
 
 
 class TestTicketsPages(TestCase):
@@ -47,7 +46,7 @@ class TestTicketsPages(TestCase):
     
     def test_feature_tickets_page(self):
         Group.objects.create(name='Subscribers')
-         # Set up and log in test user
+        # Set up and log in test user
         test_user1 = User.objects.create_user(username='testuser',
                                               password='password')
         test_user1.save()

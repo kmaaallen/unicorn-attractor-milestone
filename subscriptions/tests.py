@@ -114,9 +114,12 @@ class TestSubscriptionActions(TestCase):
             'expiry_year': '2025',
             'stripe_id': 'tok_visa',
         }
-        self.client.post('/subscribe/', data, follow=True)
+        response = self.client.post('/subscribe/', data, follow=True)
         self.assertTrue(Subscriber.objects.filter().exists())
-
+        messages = list(response.context['messages'])
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(str(messages[0]), 'You have successfully subscribed.')
+ 
     def test_subscriber_details_updated(self):
         # set up subscriber group
         Group.objects.create(name='Subscribers')
@@ -127,24 +130,29 @@ class TestSubscriptionActions(TestCase):
         test_user1.save()
         self.client.login(username='testuser', password='password')
         # set up form data
-        card1 = 'tok_visa'
         data = {
             'credit_card_number': "4242424242424242",
             'cvv': "123",
             'expiry_month': '11',
             'expiry_year': '2025',
-            'stripe_id': card1,
+            'stripe_id': 'tok_visa',
         }
         # subscribe user
         self.client.post('/subscribe/', data, follow=True)
         # Assert subscriber is in group and model as a check
         self.assertTrue(test_user1.groups.filter(name='Subscribers').exists())
         self.assertTrue(Subscriber.objects.filter().exists())
-        # Store first card id as variable
+        # Store db first card id as variable
         subscriber = Subscriber.objects.get(user=test_user1.id)
         card1 = subscriber.card_id
-        print('card 1 is', card1)
-        # set up form data
+        # Store stripe first card id as a variable
+        customer = stripe.Customer.retrieve(subscriber.customer_id)
+        card_stripe = stripe.Customer.retrieve_source(
+                    subscriber.customer_id,
+                    customer.default_source,
+                )
+        card1_stripe = card_stripe.id
+        # set up form data with new card details
         data2 = {
             'credit_card_number': "4242424242424242",
             'cvv': "123",
@@ -157,10 +165,42 @@ class TestSubscriptionActions(TestCase):
         # Assert subscriber still in group and model as a check
         self.assertTrue(test_user1.groups.filter(name='Subscribers').exists())
         self.assertTrue(Subscriber.objects.filter().exists())
-        # Store second card id as variable
+        # Store second card id as variable from db
+        subscriber.refresh_from_db()
         card2 = subscriber.card_id
-        print('card 2 is', card2)
-        # Assert card details have changed
+        # Fetch new stripe data for current card id
+        customer = stripe.Customer.retrieve(subscriber.customer_id)
+        card_stripe_2 = stripe.Customer.retrieve_source(
+                    subscriber.customer_id,
+                    customer.default_source,
+                )
+        card2_stripe = card_stripe_2.id
+        # Assert card details have changed both in db and on stripe
         self.assertNotEqual(card1, card2)
-        
+        self.assertNotEqual(card1_stripe, card2_stripe)
+       
+    def test_card_error_messages_declined(self):
+        # set up subscriber group
+        Group.objects.create(name='Subscribers')
+        # Set up and log in test user
+        test_user1 = User.objects.create_user(first_name='test',
+                                              username='testuser',
+                                              password='password')
+        test_user1.save()
+        self.client.login(username='testuser', password='password')
+        # set up form data declined
+        data = {
+            'credit_card_number': "4242424242424242",
+            'cvv': "134",
+            'expiry_month': '11',
+            'expiry_year': '2025',
+            'stripe_id': 'tok_chargeDeclined',
+        }
+        # subscribe user
+        response = self.client.post('/subscribe/', data, follow=True)
+        messages = list(response.context['messages'])
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(str(messages[0]), 'Your card was declined.')
+
+    
         

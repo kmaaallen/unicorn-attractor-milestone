@@ -80,7 +80,6 @@ def new_subscription(request):
                 except stripe.error.CardError:
                     messages.error(request, "Your card was declined.")
         else:
-            print(subscribe_form.errors)
             messages.error(request, "We were unable to take a payment.")
     else:
         subscribe_form = SubscriptionForm
