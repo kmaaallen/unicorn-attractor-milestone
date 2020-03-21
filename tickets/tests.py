@@ -42,8 +42,9 @@ class TestTicketsPages(TestCase):
         self.assertEqual(response.status_code, 200)
         # Check correct template
         self.assertTemplateUsed(response, 'ticket_overview.html')
-        self.assertQuerysetEqual(response.context['tickets'], ['<Ticket: test issue>'])
-    
+        self.assertQuerysetEqual(response.context['tickets'],
+                                 ['<Ticket: test issue>'])
+
     def test_feature_tickets_page(self):
         Group.objects.create(name='Subscribers')
         # Set up and log in test user
@@ -69,11 +70,12 @@ class TestTicketsPages(TestCase):
         self.assertEqual(response.status_code, 200)
         # Check correct template
         self.assertTemplateUsed(response, 'ticket_overview.html')
-        self.assertQuerysetEqual(response.context['tickets'], ['<Ticket: test issue 2>'])
-    
+        self.assertQuerysetEqual(response.context['tickets'],
+                                 ['<Ticket: test issue 2>'])
+
     def test_issue_tickets_page(self):
         Group.objects.create(name='Subscribers')
-         # Set up and log in test user
+        # Set up and log in test user
         test_user1 = User.objects.create_user(username='testuser',
                                               password='password')
         test_user1.save()
@@ -96,8 +98,9 @@ class TestTicketsPages(TestCase):
         self.assertEqual(response.status_code, 200)
         # Check correct template
         self.assertTemplateUsed(response, 'ticket_overview.html')
-        self.assertQuerysetEqual(response.context['tickets'], ['<Ticket: test issue 1>'])
- 
+        self.assertQuerysetEqual(response.context['tickets'],
+                                 ['<Ticket: test issue 1>'])
+
     def test_add_issue_page_logged_in_user(self):
         # Set up and log in test user
         test_user1 = User.objects.create_user(username='testuser',
@@ -115,7 +118,8 @@ class TestTicketsPages(TestCase):
         # User should be redirected to sign in page if not logged in
         response = self.client.get('/tickets/report_issue/')
         # Check redirect
-        self.assertRedirects(response, '/accounts/sign_in/?next=/tickets/report_issue/')
+        self.assertRedirects(response,
+                             '/accounts/sign_in/?next=/tickets/report_issue/')
 
     def test_add_feature_page_logged_in_subscribed_user(self):
         # Set up and log in test user
@@ -126,7 +130,8 @@ class TestTicketsPages(TestCase):
         # Add user to subscriber group
         subscriber_group = Group.objects.create(name='Subscribers')
         subscriber_group.user_set.add(test_user1)
-        # User should be able to access add feature page if logged in and subscribed
+        # User should be able to access add feature page if 
+        # logged in and subscribed
         response = self.client.get('/tickets/request_feature/')
         # Check response "success"
         self.assertEqual(response.status_code, 200)
@@ -151,7 +156,7 @@ class TestTicketsPages(TestCase):
         response = self.client.get('/tickets/request_feature/')
         # Check redirect
         self.assertRedirects(response, '/accounts/sign_in/')
-    
+
     def test_full_ticket_page_logged_in_user(self):
         # Set up and log in test user
         test_user1 = User.objects.create_user(username='testuser',
@@ -159,7 +164,8 @@ class TestTicketsPages(TestCase):
         test_user1.save()
         self.client.login(username='testuser', password='password')
         # set up test issue to open
-        test_ticket = Ticket.objects.create(title='test issue', description='test')
+        test_ticket = Ticket.objects.create(title='test issue',
+                                            description='test')
         test_ticket.save()
         # User should be able to access add issue page if logged in
         response = self.client.get('/tickets/full_ticket/1/')
@@ -167,16 +173,18 @@ class TestTicketsPages(TestCase):
         self.assertEqual(response.status_code, 200)
         # Check correct template
         self.assertTemplateUsed(response, 'full_ticket.html')
-    
+
     def test_full_ticket_page_logged_in_user_false(self):
         # set up test issue to open
-        test_ticket = Ticket.objects.create(title='test issue', description='test')
+        test_ticket = Ticket.objects.create(title='test issue',
+                                            description='test')
         test_ticket.save()
         # User should be redirected to sign in page if not logged in
         response = self.client.get('/tickets/full_ticket/1/')
         # Check redirect
-        self.assertRedirects(response, '/accounts/sign_in/?next=/tickets/full_ticket/1/')
-    
+        self.assertRedirects(response,
+                             '/accounts/sign_in/?next=/tickets/full_ticket/1/')
+
     def test_add_comment_page_logged_in_user(self):
         # Set up and log in test user
         test_user1 = User.objects.create_user(username='testuser',
@@ -184,7 +192,8 @@ class TestTicketsPages(TestCase):
         test_user1.save()
         self.client.login(username='testuser', password='password')
         # set up test issue to open
-        test_ticket = Ticket.objects.create(title='test issue', description='test')
+        test_ticket = Ticket.objects.create(title='test issue',
+                                            description='test')
         test_ticket.save()
         # User should be able to access add issue page if logged in
         response = self.client.get('/tickets/add_ticket_comment/1/')
@@ -192,15 +201,17 @@ class TestTicketsPages(TestCase):
         self.assertEqual(response.status_code, 200)
         # Check correct template
         self.assertTemplateUsed(response, 'add_ticket_comment.html')
-    
+
     def test_add_comment_page_logged_in_user_false(self):
         # set up test issue to open
-        test_ticket = Ticket.objects.create(title='test issue', description='test')
+        test_ticket = Ticket.objects.create(title='test issue',
+                                            description='test')
         test_ticket.save()
         # User should be redirected to sign in page if not logged in
         response = self.client.get('/tickets/add_ticket_comment/1/')
         # Check redirect
-        self.assertRedirects(response, '/accounts/sign_in/?next=/tickets/add_ticket_comment/1/')
+        self.assertRedirects(response,
+                             '/accounts/sign_in/?next=/tickets/add_ticket_comment/1/')
 
     def test_edit_tickets_page(self):
         Group.objects.create(name='Subscribers')
@@ -210,7 +221,9 @@ class TestTicketsPages(TestCase):
         test_user1.save()
         self.client.login(username='testuser', password='password')
         # set up test issue to open
-        test_ticket = Ticket.objects.create(title='test issue', description='test', reported_by=test_user1)
+        test_ticket = Ticket.objects.create(title='test issue',
+                                            description='test',
+                                            reported_by=test_user1)
         test_ticket.save()
         # User should be able to access ticket overview page
         response = self.client.get('/tickets/edit_ticket/1/')

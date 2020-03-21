@@ -357,6 +357,21 @@ I tested the following and achieved the following coverages with automated testi
 | home/views.py          | 24         | 0       | 100%     |
 | TOTAL                  | 115        | 0       | 100%     |
 
+| SUBSCRIPTIONS:                                |            |         |          |
+|-----------------------------------------------|------------|---------|----------|
+| Module                                        | statements | missing | coverage |
+| subscriptions/admin.py                        | 3          | 0       | 100%     |
+| subscriptions/apps.py                         | 3          | 0       | 100%     |
+| subscriptions/forms.py                        | 9          | 0       | 100%     |
+| subscriptions/models.py                       | 12         | 0       | 100%     |
+| subscriptions/templatetags/extra_filters.py   | 6.         | 0       | 100%     |
+| subscriptions/test_app.py                     | 7          | 0       | 100%     |
+| subscriptions/test_forms.py                   | 6          | 0       | 100%     |
+| subscriptions/tests.py                        | 153        | 0       | 100%     |
+| subscriptions/urls.py                         | 3          | 0       | 100%     |
+| subscriptions/views.py                        | 65         | 0       | 100%     |
+| TOTAL                                         | 115        | 0       | 100%     |
+
 
 
 SUBSCRIPTIONS MODULE TO GO IN HERE WHEN TESTS DONE
