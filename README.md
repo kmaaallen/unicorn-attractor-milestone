@@ -433,7 +433,6 @@ To generate a report in the terminal or in html run these commands respectively:
 
 ### How to run this project locally
 - To run this project locally you will need the following installed:
-Django
 Python
 Git
 Pip
@@ -444,8 +443,30 @@ Navigate to the working directory where the downloaded code is stored using the 
 Ensure all modules are imported from requirements.txt file using the following command:
 pip install -r requirements.txt (Python 2), or pip3 install -r requirements.txt (Python3)
 
-To run the project use the following command:
-<pre><code> $python3 manage.py runserver </code></pre>
+1. You will need to create an env.py file to run this project locally. Use the following:
+    <pre><code>$ touch env.py</code></pre>
+    - You will see this file is now available in your unzipped file.
+    - Add environment variables for the SECRET_KEY, EMAIL_ADDRESS, EMAIL_PASSWORD, STRIPE_PUBLISHABLE, STRIPE_SECRET (these stripe keys you will get from your stripe account) in the following format:
+    <pre><code>
+    import os
+    # repeat below for all the settings
+    os.environ.setdefault("SECRET_KEY", 'variable goes here')
+    </code></pre>
+    - You can use a Django secret key generator online to create a secret key, e.g. [this one](https://miniwebtool.com/django-secret-key-generator/)
+
+2. You need to create an admin user so run the following command and fill in a username, email and password
+<pre><code>
+$ python3 manage.py createsuperuser
+</code></pre>
+
+3. Run the project using the following:
+<pre><code>
+$ python3 manage.py runserver
+</code></pre>
+
+4. Navigate to your local url in browser and go to the Django admin console by appending /admin
+5. Login using your superuser credentials and create a group called 'Subscribers'
+6. You can now run this site locally.
 
 ## Credits
 ### Media
