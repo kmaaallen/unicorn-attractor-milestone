@@ -306,7 +306,7 @@ Postgresql was used as the database for this project, activated through Heroku :
 The manual testing document can be viewed [here](https://github.com/kmaaallen/unicorn-attractor-milestone/blob/master/unicorn_attractor/documentation/Manual%20Testing%20Unicorn%20Attractor.xlsx)
 
 To test that subscriptions were automatically charging every month as per the plan I have included a screenshot of the stripe dashboard showing this recurring billing.
-
+This image can be viewed [here](https://github.com/kmaaallen/unicorn-attractor-milestone/blob/master/unicorn_attractor/documentation/monthly%20payment.png)
 
 ### Automated testing
 I used Django's automated testing framework.
@@ -377,12 +377,14 @@ I tested the following and achieved the following coverages with automated testi
 #### How to run these tests
 In order to run these tests you must use the project locally and in your environment variables comment out the postgres database and use the sqlite database that comes with django.
 You must also run the following command:
-    $pip3 install coverage
+<pre><code>$pip3 install coverage</code></pre>
 To generate the reports run the following command to test each app individually: 
-    $ coverage run --source='<app-name>' manage.py test <app-name>
+    <pre><code>$ coverage run --source='<app-name>' manage.py test <app-name> </code></pre>
 To generate a report in the terminal or in html run these commands respectively:
-    $ coverage report
-    $ coverage html
+    <pre><code> 
+    $ coverage report 
+    $ coverage html 
+    </code></pre>
 
 ## Deployment
 ### How to deploy this project to Heroku
@@ -391,11 +393,11 @@ To generate a report in the terminal or in html run these commands respectively:
 3. Configure the deployment option for your app to be direct from GitHub and link to your repository containing the project code.
 4. Add the Heroku postgres database add on by navigating to 'Resources' from your app in Heroku
     - In your project, to enable connection to this database, in terminal run:
-        $ python3 -m pip install dj-database-url psycopg2     
+        <pre><code> $ python3 -m pip install dj-database-url psycopg2 </code></pre>    
 5. Install the gunicorn library using the following command to allow heroku to run this project:
-        $ python3 -m pip install --user gunicorn
+        <pre><code> $ python3 -m pip install --user gunicorn</code></pre>
 6. In the settings file add to the local host with the following:
-        ALLOWED_HOSTS = ['localhost', 'my heroku app URL']
+        <pre><code> ALLOWED_HOSTS = ['localhost', 'my heroku app URL']</code></pre>
 7. Set the default database in settings to the postgres one from Heroku
 8. Create an env.py file at the top level and ensure this is in git ignore. Set env variables here to run locally.                                                                               
 9. Set configuration variables in Heroku by going to the ‘settings’ section of your application. Set them as follows:
@@ -415,17 +417,19 @@ To generate a report in the terminal or in html run these commands respectively:
 
 10. In order to deploy to Heroku you need to make sure your project has a requirements.txt file
     - Create by running the following command in your terminal:
-        pip freeze –local  > requirements.txt
+        <pre><code> pip freeze –local  > requirements.txt </code></pre>
 11. You will also need a Procfile
     - Create by running the following command in your terminal:
-        Echo web: python app.py > Procfile (where app.py is the name of your python file for the app.)
+        <pre><code> Echo web: python app.py > Procfile (where app.py is the name of your python file for the app.) </code></pre>
     - Add the following:
         - web: gunicorn <something-unqiue>.wsgi:application   (this can be found under 'Dynos' in Heroku app resources tab)
 
 12. Add, commit and push those additions to your GitHub repo
 13. Run the following commands to make migrations and migrate to using the postgres database:
+        <pre><code> 
         $ python3 manage.py makemigrations
         $ python3 manage.py migrate
+        </code></pre>
 
 ### How to run this project locally
 - To run this project locally you will need the following installed:
@@ -441,7 +445,7 @@ Ensure all modules are imported from requirements.txt file using the following c
 pip install -r requirements.txt (Python 2), or pip3 install -r requirements.txt (Python3)
 
 To run the project use the following command:
-> $python3 manage.py runserver
+<pre><code> $python3 manage.py runserver </code></pre>
 
 ## Credits
 ### Media
