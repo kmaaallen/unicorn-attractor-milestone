@@ -23,9 +23,11 @@ class TestSignInForm(TestCase):
                                               password='password')
         test_user1.save()
         form_data = {'username': 'testuser', 'password': 'wrongpassword'}
-        form = UserSignInForm()
-        response = self.client.post('/accounts/sign_in/', form_data, follow=True)
-        self.assertFormError(response, 'form', None, ['Your username and password combination is incorrect'])
+        response = self.client.post('/accounts/sign_in/', form_data,
+                                    follow=True)
+        self.assertFormError(response, 'form', None,
+                             ['Your username and password'
+                              ' combination is incorrect'])
 
 
 class TestSignUpForm(TestCase):

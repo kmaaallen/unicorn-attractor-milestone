@@ -130,7 +130,7 @@ class TestTicketsPages(TestCase):
         # Add user to subscriber group
         subscriber_group = Group.objects.create(name='Subscribers')
         subscriber_group.user_set.add(test_user1)
-        # User should be able to access add feature page if 
+        # User should be able to access add feature page if
         # logged in and subscribed
         response = self.client.get('/tickets/request_feature/')
         # Check response "success"
@@ -211,7 +211,8 @@ class TestTicketsPages(TestCase):
         response = self.client.get('/tickets/add_ticket_comment/1/')
         # Check redirect
         self.assertRedirects(response,
-                             '/accounts/sign_in/?next=/tickets/add_ticket_comment/1/')
+                             '/accounts/sign_in/?next=/tickets'
+                             '/add_ticket_comment/1/')
 
     def test_edit_tickets_page(self):
         Group.objects.create(name='Subscribers')

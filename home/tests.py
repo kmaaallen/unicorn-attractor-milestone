@@ -48,17 +48,19 @@ class TestHome(TestCase):
         self.assertTemplateUsed(response, 'contact.html')
 
     def test_thanks_page_not_reachable_without_contact_variable(self):
-        # User should not be able to access thanks page without filling in contact form
+        # User should not be able to access thanks page
+        # without filling in contact form
         response = self.client.get('/home/thanks/')
         # Check response "success"
         self.assertNotEqual(response.status_code, 200)
-    
+
     def test_thanks_page_reachable_with_contact_variable(self):
         # set contact session variable
         session = self.client.session
         session['contacted'] = True
         session.save()
-        # User should be able to access thanks page after filling in contact form
+        # User should be able to access thanks page
+        # after filling in contact form
         response = self.client.get('/home/thanks/')
         # Check response "success"
         self.assertEqual(response.status_code, 200)

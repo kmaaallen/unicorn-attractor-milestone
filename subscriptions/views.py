@@ -53,7 +53,8 @@ def new_subscription(request):
                 messages.error(request, "You have successfully subscribed.")
             except Subscriber.DoesNotExist:
                 try:
-                    # Create new customer and subscription and store details for stripe
+                    # Create new customer and subscription
+                    # and store details for stripe
                     customer = stripe.Customer.create(
                         email=request.user.email,
                         description=request.user.id,
@@ -99,7 +100,8 @@ def unsubscribe(request):
     stripe.Subscription.delete(subscription)
     Subscriber.objects.filter(user=request.user.id).update(subscription_id='')
     subscriber_group = Group.objects.get(name='Subscribers')
-    # Remove user from subscriber group to revoke access to add and upvote on features
+    # Remove user from subscriber group to
+    # revoke access to add and upvote on features
     subscriber_group.user_set.remove(request.user)
     # Set as inactive in Subscriber model for info
     Subscriber.objects.filter(user=request.user.id).update(active=False)
@@ -110,7 +112,8 @@ def unsubscribe(request):
 @login_required
 def update_card_details(request):
     """
-    Create a view that allows subscribed users to update card details for taking subscription payment
+    Create a view that allows subscribed users to update
+    card details for taking subscription payment
     """
     if request.method == 'POST':
         subscribe_form = SubscriptionForm(request.POST)

@@ -31,7 +31,10 @@ class UserSignUpForm(UserCreationForm):
         return email
 
     # below method to make email field mandatory in User model
-    # taken from: https://stackoverflow.com/questions/5493096/django-user-model-email-field-how-to-make-it-mandatory
+    # taken from:
+    # https://stackoverflow.com/questions
+    # /5493096/django-user-model-email-
+    # field-how-to-make-it-mandatory
     # answer provided by Derek Reynolds
     def __init__(self, *args, **kwargs):
         super(UserSignUpForm, self).__init__(*args, **kwargs)

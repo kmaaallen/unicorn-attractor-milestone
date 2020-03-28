@@ -29,7 +29,7 @@ class TestSubscriptionPages(TestCase):
         self.assertEqual(response.status_code, 200)
         # Check correct template
         self.assertTemplateUsed(response, 'subscribe.html')
-    
+
     def test_update_card_page(self):
         # User should be able to access update card page if subscribed
         # Set up and log in test user
@@ -47,7 +47,8 @@ class TestSubscriptionPages(TestCase):
         self.assertTemplateUsed(response, 'update_card.html')
 
     def test_subscribed_redirect(self):
-        # User should be redirected to profile page if subscribed and trying to access subscribe link
+        # User should be redirected to profile page
+        # if subscribed and trying to access subscribe link
         # Set up and log in test user
         test_user1 = User.objects.create_user(username='testuser',
                                               password='password')
@@ -65,7 +66,8 @@ class TestSubscriptionPages(TestCase):
 
 class TestSubscriptionActions(TestCase):
     def test_subscribed_user_able_to_unsubscribe(self):
-        # User should be redirected to profile page if subscribed and trying to access subscribe link
+        # User should be redirected to profile page if
+        # subscribed and trying to access subscribe link
         # Set up and log in test user
         test_user1 = User.objects.create_user(username='testuser',
                                               password='password')
@@ -88,12 +90,12 @@ class TestSubscriptionActions(TestCase):
                         items=[{"plan": plan}],
                     )
         # Add user to subscriber model
-        test_subscriber = Subscriber.objects.create(user=test_user1,
-                                                    customer_id='12345',
-                                                    subscription_id=subscription.id,
-                                                    card_id='123456',
-                                                    active=True)
-        test_subscriber.save()
+        test_sub = Subscriber.objects.create(user=test_user1,
+                                             customer_id='12345',
+                                             subscription_id=subscription.id,
+                                             card_id='123456',
+                                             active=True)
+        test_sub.save()
         # Assert subscriber is in group
         self.assertTrue(test_user1.groups.filter(name='Subscribers').exists())
         # Assert subscriber in model
@@ -149,13 +151,14 @@ class TestSubscriptionActions(TestCase):
         self.client.post('/subscribe/', data, follow=True)
         self.assertTrue(Subscriber.objects.filter().exists())
         # user is an active subscriber
-        self.assertTrue(Subscriber.objects.filter()[0].active == True)
+        self.assertTrue(Subscriber.objects.filter()[0].active is True)
         # initial subscription is
         subscription = Subscriber.objects.filter()[0].subscription_id
         # unsubscribe user
         self.client.post('/subscribe/unsubscribe/')
-        # Subscriber should still exist but active is false and subscription id is cleared
-        self.assertTrue(Subscriber.objects.filter()[0].active == False)
+        # Subscriber should still exist but active is
+        # false and subscription id is cleared
+        self.assertTrue(Subscriber.objects.filter()[0].active is False)
         self.assertTrue(Subscriber.objects.filter()[0].subscription_id == '')
         # User subscribes again
         data2 = {
@@ -167,13 +170,14 @@ class TestSubscriptionActions(TestCase):
         }
         response = self.client.post('/subscribe/', data2, follow=True)
         # user is an active subscriber, with a new subscription id
-        self.assertTrue(Subscriber.objects.filter()[0].active == True)
-        self.assertFalse(Subscriber.objects.filter()[0].subscription_id == '')
-        self.assertFalse(Subscriber.objects.filter()[0].subscription_id == subscription)
+        sub_rec = Subscriber.objects.filter()[0]
+        self.assertTrue(sub_rec.active is True)
+        self.assertFalse(sub_rec.subscription_id == '')
+        self.assertFalse(sub_rec.subscription_id == subscription)
         messages = list(response.context['messages'])
         self.assertEqual(len(messages), 1)
         self.assertEqual(str(messages[0]), 'You have successfully subscribed.')
- 
+
     def test_subscriber_details_updated(self):
         # set up subscriber group
         Group.objects.create(name='Subscribers')
@@ -315,14 +319,9 @@ class TestErrorMessages(TestCase):
             'stripe_id': 'tok_chargeDeclined',
         }
         # subscribe user
-        response = self.client.post('/subscribe/update_card_details/', data2, follow=True)
+        response = self.client.post('/subscribe/update_card_details/', data2,
+                                    follow=True)
         messages = list(response.context['messages'])
         self.assertEqual(len(messages), 1)
         print(str(messages[0]))
         self.assertEqual(str(messages[0]), 'Unable to update card details.')
-
-
-
-
-    
-        

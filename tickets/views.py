@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Ticket, Vote, Comment
 from .forms import AddTicketForm, AddCommentForm
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -11,7 +11,8 @@ def all_tickets(request):
     context = {
         'ticket_view': 'all'
     }
-    return render(request, "ticket_overview.html", {"tickets": tickets}, context)
+    return render(request, "ticket_overview.html", {"tickets": tickets},
+                  context)
 
 
 @login_required
@@ -20,7 +21,8 @@ def my_tickets(request):
     context = {
         'ticket_view': 'mine'
     }
-    return render(request, "ticket_overview.html", {"tickets": tickets}, context)
+    return render(request, "ticket_overview.html", {"tickets": tickets},
+                  context)
 
 
 @login_required
@@ -29,7 +31,8 @@ def feature_tickets(request):
     context = {
         'ticket_view': 'features'
     }
-    return render(request, "ticket_overview.html", {"tickets": tickets}, context)
+    return render(request, "ticket_overview.html", {"tickets": tickets},
+                  context)
 
 
 @login_required
@@ -38,7 +41,8 @@ def issue_tickets(request):
     context = {
         'ticket_view': 'issues'
     }
-    return render(request, "ticket_overview.html", {"tickets": tickets}, context)
+    return render(request, "ticket_overview.html", {"tickets": tickets},
+                  context)
 
 
 @login_required
@@ -65,7 +69,7 @@ def request_feature(request, pk=None):
     """
     Create a view that allows users to request a feature
     """
-    if request.user.groups.filter(name = 'Subscribers').exists():
+    if request.user.groups.filter(name='Subscribers').exists():
         feature = get_object_or_404(Ticket, pk=pk) if pk else None
         if request.method == 'POST':
             form = AddTicketForm(request.POST, request.FILES, instance=feature)
@@ -137,7 +141,8 @@ def add_ticket_comment(request, ticket_id, pk=None):
             return redirect('tickets')
     else:
         form = AddCommentForm(instance=new_comment)
-    return render(request, 'add_ticket_comment.html', {'form': form, 'ticket': ticket})
+    return render(request, 'add_ticket_comment.html', {'form': form,
+                  'ticket': ticket})
 
 
 @login_required

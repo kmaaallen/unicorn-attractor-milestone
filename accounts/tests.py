@@ -76,7 +76,7 @@ class TestLoginLogout(TestCase):
         self.client.login(username='testuser', password='password')
         response = self.client.get('/accounts/sign_out/')
         self.assertRedirects(response, '/accounts/sign_in/')
-    
+
     def test_user_login(self):
         # create 'Subscribers' group for test database
         Group.objects.get_or_create(name='Subscribers')
@@ -90,6 +90,3 @@ class TestLoginLogout(TestCase):
         }
         response = self.client.post('/accounts/sign_in/', data)
         self.assertRedirects(response, '/home/more/')
-
-   
-

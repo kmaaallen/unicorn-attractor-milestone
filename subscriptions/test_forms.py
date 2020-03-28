@@ -13,7 +13,3 @@ class TestSubscriptionForm(TestCase):
             'stripe_id': 'tok_visa'
         })
         self.assertTrue(form.is_valid())
-
-
-    
-    

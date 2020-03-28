@@ -308,6 +308,8 @@ The manual testing document can be viewed [here](https://github.com/kmaaallen/un
 To test that subscriptions were automatically charging every month as per the plan I have included a screenshot of the stripe dashboard showing this recurring billing.
 This image can be viewed [here](https://github.com/kmaaallen/unicorn-attractor-milestone/blob/master/unicorn_attractor/documentation/monthly%20payment.png)
 
+To check the validity of the templates in this project I used the django-template-check package: https://pypi.org/project/django-template-check/
+
 ### Automated testing
 I used Django's automated testing framework.
 

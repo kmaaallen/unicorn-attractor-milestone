@@ -30,11 +30,12 @@ class TestTicketForms(TestCase):
             'priority': 'LOW',
         }
         self.client.post('/tickets/report_issue/', data)
-        self.assertEqual(Ticket.objects.filter()[0].title, "Test Issue")
-        self.assertEqual(Ticket.objects.filter()[0].description, "My test issue")
-        self.assertEqual(Ticket.objects.filter()[0].priority, "LOW")
-        self.assertEqual(Ticket.objects.filter()[0].category, "ISSUE")
-    
+        tick_rec = Ticket.objects.filter()[0]
+        self.assertEqual(tick_rec.title, "Test Issue")
+        self.assertEqual(tick_rec.description, "My test issue")
+        self.assertEqual(tick_rec.priority, "LOW")
+        self.assertEqual(tick_rec.category, "ISSUE")
+
     def test_valid_add_ticket_form_data_feature(self):
         # Set up and log in test user
         test_user1 = User.objects.create_user(username='testuser',
@@ -50,10 +51,11 @@ class TestTicketForms(TestCase):
             'priority': 'HIGH',
         }
         self.client.post('/tickets/request_feature/', data)
-        self.assertEqual(Ticket.objects.filter()[0].title, "Test Feature")
-        self.assertEqual(Ticket.objects.filter()[0].description, "My test feature")
-        self.assertEqual(Ticket.objects.filter()[0].priority, "HIGH")
-        self.assertEqual(Ticket.objects.filter()[0].category, "FEATURE")
+        tick_rec2 = Ticket.objects.filter()[0]
+        self.assertEqual(tick_rec2.title, "Test Feature")
+        self.assertEqual(tick_rec2.description, "My test feature")
+        self.assertEqual(tick_rec2.priority, "HIGH")
+        self.assertEqual(tick_rec2.category, "FEATURE")
 
     def test_valid_ticket_form_redirect(self):
         Group.objects.create(name='Subscribers')
@@ -101,10 +103,11 @@ class TestTicketForms(TestCase):
         self.assertTrue(Comment.objects.exists())
         # test redirects after successful comment submission
         self.assertRedirects(response, '/tickets/')
-        self.assertTrue(Comment.objects.filter()[0].comment == "My comment on this issue is")
-        self.assertTrue(Comment.objects.filter()[0].commenter == test_user1)
-        self.assertTrue(Comment.objects.filter()[0].ticket == test_ticket)
-        self.assertEqual(str(Comment.objects.filter()[0]),
+        comm_rec = Comment.objects.filter()[0]
+        self.assertTrue(comm_rec.comment == "My comment on this issue is")
+        self.assertTrue(comm_rec.commenter == test_user1)
+        self.assertTrue(comm_rec.ticket == test_ticket)
+        self.assertEqual(str(comm_rec),
                          "My comment on this issue is")
 
     def test_blank_comment_form_data(self):
@@ -135,7 +138,6 @@ class TestTicketForms(TestCase):
             'priority': 'LOW',
             'category': 'ISSUE'
         }
-        response = self.client.post('/tickets/edit_ticket/1/', data)
+        self.client.post('/tickets/edit_ticket/1/', data)
         self.assertTrue(Ticket.objects.exists())
         self.assertTrue(Ticket.objects.filter()[0].title == "Test Issue Edit")
-
