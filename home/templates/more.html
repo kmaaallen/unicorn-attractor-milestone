@@ -34,12 +34,12 @@
 			</div>
 		</div>
 		<div class="row more-btn-div margin-bottom">
-			<div class="col-md-3 col-md-offset-3">
+			<div class="col-xs-3 col-xs-offset-3">
 				<form action="{% url 'contact_us' %}">
 					<input class="btn green-btn" type="submit" value="Contact Us"/>
 		        </form>
 			</div>
-			<div class="col-md-3">
+			<div class="col-xs-3">
 				{% if request.user|in_group:"Subscribers" %}
 				<a href="{% url 'profile' %}" class="btn pink-btn" role="button">Manage Subscription</a>
 				{% elif user.is_authenticated %}

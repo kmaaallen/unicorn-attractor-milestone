@@ -21,10 +21,10 @@
 		<div class="col-md-6">
 			<div class="row">
 				{% if request.user|in_group:"Subscribers" %}
-				<a href="{% url 'request_feature' %}" class="btn green-btn ticket-form-btn" role="button">+ Request a
+				<a href="{% url 'request_feature' %}" class=" margin-right-none btn green-btn ticket-form-btn" role="button">+ Request a
 					Feature</a>
 				{% elif user.is_authenticated %}
-				<a href="{% url 'subscribe' %}" class="btn green-btn margin-bottom ticket-form-btn" role="button">+
+				<a href="{% url 'subscribe' %}" class=" margin-right-none btn green-btn margin-bottom ticket-form-btn" role="button">+
 					Subscribe</a>
 				{% else %}
 				{% endif %}
@@ -53,7 +53,7 @@
 			</div>
 			<div class="row hidden-sm hidden-xs">
 				<a href="{% url 'my_tickets' %}"
-					class="purple-text float-right {% if request.path == '/tickets/my_tickets/'%}toggled{% endif %}"
+					class="purple-text margin-right float-right {% if request.path == '/tickets/my_tickets/'%}toggled{% endif %}"
 					id="my_features">My Tickets</a>
 				<a href="{% url 'feature_tickets' %}"
 					class="purple-text float-right {% if request.path == '/tickets/feature_tickets/'%}toggled{% endif %}"

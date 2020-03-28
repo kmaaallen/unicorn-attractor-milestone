@@ -1,6 +1,7 @@
 body {
 	background-color: #f9f9f9;
 	padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 
@@ -28,6 +29,14 @@ a:hover {
 
 .margin-left {
 	margin-left: 25px;
+}
+
+.margin-right {
+    margin-right: 25px;
+}
+
+.margin-right-none {
+    margin-right:0;
 }
 
 .margin-left-right {
@@ -391,10 +400,6 @@ h1.landing-title {
 .btn-link {
 	color: #330066;
 	padding-left: 0px;
-}
-
-#accordion {
-	transform: translateY(-50px);
 }
 
 .toggled {
