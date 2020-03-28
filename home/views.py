@@ -46,11 +46,9 @@ def contact_us(request):
             contact_form = ContactForm(initial={
                                       'name': request.user.first_name,
                                       'email': request.user.email})
-            return render(request, 'contact.html', {"contact_form": contact_form})
         else:
-            contact_form = ContactForm()
-            return render(request, 'contact.html', {"contact_form": contact_form})
-    
+            contact_form = ContactForm(initial={'name': '', 'email': ''})
+    return render(request, 'contact.html', {"contact_form": contact_form})
 
 
 def thanks(request):
