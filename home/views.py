@@ -42,7 +42,12 @@ def contact_us(request):
             request.session['contacted'] = True
             return redirect('thanks')
     else:
-        contact_form = ContactForm()
+        if request.user:
+            contact_form = ContactForm(initial={
+                                      'name': request.user.first_name,
+                                      'email': request.user.email})
+        else:
+            contact_form = ContactForm()
     return render(request, 'contact.html', {"contact_form": contact_form})
 
 
