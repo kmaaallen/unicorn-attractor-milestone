@@ -7,7 +7,7 @@
 {% block content %}
 <div class="profile purple-text margin-left margin-bottom">
 	<h1 class="purple-text">{{user}}'s Profile</h1>
-	<p>Name: {{ user.first_name }} {{user.last_name}}</p>
+	<p>Name: {{ user.first_name }} {{ user.last_name }}</p>
 	<p>Username: {{ user.username }}</p>
 	<p>Email: {{ user.email }}</p>
 	{% if request.user|in_group:"Subscribers" %}
