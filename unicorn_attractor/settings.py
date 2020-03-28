@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'home',
     'subscriptions',
     'tickets',
-    'django_template_check',
 ]
 
 MIDDLEWARE = [
