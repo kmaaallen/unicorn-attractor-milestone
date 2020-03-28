@@ -1,4 +1,7 @@
 # Unicorn Attractor
+
+[![Build Status](https://travis-ci.org/kmaaallen/unicorn-attractor-milestone.svg?branch=master)](https://travis-ci.org/kmaaallen/unicorn-attractor-milestone)
+
 Unicorn Attractor is a site designed to allow users of the fictional 'Unicorn Attractor' software to log issues and request new features. On the tickets overview page users can see the progress of the ticket as either reported/requested, in progress or completed. Users can also see how many votes a ticket has, its priority level and any comments added to the ticket depending on their level of access.
 
 In order to be able to vote on, comment on and request new features users subscribe to a monthly payment which allows them full access to the features module. At any time, subscribed users can unsubscribe or update their card details.
