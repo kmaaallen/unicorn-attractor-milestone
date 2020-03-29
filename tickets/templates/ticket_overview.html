@@ -94,6 +94,8 @@
 							role="button">Edit</a>
 						<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn btn-sm red-btn"
 							role="button">Delete</a>
+						{% else %}
+						<p class="italic-text">You must re-subscribe to modify your feature tickets</p>
 						{% endif %}
 						{% endif %}
 						{% endif %}
@@ -186,6 +188,8 @@
 							role="button">Edit</a>
 						<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn btn-sm red-btn"
 							role="button">Delete</a>
+						{% else %}
+						<p class="italic-text">You must re-subscribe to modify your feature tickets</p>
 						{% endif %}
 						{% endif %}
 						{% endif %}
@@ -343,6 +347,8 @@
 										role="button">Edit</a>
 									<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn btn-sm red-btn"
 										role="button">Delete</a>
+									{% else %}
+									<p class="italic-text">You must re-subscribe to modify your feature tickets</p>
 									{% endif %}
 									{% endif %}
 									{% endif %}
@@ -438,16 +444,18 @@
 										</h3>
 										{% if ticket.reported_by == request.user %}
 										{% if ticket.category == 'ISSUE' %}
-										<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm grey-btn"
-											role="button">Edit</a>
-										<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn btn-sm red-btn"
-											role="button">Delete</a>
+										<a href="{% url 'edit_ticket' ticket_id=ticket.id %}"
+											class="btn btn-sm grey-btn" role="button">Edit</a>
+										<a href="{% url 'delete_ticket' ticket_id=ticket.id %}"
+											class="btn btn-sm red-btn" role="button">Delete</a>
 										{% else %}
 										{% if request.user|in_group:"Subscribers" and request.user|is_active:"Subscriber" %}
-										<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm grey-btn"
-											role="button">Edit</a>
-										<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn btn-sm red-btn"
-											role="button">Delete</a>
+										<a href="{% url 'edit_ticket' ticket_id=ticket.id %}"
+											class="btn btn-sm grey-btn" role="button">Edit</a>
+										<a href="{% url 'delete_ticket' ticket_id=ticket.id %}"
+											class="btn btn-sm red-btn" role="button">Delete</a>
+										{% else %}
+										<p class="italic-text">You must re-subscribe to modify your feature tickets</p>
 										{% endif %}
 										{% endif %}
 										{% endif %}
