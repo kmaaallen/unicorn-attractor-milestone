@@ -21,7 +21,7 @@
 				<p class="margin-top-bottom">Priority: {{ ticket.priority }}</p>
 				<p>Votes: {{ ticket.votes }}</p>
 				{% if ticket.state == 'COMPLETED' %}
-				<p>Resolution Notes:</p>
+				<b>Resolution Notes:</b>
 				<p>{{ ticket.resolution }}</p>
 				{% else %}
 				{% if ticket.category == 'FEATURE' %}
