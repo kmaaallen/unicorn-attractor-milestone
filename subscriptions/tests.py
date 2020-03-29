@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth.models import User, Group
 from subscriptions.models import Subscriber
+from tickets.models import Ticket
 from django.conf import settings
 
 import stripe
@@ -244,6 +245,31 @@ class TestSubscriptionActions(TestCase):
         self.assertEqual(subscription1_stripe, subscription2_stripe)
 
 
+class TestTemplateTag(TestCase):
+    def test_is_active_template_tag(self):
+        # Set up and log in test user
+        test_user1 = User.objects.create_user(username='testuser',
+                                              password='password')
+        test_user1.save()
+        self.client.login(username='testuser', password='password')
+        # Add user to subscriber model and group
+        # set up and add user to subscribers group
+        subscriber_group = Group.objects.create(name='Subscribers')
+        subscriber_group.user_set.add(test_user1)
+        Subscriber.objects.create(user=test_user1,
+                                  active=True)
+        # set up test issue to open
+        test_ticket = Ticket.objects.create(title='test issue',
+                                            description='test',
+                                            category='FEATURE',
+                                            reported_by=test_user1)
+        test_ticket.save()
+        # User should not see edit or delete button
+        response = self.client.get('/tickets/full_ticket/1/')
+        # Check buttons in HTML
+        self.assertIn('Edit', response.content.decode("utf-8"))
+
+
 class TestErrorMessages(TestCase):
     def test_card_error_messages_declined(self):
         # set up subscriber group
@@ -323,5 +349,6 @@ class TestErrorMessages(TestCase):
                                     follow=True)
         messages = list(response.context['messages'])
         self.assertEqual(len(messages), 1)
-        print(str(messages[0]))
         self.assertEqual(str(messages[0]), 'Unable to update card details.')
+
+        

@@ -359,7 +359,7 @@ I tested the following and achieved the following coverages with automated testi
 | home/tests.py          | 35         | 0       | 100%     |
 | home/urls.py           | 3          | 0       | 100%     |
 | home/views.py          | 26         | 0       | 100%     |
-| TOTAL                  | 115        | 0       | 100%     |
+| TOTAL                  | 118        | 0       | 100%     |
 
 | SUBSCRIPTIONS:                                |            |         |          |
 |-----------------------------------------------|------------|---------|----------|
@@ -368,13 +368,13 @@ I tested the following and achieved the following coverages with automated testi
 | subscriptions/apps.py                         | 3          | 0       | 100%     |
 | subscriptions/forms.py                        | 9          | 0       | 100%     |
 | subscriptions/models.py                       | 12         | 0       | 100%     |
-| subscriptions/templatetags/extra_filters.py   | 6.         | 0       | 100%     |
+| subscriptions/templatetags/extra_filters.py   | 10         | 0       | 100%     |
 | subscriptions/test_app.py                     | 7          | 0       | 100%     |
 | subscriptions/test_forms.py                   | 6          | 0       | 100%     |
-| subscriptions/tests.py                        | 153        | 0       | 100%     |
+| subscriptions/tests.py                        | 166        | 0       | 100%     |
 | subscriptions/urls.py                         | 3          | 0       | 100%     |
 | subscriptions/views.py                        | 65         | 0       | 100%     |
-| TOTAL                                         | 115        | 0       | 100%     |
+| TOTAL                                         | 302        | 0       | 100%     |
 
 
 #### How to run these tests

@@ -21,10 +21,12 @@
 		<div class="col-md-6">
 			<div class="row">
 				{% if request.user|in_group:"Subscribers" %}
-				<a href="{% url 'request_feature' %}" class=" margin-right-none btn green-btn ticket-form-btn" role="button">+ Request a
+				<a href="{% url 'request_feature' %}" class=" margin-right-none btn green-btn ticket-form-btn"
+					role="button">+ Request a
 					Feature</a>
 				{% elif user.is_authenticated %}
-				<a href="{% url 'subscribe' %}" class=" margin-right-none btn green-btn margin-bottom ticket-form-btn" role="button">+
+				<a href="{% url 'subscribe' %}" class=" margin-right-none btn green-btn margin-bottom ticket-form-btn"
+					role="button">+
 					Subscribe</a>
 				{% else %}
 				{% endif %}
@@ -81,10 +83,19 @@
 						<h3><a class="grey-link"
 								href="{% url 'full_ticket' ticket_id=ticket.id%}">{{ ticket.title }}</a></h3>
 						{% if ticket.reported_by == request.user %}
+						{% if ticket.category == 'ISSUE' %}
 						<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm grey-btn"
 							role="button">Edit</a>
 						<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn btn-sm red-btn"
 							role="button">Delete</a>
+						{% else %}
+						{% if request.user|in_group:"Subscribers" and request.user|is_active:"Subscriber" %}
+						<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm grey-btn"
+							role="button">Edit</a>
+						<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn btn-sm red-btn"
+							role="button">Delete</a>
+						{% endif %}
+						{% endif %}
 						{% endif %}
 						<p>{{ ticket.description }}</p>
 						{% if ticket.category == 'ISSUE' %}
@@ -106,8 +117,9 @@
 						</p>
 						{% endif %}
 						{% else %}
-				        <p>You must <a class="link-underline purple-text" href="{% url 'subscribe' %}">subscribe</a> to vote or comment on feature tickets</p>
-				        {% endif %}
+						<p>You must <a class="link-underline purple-text" href="{% url 'subscribe' %}">subscribe</a> to
+							vote or comment on feature tickets</p>
+						{% endif %}
 						{% else %}
 						{% if user.is_authenticated %}
 						{% if ticket.reported_by == request.user %}
@@ -163,10 +175,19 @@
 								href="{% url 'full_ticket' ticket_id=ticket.id%}">{{ ticket.title }}</a>
 						</h3>
 						{% if ticket.reported_by == request.user %}
+						{% if ticket.category == 'ISSUE' %}
 						<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm grey-btn"
 							role="button">Edit</a>
 						<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn btn-sm red-btn"
 							role="button">Delete</a>
+						{% else %}
+						{% if request.user|in_group:"Subscribers" and request.user|is_active:"Subscriber" %}
+						<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm grey-btn"
+							role="button">Edit</a>
+						<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn btn-sm red-btn"
+							role="button">Delete</a>
+						{% endif %}
+						{% endif %}
 						{% endif %}
 						<p>{{ ticket.description }}</p>
 						{% if ticket.category == 'ISSUE' %}
@@ -188,8 +209,9 @@
 						</p>
 						{% endif %}
 						{% else %}
-				        <p>You must <a class="link-underline purple-text" href="{% url 'subscribe' %}">subscribe</a> to vote or comment on feature tickets</p>
-				        {% endif %}
+						<p>You must <a class="link-underline purple-text" href="{% url 'subscribe' %}">subscribe</a> to
+							vote or comment on feature tickets</p>
+						{% endif %}
 						{% else %}
 						{% if user.is_authenticated %}
 						{% if ticket.reported_by == request.user %}
@@ -252,10 +274,10 @@
 						{% endif %}
 						<p>Priority: {{ ticket.priority }}</p>
 						<p>Votes: {{ ticket.votes }}</p>
-                        <b>Resolution Notes:</b>
-                        <p>{{ ticket.resolution }}</p>
+						<b>Resolution Notes:</b>
+						<p>{{ ticket.resolution }}</p>
 						{% if ticket.category == 'ISSUE' and user.is_authenticated or ticket.category == 'FEATURE' and user.is_authenticated and request.user|in_group:"Subscribers" %}
-                        <div>
+						<div>
 							<a class="grey-link" onClick="toggleComment(this)">Comments
 								<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
 							</br>
@@ -310,10 +332,19 @@
 											href="{% url 'full_ticket' ticket_id=ticket.id%}">{{ ticket.title }}</a>
 									</h3>
 									{% if ticket.reported_by == request.user %}
+									{% if ticket.category == 'ISSUE' %}
 									<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm grey-btn"
 										role="button">Edit</a>
-									<a href="{% url 'delete_ticket' ticket_id=ticket.id %}"
-										class="btn btn-sm red-btn" role="button">Delete</a>
+									<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn btn-sm red-btn"
+										role="button">Delete</a>
+									{% else %}
+									{% if request.user|in_group:"Subscribers" and request.user|is_active:"Subscriber" %}
+									<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm grey-btn"
+										role="button">Edit</a>
+									<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn btn-sm red-btn"
+										role="button">Delete</a>
+									{% endif %}
+									{% endif %}
 									{% endif %}
 									<p>{{ ticket.description }}</p>
 									{% if ticket.category == 'ISSUE' %}
@@ -335,8 +366,10 @@
 									</p>
 									{% endif %}
 									{% else %}
-				                    <p>You must <a class="link-underline purple-text" href="{% url 'subscribe' %}">subscribe</a> to vote or comment on feature tickets</p>
-				                    {% endif %}
+									<p>You must <a class="link-underline purple-text"
+											href="{% url 'subscribe' %}">subscribe</a> to vote or comment on feature
+										tickets</p>
+									{% endif %}
 									{% else %}
 									{% if user.is_authenticated %}
 									{% if ticket.reported_by == request.user %}
@@ -404,10 +437,19 @@
 												href="{% url 'full_ticket' ticket_id=ticket.id%}">{{ ticket.title }}</a>
 										</h3>
 										{% if ticket.reported_by == request.user %}
-										<a href="{% url 'edit_ticket' ticket_id=ticket.id %}"
-											class="btn btn-sm grey-btn" role="button">Edit</a>
-										<a href="{% url 'delete_ticket' ticket_id=ticket.id %}"
-											class="btn btn-sm red-btn" role="button">Delete</a>
+										{% if ticket.category == 'ISSUE' %}
+										<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm grey-btn"
+											role="button">Edit</a>
+										<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn btn-sm red-btn"
+											role="button">Delete</a>
+										{% else %}
+										{% if request.user|in_group:"Subscribers" and request.user|is_active:"Subscriber" %}
+										<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm grey-btn"
+											role="button">Edit</a>
+										<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn btn-sm red-btn"
+											role="button">Delete</a>
+										{% endif %}
+										{% endif %}
 										{% endif %}
 										<p>{{ ticket.description }}</p>
 										{% if ticket.category == 'ISSUE' %}
@@ -429,8 +471,10 @@
 										</p>
 										{% endif %}
 										{% else %}
-				                        <p>You must <a class="link-underline purple-text" href="{% url 'subscribe' %}">subscribe</a> to vote or comment on feature tickets</p>
-				                        {% endif %}
+										<p>You must <a class="link-underline purple-text"
+												href="{% url 'subscribe' %}">subscribe</a> to vote or comment on feature
+											tickets</p>
+										{% endif %}
 										{% else %}
 										{% if user.is_authenticated %}
 										{% if ticket.reported_by == request.user %}
@@ -508,8 +552,8 @@
 										<p>Votes: {{ ticket.votes }}</p>
 										{% if ticket.category == 'ISSUE' and user.is_authenticated or ticket.category == 'FEATURE' and user.is_authenticated and request.user|in_group:"Subscribers" %}
 										<b>Resolution Notes:</b>
-                                        <p>{{ ticket.resolution }}</p>
-                                        <div>
+										<p>{{ ticket.resolution }}</p>
+										<div>
 											<a class="grey-link" onClick="toggleComment(this)">Comments
 												<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
 											</br>

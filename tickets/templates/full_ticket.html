@@ -12,18 +12,16 @@
 		</div>
 		<div class="col-xs-12 full-ticket-outer">
 			<div class="full-ticket-inner">
-				{% if ticket.reported_by == request.user && ticket.state != 'COMPLETED' %}
-
+				{% if ticket.reported_by == request.user and ticket.state != 'COMPLETED' %}
                 {% if ticket.category == 'ISSUE' %}
                 <a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn-sm grey-btn" role="button">Edit</a>
 				<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn-sm red-btn" role="button">Delete</a>
                 {% else %}
-                {% if ticket.reported_by == request.user && request.user|in_group:"Subscribers" && Subscriber.objects.filter(user= request.user).active %}
+                {% if request.user|in_group:"Subscribers" and request.user|is_active:"Subscriber" %}
 				<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn-sm grey-btn" role="button">Edit</a>
 				<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn-sm red-btn" role="button">Delete</a>
-				{% endif %}
                 {% endif %}
-
+                {% endif %}
                 {% endif %}
 				<p class="margin-top-bottom">Created on: {{ ticket.created_on }}</p>
 				<p class="margin-top-bottom">Description: {{ ticket.description }}</p>
