@@ -258,32 +258,6 @@
 						{% endif %}
 						<p>Priority: {{ ticket.priority }}</p>
 						<p>Votes: {{ ticket.votes }}</p>
-						{% if ticket.category == 'FEATURE' %}
-						{% if request.user|in_group:"Subscribers" %}
-						{% if ticket.reported_by == request.user %}
-						<p class="italic-text">You requested this feature</p>
-						{% elif user in ticket.voters.all %}
-						<p class="italic-text">You have already voted on this feature</p>
-						{% else %}
-						<p><a class="grey-link" href="upvote/{{ ticket.id }}">Upvote
-								<i class="fa fa-arrow-up"></i></a>
-						</p>
-						{% endif %}
-						{% else %}
-				        <p>You must <a class="link-underline purple-text" href="{% url 'subscribe' %}">subscribe</a> to vote or comment on feature tickets</p>
-				        {% endif %}
-						{% else %}
-						{% if user.is_authenticated %}
-						{% if ticket.reported_by == request.user %}
-						<p class="italic-text">You reported this issue</p>
-						{% elif user in ticket.voters.all %}
-						<p class="italic-text">You have already voted on this issue</p>
-						{% else %}
-						<p><a class="grey-link" href="upvote/{{ ticket.id }}">Upvote <i class="fa fa-arrow-up"></i></a>
-						</p>
-						{% endif %}
-						{% endif %}
-						{% endif %}
 						{% if ticket.category == 'ISSUE' and user.is_authenticated or ticket.category == 'FEATURE' and user.is_authenticated and request.user|in_group:"Subscribers" %}
 						<div>
 							<a class="grey-link" onClick="toggleComment(this)">Comments
@@ -542,33 +516,6 @@
 										{% endif %}
 										<p>Priority: {{ ticket.priority }}</p>
 										<p>Votes: {{ ticket.votes }}</p>
-										{% if ticket.category == 'FEATURE' %}
-										{% if request.user|in_group:"Subscribers" %}
-										{% if ticket.reported_by == request.user %}
-										<p class="italic-text">You requested this feature</p>
-										{% elif user in ticket.voters.all %}
-										<p class="italic-text">You have already voted on this feature</p>
-										{% else %}
-										<p><a class="grey-link" href="upvote/{{ ticket.id }}">Upvote
-												<i class="fa fa-arrow-up"></i></a>
-										</p>
-										{% endif %}
-										{% else %}
-				                        <p>You must <a class="link-underline purple-text" href="{% url 'subscribe' %}">subscribe</a> to vote or comment on feature tickets</p>
-				                        {% endif %}
-										{% else %}
-										{% if user.is_authenticated %}
-										{% if ticket.reported_by == request.user %}
-										<p class="italic-text">You reported this issue</p>
-										{% elif user in ticket.voters.all %}
-										<p class="italic-text">You have already voted on this issue</p>
-										{% else %}
-										<p><a class="grey-link" href="upvote/{{ ticket.id }}">Upvote
-												<i class="fa fa-arrow-up"></i></a>
-										</p>
-										{% endif %}
-										{% endif %}
-										{% endif %}
 										{% if ticket.category == 'ISSUE' and user.is_authenticated or ticket.category == 'FEATURE' and user.is_authenticated and request.user|in_group:"Subscribers" %}
 										<div>
 											<a class="grey-link" onClick="toggleComment(this)">Comments

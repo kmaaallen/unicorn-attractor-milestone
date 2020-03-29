@@ -4,6 +4,10 @@ body {
     padding-bottom: 50px;
 }
 
+.panel-body {
+    padding: 0 15px 15px 15px;
+}
+
 
 /* Utility classes - used frequently */
 
@@ -46,6 +50,11 @@ a:hover {
 
 .margin-bottom {
 	margin-bottom: 50px;
+}
+
+.margin-top-bottom {
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .italic-text {
@@ -180,7 +189,6 @@ a:hover {
 
 .top-div-home {
 	background-color: #f9f9f9;
-	margin-top: -50px;
 }
 
 .landing-title {
@@ -194,7 +202,6 @@ h1.landing-title {
 }
 
 .title-div {
-	height: 100%;
 	margin-top: 10%;
 }
 
@@ -384,7 +391,7 @@ h1.landing-title {
 	height: 65vh;
 	border: solid 2px #330066;
     border-bottom: solid 20px #330066;
-    border-top: solid 20px #330066;
+    border-top: solid 2px #330066;
 	overflow-y: scroll;
     padding: 0 15px 0 15px; 
 }

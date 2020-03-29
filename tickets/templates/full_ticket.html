@@ -17,9 +17,9 @@
 				<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn-sm red-btn"
 					role="button">Delete</a>
 				{% endif %}
-				<p class="issue-bottom-margin">Created on: {{ ticket.created_on }}</p>
-				<p class="issue-bottom-margin">Description: {{ ticket.description }}</p>
-				<p class="issue-bottom-margin">Priority: {{ ticket.priority }}</p>
+				<p class="margin-top-bottom">Created on: {{ ticket.created_on }}</p>
+				<p class="margin-top-bottom">Description: {{ ticket.description }}</p>
+				<p class="margin-top-bottom">Priority: {{ ticket.priority }}</p>
 				<p>Votes: {{ ticket.votes }}</p>
 				{% if ticket.category == 'FEATURE' %}
 				{% if request.user|in_group:"Subscribers" %}
