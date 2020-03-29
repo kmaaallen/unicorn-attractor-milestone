@@ -304,10 +304,10 @@ Postgresql was used as the database for this project, activated through Heroku :
 ## Testing
 
 ### Manual Testing
-The manual testing document can be viewed [here](https://github.com/kmaaallen/unicorn-attractor-milestone/blob/master/unicorn_attractor/documentation/Manual%20Testing%20Unicorn%20Attractor.xlsx)
+The manual testing document can be viewed [here](https://github.com/kmaaallen/unicorn-attractor-milestone/blob/master/unicorn_attractor/documentation/testing/manual_testing.xlsx)
 
 To test that subscriptions were automatically charging every month as per the plan I have included a screenshot of the stripe dashboard showing this recurring billing.
-This image can be viewed [here](https://github.com/kmaaallen/unicorn-attractor-milestone/blob/master/unicorn_attractor/documentation/monthly%20payment.png)
+This image can be viewed [here](https://github.com/kmaaallen/unicorn-attractor-milestone/blob/master/unicorn_attractor/documentation/monthly_payment.png)
 
 To check the validity of the templates in this project I used the django-template-check package: https://pypi.org/project/django-template-check/
 
