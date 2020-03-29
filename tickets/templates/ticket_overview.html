@@ -258,8 +258,10 @@
 						{% endif %}
 						<p>Priority: {{ ticket.priority }}</p>
 						<p>Votes: {{ ticket.votes }}</p>
+                        <p>Resolution Notes:</p>
+                        <p>{{ ticket.resolution }}</p>
 						{% if ticket.category == 'ISSUE' and user.is_authenticated or ticket.category == 'FEATURE' and user.is_authenticated and request.user|in_group:"Subscribers" %}
-						<div>
+                        <div>
 							<a class="grey-link" onClick="toggleComment(this)">Comments
 								<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
 							</br>
@@ -517,7 +519,9 @@
 										<p>Priority: {{ ticket.priority }}</p>
 										<p>Votes: {{ ticket.votes }}</p>
 										{% if ticket.category == 'ISSUE' and user.is_authenticated or ticket.category == 'FEATURE' and user.is_authenticated and request.user|in_group:"Subscribers" %}
-										<div>
+										<p>Resolution Notes:</p>
+                                        <p>{{ ticket.resolution }}</p>
+                                        <div>
 											<a class="grey-link" onClick="toggleComment(this)">Comments
 												<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
 											</br>

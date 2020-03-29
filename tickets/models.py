@@ -48,6 +48,7 @@ class Ticket(models.Model):
                                     related_name='ticket_reported_by',
                                     null=True,
                                     blank=True)
+    resolution = models.CharField(max_length=600, default='')
 
     class Meta:
         ordering = ('-votes',)

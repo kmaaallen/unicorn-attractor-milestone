@@ -14,13 +14,16 @@
 			<div class="full-ticket-inner">
 				{% if ticket.reported_by == request.user %}
 				<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn-sm grey-btn" role="button">Edit</a>
-				<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn-sm red-btn"
-					role="button">Delete</a>
+				<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn-sm red-btn" role="button">Delete</a>
 				{% endif %}
 				<p class="margin-top-bottom">Created on: {{ ticket.created_on }}</p>
 				<p class="margin-top-bottom">Description: {{ ticket.description }}</p>
 				<p class="margin-top-bottom">Priority: {{ ticket.priority }}</p>
 				<p>Votes: {{ ticket.votes }}</p>
+				{% if ticket.state == 'COMPLETED' %}
+				<p>Resolution Notes:</p>
+				<p>{{ ticket.resolution }}</p>
+				{% else %}
 				{% if ticket.category == 'FEATURE' %}
 				{% if request.user|in_group:"Subscribers" %}
 				{% if ticket.reported_by == request.user %}
@@ -33,7 +36,8 @@
 				</p>
 				{% endif %}
 				{% else %}
-				<p>You must <a class="link-underline purple-text" href="{% url 'subscribe' %}">subscribe</a> to vote or comment on feature tickets</p>
+				<p>You must <a class="link-underline purple-text" href="{% url 'subscribe' %}">subscribe</a> to vote or
+					comment on feature tickets</p>
 				{% endif %}
 				{% else %}
 				{% if user.is_authenticated %}
@@ -42,8 +46,10 @@
 				{% elif user in ticket.voters.all %}
 				<p class="italic-text">You have already voted on this issue</p>
 				{% else %}
-				<p><a class="grey-link" href="{% url 'upvote' ticket_id=ticket.id %}">Upvote <i class="fa fa-arrow-up"></i></a>
+				<p><a class="grey-link" href="{% url 'upvote' ticket_id=ticket.id %}">Upvote
+						<i class="fa fa-arrow-up"></i></a>
 				</p>
+				{% endif %}
 				{% endif %}
 				{% endif %}
 				{% endif %}
