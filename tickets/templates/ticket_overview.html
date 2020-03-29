@@ -244,12 +244,6 @@
 						<h3><a class="grey-link"
 								href="{% url 'full_ticket' ticket_id=ticket.id%}">{{ ticket.title }}</a>
 						</h3>
-						{% if ticket.reported_by == request.user %}
-						<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm grey-btn"
-							role="button">Edit</a>
-						<a href="{% url 'delete_ticket' ticket_id=ticket.id %}" class="btn btn-sm red-btn"
-							role="button">Delete</a>
-						{% endif %}
 						<p>{{ ticket.description }}</p>
 						{% if ticket.category == 'ISSUE' %}
 						<p class="issue-colour">{{ ticket.category }}</p>
@@ -504,12 +498,6 @@
 										<h3><a class="grey-link"
 												href="{% url 'full_ticket' ticket_id=ticket.id%}">{{ ticket.title }}</a>
 										</h3>
-										{% if ticket.reported_by == request.user %}
-										<a href="{% url 'edit_ticket' ticket_id=ticket.id %}"
-											class="btn btn-sm grey-btn" role="button">Edit</a>
-										<a href="{% url 'delete_ticket' ticket_id=ticket.id %}"
-											class="btn btn-sm red-btn" role="button">Delete</a>
-										{% endif %}
 										<p>{{ ticket.description }}</p>
 										{% if ticket.category == 'ISSUE' %}
 										<p class="issue-colour">{{ ticket.category }}</p>
