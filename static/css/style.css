@@ -185,6 +185,10 @@ a:hover {
 	margin-top: 22px;
 }
 
+.hover-purple:hover {
+    color: #330066;
+}
+
 /* Landing page styling */
 
 .top-div-home {
