@@ -39,7 +39,7 @@ I used the below user stories to help plan my features:
 - As a unicorn attractor developer I want to be able to update all tickets, move them to the appropriate queue and add additional information
 - As a unicorn attractor developer I want to be able to collect subscription payments securely and have a view of my subscribers
 - As a unicorn attractor developer I want to restrict access to the features module based on subscription level.
-- As a unicorn attractor developer I want to recieve messages from users via a contact form so I can act on them if necessary
+- As a unicorn attractor developer I want to receive messages from users via a contact form so I can act on them if necessary
 
 
 I also created some basic wireframes, which I used as the starting point for my designs.
@@ -121,6 +121,8 @@ The footer contains three social media icons (instagram, twitter and facebook)
     - If the user is not logged in, this button will show 'Sign up/Sign In' and will take the user to the sign up form.
     - If the user is logged in, this button with show 'Logout' and will log the user out and redirect them to the sign in form.
 
+- Download link
+    - As this is a fictional company the download link simply takes users to Google in a new tab
 
 ##### Find out more
 - The Find out more page contains some text about the fictional software company and contains two buttons.
@@ -128,6 +130,8 @@ The footer contains three social media icons (instagram, twitter and facebook)
 - Contact Us button
     - This button takes the user to the contact form
     - This contact form allows the user to fill in a name, email and message.
+    - If the user is logged in, their first and last name will automatically populate the 'Name' field and
+    their email will populate the 'Email' field.
     - Upon submission this form sends an email to the company's email address with the following template:
         Subject: Contact form
         Message:
@@ -177,6 +181,7 @@ The footer contains three social media icons (instagram, twitter and facebook)
     - Title, ticket description, ticket category (issue or feature), Votes, Priority
     - In addition when a user is logged in, the following links are also displayed:
     Issues:
+        - Edit and delete buttons if the logged in user created that ticket
         - Upvote or one of the following options depending on conditions:
             - User has already voted: 'You have already voted on this issue'
             - User created this ticket: 'You reported this issue'
@@ -186,6 +191,11 @@ The footer contains three social media icons (instagram, twitter and facebook)
         - Clicking 'Add Comment' redirects the user to the add comment form
         - Whenever a user upvotes an issue, their vote is added to that issue and they are returned to the full issue overview page.
     Features:
+        - Edit and delete buttons if the user created that feature ticket AND is still an active subscriber
+            - i.e. I was subscribed and created feature ticket A
+            - I cancelled my subscription but ticket A is still being worked on
+            - I can no longer edit or delete ticket A but I can still see it as one of my tickets
+            - Instead I will see a message to re-subscribe to have modify rights on this ticket
         - Upvote or one of the following options depending on conditions:
             - User is subscribed to features module and has already voted: 'You have already voted on this feature'
             - User is subscribed to features module and created this ticket: 'You requested this feature'
@@ -195,6 +205,9 @@ The footer contains three social media icons (instagram, twitter and facebook)
         - Clicking the comments drop down shows a list of comments for that issue or 'No comments yet'
         - Clicking 'Add Comment' redirects the user to the add comment form
         - Whenever a user upvotes a ticket, their vote is added to that ticket and they are returned to the full ticket overview page.
+- Exceptions:
+    - If the ticket is in the 'Completed' state , users will not be able to edit/delete their own tickets, upvote the issue/feature.
+    - Instead the ticket will show a 'Resolution notes' field which the developer can add to in the back-end.
 - If the user is signed in there will be two buttons, the first will say '+ Report an Issue' and direct the user to the report an issue form
 - The second will say either 'Subscribe+' (if user is not subscribed to features module) or 'Request a Feature' (if they are subscribed to the features module).
 - Within swimlanes issues are sorted by which has the highest number of votes. 
@@ -205,7 +218,7 @@ The footer contains three social media icons (instagram, twitter and facebook)
       select and collapse each of the three swimlanes to see tickets.
 
 ##### Full Ticket page
-- Users can open a ticket in a full page view by clicking on the title of that ticket.
+- Users can open a ticket in a full page view by clicking on the title of that ticket if logged in.
 - This takes them to the full ticket view, which contains the same ticket components as outlined above but in full page view.
 - Whenever a user upvotes a ticket they are returned to the ticket overview page.
 
@@ -298,8 +311,11 @@ An online favicon generator was used to create a favicon for my site.The favicon
 
 The online generator tool is available at: [https://www.favicongenerator.com/](https://www.favicongenerator.com/)
 
+I used this online tool to generate a Django secret key: [https://miniwebtool.com/django-secret-key-generator/](https://miniwebtool.com/django-secret-key-generator/)
+
 ### Database
 Postgresql was used as the database for this project, activated through Heroku :[https://www.postgresql.org/](https://www.postgresql.org/)
+During unit testing the sqlite database was used.
 
 ## Testing
 
@@ -317,7 +333,7 @@ I used Django's automated testing framework.
 #### What was tested:
 I tested the following and achieved the following coverages with automated testing:
 
-| TICKETS:              |            |         |          |
+| TICKETS:             |            |         |          |
 |----------------------|------------|---------|----------|
 | Module               | statements | missing | coverage |
 | tickets/admin.py     | 5          | 0       | 100%     |
@@ -443,8 +459,9 @@ Pip
 Open the command prompt / terminal on your computer
 Go to https://github.com/kmaaallen/unicorn-attractor-milestone and download the repository and unzip the file.
 Navigate to the working directory where the downloaded code is stored using the ‘cd’ command in command prompt or by opening the command prompt directly from the downloaded file in finder (mac)or windows explorer.
-Ensure all modules are imported from requirements.txt file using the following command:
-pip install -r requirements.txt (Python 2), or pip3 install -r requirements.txt (Python3)
+Ensure all modules are imported from requirements.txt file using one of the following commands:
+<pre><code>pip install -r requirements.txt (Python 2)</code></pre>
+<pre><code>pip3 install -r requirements.txt (Python3)</code></pre>
 
 1. You will need to create an env.py file to run this project locally. Use the following:
     <pre><code>$ touch env.py</code></pre>
@@ -476,4 +493,4 @@ $ python3 manage.py runserver
 The unicorn image used as the logo in the navigation came from Pixabay and can be viewed [here](https://pixabay.com/illustrations/unicorn-galaxy-unicorn-galaxy-star-2007266/)
 
 ## Acknowledgements
-Thank you as always to the Code Institute team and many contributors on Slack.
+Thank you as always to the Code Institute team and many contributors on Slack who more often than not had already answered my questions somewhere!
