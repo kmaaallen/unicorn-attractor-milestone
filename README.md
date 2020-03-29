@@ -355,10 +355,10 @@ I tested the following and achieved the following coverages with automated testi
 | home/forms.py          | 6          | 0       | 100%     |
 | home/models.py         | 5          | 0       | 100%     |
 | home/test_apps.py      | 7          | 0       | 100%     |
-| home/test_forms.py     | 25         | 0       | 100%     |
+| home/test_forms.py     | 32         | 0       | 100%     |
 | home/tests.py          | 35         | 0       | 100%     |
 | home/urls.py           | 3          | 0       | 100%     |
-| home/views.py          | 24         | 0       | 100%     |
+| home/views.py          | 26         | 0       | 100%     |
 | TOTAL                  | 115        | 0       | 100%     |
 
 | SUBSCRIPTIONS:                                |            |         |          |

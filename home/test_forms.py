@@ -2,6 +2,7 @@ from django.test import TestCase
 from home.forms import ContactForm
 from django.core import mail
 from django.conf import settings
+from django.contrib.auth.models import User
 
 
 class TestHomeForms(TestCase):
@@ -18,6 +19,21 @@ class TestHomeForms(TestCase):
         self.assertEqual(message.email, "mytestuser@example.com")
         self.assertEqual(message.message, "Here is my test message")
         self.assertTrue('contacted')
+
+    def test_valid_contact_form_data_logged_in(self):
+        # Set up and log in test user
+        test_user1 = User.objects.create_user(username='testuser',
+                                              password='password',
+                                              first_name='Test',
+                                              last_name='User',
+                                              email='mytestuser@example.com')
+        test_user1.save()
+        self.client.login(username='testuser', password='password')
+        # go to contact form
+        response = self.client.get('/home/contact/')
+        self.assertEqual(response.context['form'].initial['name'], 'Test User')
+        self.assertEqual(response.context['form'].initial['email'],
+                         'mytestuser@example.com')
 
     def test_blank_contact_form_data(self):
         form = ContactForm({})
