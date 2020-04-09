@@ -268,10 +268,11 @@ h1.landing-title {
 	float: right;
 	margin-right: 25px;
 	font-size: 20px;
+    padding-top: 10px;
 }
 
 .social-nav {
-	background-color: #f9f9f9;
+	background-color: #ccc;
 	box-shadow: none;
 }
 
