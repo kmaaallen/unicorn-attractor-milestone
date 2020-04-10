@@ -580,6 +580,15 @@ h1.landing-title {
     background-color: rgba(0,0,0,0.5);
 }
 
+/* Alert styling */
+.alert-success {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 50px;
+    padding-top: 15px;
+}
+
 
 
 /* Media Queries */

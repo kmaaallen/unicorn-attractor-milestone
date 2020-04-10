@@ -51,6 +51,7 @@ def new_subscription(request):
                 subscriber_group = Group.objects.get(name='Subscribers')
                 subscriber_group.user_set.add(request.user)
                 messages.error(request, "You have successfully subscribed.")
+                return render(request, "user_profile.html")
             except Subscriber.DoesNotExist:
                 try:
                     # Create new customer and subscription
@@ -75,9 +76,7 @@ def new_subscription(request):
                     subscriber_group.user_set.add(request.user)
                     messages.error(
                         request, "You have successfully subscribed.")
-                    return render(request, "subscribe.html",
-                                  {'form': subscribe_form,
-                                   'publishable': settings.STRIPE_PUBLISHABLE})
+                    return render(request, "user_profile.html")
                 except stripe.error.CardError:
                     messages.error(request, "Your card was declined.")
         else:
