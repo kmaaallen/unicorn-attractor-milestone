@@ -39,7 +39,7 @@
 				</div>
 			</div>
 			{% if user.is_authenticated %}
-			<div class="hidden-md hidden-lg hidden-xl margin-bottom">
+			<div class=" mobile-filters row hidden-md hidden-lg hidden-xl">
 				<a href="{% url 'my_tickets' %}"
 					class="purple-text float-right {% if request.path == '/tickets/my_tickets/'%}toggled{% endif %}"
 					id="my_features">My Tickets</a>
@@ -52,6 +52,14 @@
 				<a href="{% url 'tickets' %}"
 					class="purple-text float-right {% if request.path == '/tickets/'%}toggled{% endif %}"
 					id="all_tickets">All Tickets</a>
+			</div>
+			<div class="hidden-md hidden-lg hidden-xl margin-bottom">
+				<form id="searchformmobile" action="{% url 'search_tickets' %}" method="get" accept-charset="utf-8">
+					<input class="searchfield" id="searchboxmobile" name="q" type="text" placeholder="Search">
+					<button class="searchbuttonmobile" type="submit">
+				        <i class="fa fa-search"></i>
+				      </button>
+				</form>
 			</div>
 			<div class="row hidden-sm hidden-xs">
 				<a href="{% url 'my_tickets' %}"
@@ -66,6 +74,15 @@
 				<a href="{% url 'tickets' %}"
 					class="purple-text float-right {% if request.path == '/tickets/'%}toggled{% endif %}"
 					id="all_tickets">All Tickets</a>
+			</div>
+
+			<div class="hidden-sm hidden-xs">
+				<form id="searchform" action="{% url 'search_tickets' %}" method="get" accept-charset="utf-8">
+					<input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
+					<button class="searchbutton" type="submit">
+                    <i class="fa fa-search"></i>
+				      </button>
+				</form>
 			</div>
 			{% endif %}
 		</div>
