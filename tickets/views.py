@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Ticket, Vote, Comment
 from .forms import AddTicketForm, AddCommentForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.postgres.search import SearchVector, SearchQuery
 
 # Create your views here.
 
@@ -13,6 +14,18 @@ def all_tickets(request):
     }
     return render(request, "ticket_overview.html", {"tickets": tickets},
                   context)
+
+@login_required
+def search_tickets(request):
+    """ Display search results """
+    q = request.GET.get('q')
+    if q:
+        query = SearchQuery(q)
+        tickets = Ticket.objects.annotate(search=SearchVector('title', 'description'),).filter(search=query)
+    context = {
+        'ticket_view': 'search_results'
+    }
+    return render(request, "ticket_overview.html", {"tickets": tickets}, context)
 
 
 @login_required
@@ -33,7 +46,6 @@ def feature_tickets(request):
     }
     return render(request, "ticket_overview.html", {"tickets": tickets},
                   context)
-
 
 @login_required
 def issue_tickets(request):
