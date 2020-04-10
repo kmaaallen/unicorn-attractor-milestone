@@ -169,7 +169,7 @@ a:hover {
 
 .ticket-form-btn {
 	margin-top: 30px;
-    margin-left: 5px;
+    margin-left: 15px;
 	float: right;
 }
 
@@ -508,6 +508,41 @@ h1.landing-title {
 	margin-top: 50px;
 }
 
+/* Search form styling */
+#searchform {
+    float: right;
+    margin-right: -14px;
+}
+
+#searchformmobile {
+    float: right;
+}
+
+#searchbox, 
+#searchboxmobile {
+    width: 250px;
+    border-radius: 4px;
+    border-style: none;
+    border: 1px solid #ccc;
+    border-right: hidden;
+    margin-top: 5px;
+}
+
+#searchbox:focus,
+#searchboxmobile:focus  {
+    outline: none;
+}
+
+.searchbutton,
+.searchbuttonmobile {
+    margin-left: -10px;
+    border: 1px solid #ccc;
+    border-left: hidden;
+    border-top-right-radius: 4px;
+    height: 24px;
+    border-bottom-right-radius: 4px;
+}
+
 
 /* Media Queries */
 
@@ -522,7 +557,7 @@ h1.landing-title {
 	}
 	.card-header {
 		background: #cccccc;
-		border-radius: 24px;
+		border-radius: 4px;
 	}
 	.btn-link {
 		width: 100%;
@@ -533,4 +568,8 @@ h1.landing-title {
 		background-color: transparent;
 		outline: none;
 	}
+
+    .mobile-filters {
+        margin-right: 0px;
+    }
 }
