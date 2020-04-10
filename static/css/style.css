@@ -547,6 +547,40 @@ h1.landing-title {
     border-bottom-right-radius: 4px;
 }
 
+/* confirm modal styling */
+
+.modal-content {
+    width: 400px;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 55px;
+}
+
+#confirmText {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.modal-btn {
+    margin-left: 90px;
+    margin-top: 30px;
+}
+
+.overlay {
+    display: none;
+    height: 110%;
+    width: 100%;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.5);
+}
+
+
 
 /* Media Queries */
 
