@@ -343,7 +343,7 @@
 
 			<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
 				<div class="card-body">
-					<div class="col-md-4 swim-lane">
+					<div class="col-md-4 swim-lane-mobile">
 						<div class="lane-title-div">
 							{% for ticket in tickets|dictsortreversed:"votes" %}
 							{% if ticket.state == 'REQUESTED' or ticket.state == 'REPORTED' %}
@@ -450,7 +450,7 @@
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
 					<div class="card-body">
-						<div class="col-md-4 swim-lane">
+						<div class="col-md-4 swim-lane-mobile">
 							<div class="lane-title-div">
 								{% for ticket in tickets|dictsortreversed:"votes"  %}
 								{% if ticket.state == 'IN PROGRESS' %}
@@ -558,7 +558,7 @@
 				</div>
 				<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
 					<div class="card-body">
-						<div class="col-md-4 swim-lane">
+						<div class="col-md-4 swim-lane-mobile">
 							<div class="lane-title-div">
 								{% for ticket in tickets|dictsortreversed:"votes" %}
 								{% if ticket.state == 'COMPLETED' %}
