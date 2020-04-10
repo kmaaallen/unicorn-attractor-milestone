@@ -401,6 +401,10 @@ h1.landing-title {
     padding: 0 15px 0 15px; 
 }
 
+.swim-lane-mobile {
+    overflow-y: scroll;
+}
+
 .swim-lane-header {
 	background-color: #330066;
 	border: solid 2px #330066;
@@ -563,7 +567,7 @@ h1.landing-title {
 		width: 100%;
 	}
 	.btn-link:focus {
-		color: #ffffff;
+		color: #330066;
 		text-decoration: underline;
 		background-color: transparent;
 		outline: none;
