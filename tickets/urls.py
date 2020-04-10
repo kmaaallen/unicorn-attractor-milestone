@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from .views import all_tickets, my_tickets, report_issue, request_feature
 from .views import add_ticket_comment, upvote, full_ticket, edit_ticket
-from .views import delete_ticket, feature_tickets, issue_tickets
+from .views import delete_ticket, feature_tickets, issue_tickets, search_tickets
 
 urlpatterns = [
     url(r'^$', all_tickets, name="tickets"),
@@ -19,4 +19,5 @@ urlpatterns = [
         name='full_ticket'),
     url(r'^add_ticket_comment/(?P<ticket_id>[0-9]+)/$', add_ticket_comment,
         name='add_ticket_comment'),
+    url(r'^search_tickets/', search_tickets, name="search_tickets"),
 ]
