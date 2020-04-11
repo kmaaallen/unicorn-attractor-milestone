@@ -581,12 +581,26 @@ h1.landing-title {
 }
 
 /* Alert styling */
+.alert {
+    border-radius: 0;
+}
+
 .alert-success {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
     min-height: 50px;
     padding-top: 15px;
+}
+
+.alert-error {
+    background-color: #f2dede;
+    border-color: #cc0000;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 50px;
+    padding-top: 15px; 
 }
 
 
