@@ -150,7 +150,8 @@ a:hover {
     font-weight: 600;
 }
 
-.red-btn:hover {
+.red-btn:hover,
+.red-btn:focus {
     color: #990000; 
     border: 2px solid #990000;
 }
@@ -162,7 +163,8 @@ a:hover {
     font-weight: 600;
 }
 
-.grey-btn:hover {
+.grey-btn:hover,
+.grey-btn:focus {
     border: 2px solid #555;
     color: #555; 
 }
@@ -573,7 +575,7 @@ h1.landing-title {
     display: none;
     height: 110%;
     width: 100%;
-    position: absolute;
+    position: fixed;
     top: 50px;
     left: 0;
     z-index: 10;
@@ -583,6 +585,9 @@ h1.landing-title {
 /* Alert styling */
 .alert {
     border-radius: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 100;
 }
 
 .alert-success {
@@ -591,6 +596,7 @@ h1.landing-title {
     margin-right: auto;
     min-height: 50px;
     padding-top: 15px;
+    border: 1px solid #006a00;
 }
 
 .alert-error {
