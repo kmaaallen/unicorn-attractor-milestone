@@ -212,6 +212,7 @@ The footer contains three social media icons (instagram, twitter and facebook)
 - The second will say either 'Subscribe+' (if user is not subscribed to features module) or 'Request a Feature' (if they are subscribed to the features module).
 - Within swimlanes issues are sorted by which has the highest number of votes. 
 - A logged in user can toggle between 'All Tickets', 'Issues', 'Features' and 'My Tickets' that are displayed in the swimlanes. 
+- A logged in user can also use the search box to search for keywords across ticket titles and descriptions
 
 - Mobile view
     - On small and extra small screens this kanban-style board changes into three toggle buttons, which allow the user to
@@ -243,9 +244,9 @@ The footer contains three social media icons (instagram, twitter and facebook)
 ##### Subscribe form
 - The subscribe form allows logged in users to sign up to a monthly subscription managed through Stripe.
 - The user can input their card details which will be securely handled by stripe.
-- Once subscribed the user sees a message at the top of the subscribe form 'You have successfully subscribed'
+- Once subscribed the user is redirected to user profile and sees a message at the top of the screen 'You have successfully subscribed'
 - If there are any errors with the card or submititng the form error message will appear.
-- This same form is used to allow subscribed users to update their card details.
+- This same form is used to allow subscribed users to update their card details with a similar "You have successfully updated your card details" message.
 
 ##### Features Left to Implement
 - User profile picture
