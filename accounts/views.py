@@ -49,11 +49,13 @@ def sign_up(request):
 
             if user:
                 auth.login(user=user, request=request)
-                messages.success(request, "You have successfully signed up")
+                messages.success(request, "You have successfully signed up",
+                                 extra_tags='alert-success')
                 return render(request, 'more.html')
             else:
                 messages.error(
-                    request, "Unable to sign you up at this time")
+                    request, "Unable to sign you up at this time",
+                    extra_tags='alert-error')
     else:
         sign_up_form = UserSignUpForm()
     return render(request, 'sign_up.html', {"sign_up_form": sign_up_form})

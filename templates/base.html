@@ -77,7 +77,7 @@
 	</div>
 
 	{% if messages %}
-	<div class="alert alert-success" id="message" role="alert">
+	<div class="alert {{ message.tags }}" id="message" role="alert">
 		<div class="messages purple-text">
 			{% for message in messages %}
 			{{ message }}

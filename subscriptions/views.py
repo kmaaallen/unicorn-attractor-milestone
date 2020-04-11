@@ -50,7 +50,8 @@ def new_subscription(request):
                     user=request.user.id).update(active=True)
                 subscriber_group = Group.objects.get(name='Subscribers')
                 subscriber_group.user_set.add(request.user)
-                messages.success(request, "You have successfully subscribed.")
+                messages.success(request, "You have successfully subscribed.",
+                                 extra_tags='alert-success')
                 return render(request, "user_profile.html")
             except Subscriber.DoesNotExist:
                 try:
@@ -75,12 +76,15 @@ def new_subscription(request):
                     subscriber_group = Group.objects.get(name='Subscribers')
                     subscriber_group.user_set.add(request.user)
                     messages.success(
-                        request, "You have successfully subscribed.")
+                        request, "You have successfully subscribed.",
+                        extra_tags='alert-success')
                     return render(request, "user_profile.html")
                 except stripe.error.CardError:
-                    messages.error(request, "Your card was declined.")
+                    messages.error(request, "Your card was declined.",
+                                   extra_tags='alert-error')
         else:
-            messages.error(request, "We were unable to take a payment.")
+            messages.error(request, "We were unable to take a payment.",
+                           extra_tags='alert-error')
     else:
         subscribe_form = SubscriptionForm
 
@@ -104,7 +108,8 @@ def unsubscribe(request):
     subscriber_group.user_set.remove(request.user)
     # Set as inactive in Subscriber model for info
     Subscriber.objects.filter(user=request.user.id).update(active=False)
-    messages.success(request, "You have successfully unsubscribed")
+    messages.success(request, "You have successfully unsubscribed",
+                     extra_tags='alert-success')
     return render(request, "user_profile.html")
 
 
@@ -131,9 +136,12 @@ def update_card_details(request):
                 )
                 Subscriber.objects.filter(
                     user=request.user.id).update(card_id=card.id)
-                messages.success(request, "You have successfully updated your card details")
+                messages.success(request, "You have successfully" +
+                                 "updated your card details",
+                                 extra_tags='alert-success')
             except stripe.error.CardError:
-                messages.error(request, "Unable to update card details.")
+                messages.error(request, "Unable to update card details.",
+                               extra_tags='alert-error')
             return render(request, "user_profile.html")
     else:
         subscribe_form = SubscriptionForm

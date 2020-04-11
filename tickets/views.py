@@ -125,7 +125,7 @@ def delete_ticket(request, ticket_id):
     title = ticket.title
     ticket.delete()
     messages.success(request, "You have successfully deleted your ticket: "
-                   + "'" + title + "'")
+                   + "'" + title + "'", extra_tags='alert-success')
     return redirect('tickets')
 
 
