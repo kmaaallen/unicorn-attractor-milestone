@@ -50,7 +50,7 @@ def new_subscription(request):
                     user=request.user.id).update(active=True)
                 subscriber_group = Group.objects.get(name='Subscribers')
                 subscriber_group.user_set.add(request.user)
-                messages.error(request, "You have successfully subscribed.")
+                messages.success(request, "You have successfully subscribed.")
                 return render(request, "user_profile.html")
             except Subscriber.DoesNotExist:
                 try:
@@ -74,7 +74,7 @@ def new_subscription(request):
                                               active=True)
                     subscriber_group = Group.objects.get(name='Subscribers')
                     subscriber_group.user_set.add(request.user)
-                    messages.error(
+                    messages.success(
                         request, "You have successfully subscribed.")
                     return render(request, "user_profile.html")
                 except stripe.error.CardError:
@@ -104,7 +104,7 @@ def unsubscribe(request):
     subscriber_group.user_set.remove(request.user)
     # Set as inactive in Subscriber model for info
     Subscriber.objects.filter(user=request.user.id).update(active=False)
-
+    messages.success(request, "You have successfully unsubscribed")
     return render(request, "user_profile.html")
 
 
@@ -131,6 +131,7 @@ def update_card_details(request):
                 )
                 Subscriber.objects.filter(
                     user=request.user.id).update(card_id=card.id)
+                messages.success(request, "You have successfully updated your card details")
             except stripe.error.CardError:
                 messages.error(request, "Unable to update card details.")
             return render(request, "user_profile.html")
