@@ -110,6 +110,9 @@ def edit_ticket(request, ticket_id):
         if form.is_valid():
             ticket = form.save()
             ticket.save()
+            title = ticket.title
+            messages.success(request, "You have successfully updated ticket: "
+                             + "'" + title + "'", extra_tags='alert-success')
             return redirect('tickets')
     else:
         form = AddTicketForm(instance=ticket)
