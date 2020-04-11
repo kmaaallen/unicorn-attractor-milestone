@@ -345,8 +345,12 @@ I tested the following and achieved the following coverages with automated testi
 | tickets/test_forms.py| 80         | 0       | 100%     |
 | tickets/tests.py     | 144        | 0       | 100%     |
 | tickets/urls.py      | 5          | 0       | 100%     |
-| tickets/views.py     | 91         | 0       | 100%     |
-| TOTAL                | 401        | 0       | 100%     |
+| tickets/views.py     | 104        | 6       | 94%      |
+| TOTAL                | 401        | 0       | 99%      |
+
+For the tickets app, the lines in views.py not tested with coverage are the search query view.
+This view uses django.contrib.postgres.search, as coverage tests are run on the sqlite database,
+this view cannot be tested here. It can however be tested manually.
 
 
 | ACCOUNTS:              |            |         |          |
