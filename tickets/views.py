@@ -16,6 +16,7 @@ def all_tickets(request):
     return render(request, "ticket_overview.html", {"tickets": tickets},
                   context)
 
+
 @login_required
 def search_tickets(request):
     """ Display search results from query across title and description fields"""
