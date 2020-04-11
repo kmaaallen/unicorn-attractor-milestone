@@ -3,6 +3,7 @@ from .models import Ticket, Vote, Comment
 from .forms import AddTicketForm, AddCommentForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.postgres.search import SearchVector, SearchQuery
+from django.contrib import messages
 
 # Create your views here.
 
@@ -17,7 +18,7 @@ def all_tickets(request):
 
 @login_required
 def search_tickets(request):
-    """ Display search results """
+    """ Display search results from query across title and description fields"""
     q = request.GET.get('q')
     if q:
         query = SearchQuery(q)
@@ -121,7 +122,10 @@ def delete_ticket(request, ticket_id):
     Create a view that allows users to delete their own tickets
     """
     ticket = get_object_or_404(Ticket, pk=ticket_id)
+    title = ticket.title
     ticket.delete()
+    messages.success(request, "You have successfully deleted your ticket: "
+                   + "'" + title + "'")
     return redirect('tickets')
 
 
