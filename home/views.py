@@ -4,26 +4,29 @@ from django.core.mail import send_mail
 from django.conf import settings
 
 
-# Create your views here.
-
-
 def landing_page(request):
-    """
-    A view that displays the landing page
+    """A view that displays the landing page
+
+    Arguments:
+    request = HttpRequest object
     """
     return render(request, 'index.html')
 
 
 def find_out_more(request):
-    """
-    A view that displays the find out more page
+    """A view that displays the find out more page
+
+    Arguments:
+    request = HttpRequest object
     """
     return render(request, 'more.html')
 
 
 def contact_us(request):
-    """
-    A view that displays the contact us page and sends email
+    """A view that displays the contact us page and sends email
+
+    Arguments:
+    request = HttpRequest object
     """
     if request.method == 'POST':
         contact_form = ContactForm(request.POST)
@@ -53,8 +56,10 @@ def contact_us(request):
 
 
 def thanks(request):
-    """
-    A view that displays the thank you message after using contact form
+    """A view that displays the thank you message after using contact form
+
+    Arguments:
+    request = HttpRequest object
     """
     if 'contacted' in request.session:
         return render(request, 'thanks.html')
