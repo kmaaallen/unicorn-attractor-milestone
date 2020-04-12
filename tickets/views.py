@@ -5,10 +5,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.postgres.search import SearchVector, SearchQuery
 from django.contrib import messages
 
-# Create your views here.
-
 
 def all_tickets(request):
+    """ Returns all tickets
+
+    Arguments:
+    request = HttpRequest object
+    """
     tickets = Ticket.objects.all()
     context = {
         'ticket_view': 'all'
@@ -19,19 +22,30 @@ def all_tickets(request):
 
 @login_required
 def search_tickets(request):
-    """ Display search results from query across title and description fields"""
+    """ Display results matching'q' search term
+
+    Arguments:
+    request = HttpRequest object
+    """
     q = request.GET.get('q')
     if q:
         query = SearchQuery(q)
-        tickets = Ticket.objects.annotate(search=SearchVector('title', 'description'),).filter(search=query)
+        tickets = Ticket.objects.annotate(search=SearchVector('title',
+                                          'description'),).filter(search=query)
     context = {
         'ticket_view': 'search_results'
     }
-    return render(request, "ticket_overview.html", {"tickets": tickets}, context)
+    return render(request, "ticket_overview.html", {"tickets": tickets},
+                  context)
 
 
 @login_required
 def my_tickets(request):
+    """ Display tickets user created
+
+    Arguments:
+    request = HttpRequest object
+    """
     tickets = Ticket.objects.filter(reported_by=request.user)
     context = {
         'ticket_view': 'mine'
@@ -42,6 +56,11 @@ def my_tickets(request):
 
 @login_required
 def feature_tickets(request):
+    """ Display tickets with category 'feature'
+
+    Arguments:
+    request = HttpRequest object
+    """
     tickets = Ticket.objects.filter(category='FEATURE')
     context = {
         'ticket_view': 'features'
@@ -49,8 +68,14 @@ def feature_tickets(request):
     return render(request, "ticket_overview.html", {"tickets": tickets},
                   context)
 
+
 @login_required
 def issue_tickets(request):
+    """ Display tickets with category 'issue'
+
+    Arguments:
+    request = HttpRequest object
+    """
     tickets = Ticket.objects.filter(category='ISSUE')
     context = {
         'ticket_view': 'issues'
@@ -61,8 +86,11 @@ def issue_tickets(request):
 
 @login_required
 def report_issue(request, pk=None):
-    """
-    Create a view that allows users to report an issue
+    """Allows users to report an issue
+
+    Arguments:
+    request = HttpRequest object
+    pk = unique identifier for ticket, will be none for new ticket
     """
     issue = get_object_or_404(Ticket, pk=pk) if pk else None
     if request.method == 'POST':
@@ -80,8 +108,11 @@ def report_issue(request, pk=None):
 
 @login_required(redirect_field_name=None)
 def request_feature(request, pk=None):
-    """
-    Create a view that allows users to request a feature
+    """Allows subscribed users to request a feature
+
+    Arguments:
+    request = HttpRequest object
+    pk = unique identifier for ticket, will be none for new ticket
     """
     if request.user.groups.filter(name='Subscribers').exists():
         feature = get_object_or_404(Ticket, pk=pk) if pk else None
@@ -102,8 +133,11 @@ def request_feature(request, pk=None):
 
 @login_required
 def edit_ticket(request, ticket_id):
-    """
-    Create a view that allows users to edit their own tickets
+    """Allows users to edit their own tickets
+
+    Arguments:
+    request = HttpRequest object
+    ticket_id = unique identifier for ticket
     """
     ticket = get_object_or_404(Ticket, pk=ticket_id)
     if request.method == 'POST':
@@ -112,8 +146,9 @@ def edit_ticket(request, ticket_id):
             ticket = form.save()
             ticket.save()
             title = ticket.title
-            messages.success(request, "You have successfully updated ticket: "
-                             + "'" + title + "'", extra_tags='alert-success')
+            messages.success(request, "You have successfully "
+                             "updated ticket: '" + title + "'",
+                             extra_tags='alert-success')
             return redirect('tickets')
     else:
         form = AddTicketForm(instance=ticket)
@@ -122,21 +157,27 @@ def edit_ticket(request, ticket_id):
 
 @login_required
 def delete_ticket(request, ticket_id):
-    """
-    Create a view that allows users to delete their own tickets
+    """Allows users to delete their own tickets
+
+    Arguments:
+    request = HttpRequest object
+    ticket_id = unique identifier for ticket
     """
     ticket = get_object_or_404(Ticket, pk=ticket_id)
     title = ticket.title
     ticket.delete()
     messages.success(request, "You have successfully deleted your ticket: "
-                   + "'" + title + "'", extra_tags='alert-success')
+                     "'" + title + "'", extra_tags='alert-success')
     return redirect('tickets')
 
 
 @login_required
 def full_ticket(request, ticket_id):
-    """
-    Create a view that allows users to view an ticket in full page
+    """Allows users to view an ticket in full page
+
+    Arguments:
+    request = HttpRequest object
+    ticket_id = unique identifier for ticket
     """
     ticket = get_object_or_404(Ticket, pk=ticket_id)
     return render(request, 'full_ticket.html', {"ticket": ticket})
@@ -144,8 +185,12 @@ def full_ticket(request, ticket_id):
 
 @login_required
 def add_ticket_comment(request, ticket_id, pk=None):
-    """
-    Add a comment to a ticket
+    """Allow logged in user to add a comment to a ticket
+
+    Arguments:
+    request = HttpRequest object
+    ticket_id = unique identifier for ticket
+    pk = unique identifier for comment, will be none for new comments
     """
     ticket = get_object_or_404(Ticket, pk=ticket_id)
     commenter = request.user
@@ -167,8 +212,11 @@ def add_ticket_comment(request, ticket_id, pk=None):
 
 @login_required
 def upvote(request, ticket_id):
-    """
-    Upvote a ticket if not already voted
+    """Allow user to upvote a ticket if not already voted
+
+    Arguments:
+    request = HttpRequest object
+    ticket_id = unique identifier for ticket
     """
     ticket = get_object_or_404(Ticket, pk=ticket_id)
     voter = request.user
