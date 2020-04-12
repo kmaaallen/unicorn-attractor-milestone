@@ -6,13 +6,21 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def sign_out(request):
-    """Logs out user"""
+    """Logs out user
+
+    Arguments:
+    request = HttpRequest object
+    """
     auth.logout(request)
     return redirect(reverse('sign_in'))
 
 
 def sign_in(request):
-    """ Return sign up template """
+    """ Return sign in template
+
+    Arguments:
+    request = HttpRequest object
+    """
     if request.user.is_authenticated:
         return redirect('landing_page')
     if request.method == "POST":
@@ -34,7 +42,11 @@ def sign_in(request):
 
 
 def sign_up(request):
-    """ render the sign up page """
+    """ render the sign up page
+
+    Arguments:
+    request = HttpRequest object
+    """
     if request.user.is_authenticated:
         return redirect('landing_page')
 
@@ -63,8 +75,10 @@ def sign_up(request):
 
 @login_required
 def user_profile(request):
-    """
-    User's profile page
+    """Show user's profile page
+
+    Arguments:
+    request = HttpRequest object
     """
     user = request.user
     return render(request, 'user_profile.html', {"user": user})
