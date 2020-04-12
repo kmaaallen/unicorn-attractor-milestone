@@ -13,9 +13,12 @@ stripe.api_key = settings.STRIPE_SECRET
 
 @login_required
 def new_subscription(request):
+    """Allow users to subscribe to feature support/requests
+
+    Arguments:
+    request = HttpRequest object
     """
-    Create a view that allows users to subscribe to feature support/requests
-    """
+    # Stripe subscription plan
     plan = "plan_GRYCbL4JOJXYi1"
     # redirect users if they are already subscribed so they cannot access form
     user = request.user
@@ -26,7 +29,7 @@ def new_subscription(request):
         subscribe_form = SubscriptionForm(request.POST)
         if subscribe_form.is_valid():
             try:
-                # See if customer already exists in Subscriber model
+                # see if customer already exists in Subscriber model
                 subscriber = Subscriber.objects.get(user=request.user.id)
                 # add new card details and update subscriber data
                 customer = stripe.Customer.modify(
@@ -95,8 +98,10 @@ def new_subscription(request):
 
 @login_required
 def unsubscribe(request):
-    """
-    Create a view that allows users to unsubscribe to feature support/requests
+    """Allow users to unsubscribe to feature support/requests
+
+    Arguments:
+    request = HttpRequest object
     """
     subscriber = Subscriber.objects.get(user=request.user.id)
     subscription = subscriber.subscription_id
@@ -106,7 +111,7 @@ def unsubscribe(request):
     # Remove user from subscriber group to
     # revoke access to add and upvote on features
     subscriber_group.user_set.remove(request.user)
-    # Set as inactive in Subscriber model for info
+    # Set as inactive in Subscriber model for admin info
     Subscriber.objects.filter(user=request.user.id).update(active=False)
     messages.success(request, "You have successfully unsubscribed",
                      extra_tags='alert-success')
@@ -115,9 +120,10 @@ def unsubscribe(request):
 
 @login_required
 def update_card_details(request):
-    """
-    Create a view that allows subscribed users to update
-    card details for taking subscription payment
+    """Allows subscribed users to update card details
+
+    Arguments:
+    request = HttpRequest object
     """
     if request.method == 'POST':
         subscribe_form = SubscriptionForm(request.POST)
