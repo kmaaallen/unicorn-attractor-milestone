@@ -53,7 +53,7 @@
 					class="purple-text float-right {% if request.path == '/tickets/'%}toggled{% endif %}"
 					id="all_tickets">All Tickets</a>
 			</div>
-			<div class="hidden-md hidden-lg hidden-xl margin-bottom">
+			<div class="hidden-md hidden-lg hidden-xl row searchform">
 				<form id="searchformmobile" action="{% url 'search_tickets' %}" method="get" accept-charset="utf-8">
 					<input class="searchfield" id="searchboxmobile" name="q" type="text" placeholder="Search">
 					<button class="searchbuttonmobile" type="submit">
