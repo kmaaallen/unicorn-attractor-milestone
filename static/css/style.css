@@ -524,10 +524,6 @@ button#dropdownMenuButton:focus {
     margin-right: -14px;
 }
 
-#searchformmobile {
-    float: right;
-}
-
 #searchbox, 
 #searchboxmobile {
     width: 250px;
