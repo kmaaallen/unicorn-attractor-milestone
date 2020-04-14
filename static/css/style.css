@@ -295,7 +295,7 @@ h1.landing-title {
 	left: -100px;
 	right: -1px;
 	top: 47px;
-	border-radius: 0px;
+	border-radius: 4px;
 }
 
 .dropdown-menu>li>a {
@@ -328,6 +328,10 @@ h1.landing-title {
 	text-decoration: underline;
 	color: #330066;
 	text-shadow: none;
+}
+
+button#dropdownMenuButton:focus {
+    color: #330066;
 }
 
 
@@ -637,6 +641,11 @@ h1.landing-title {
 	}
 
     .mobile-filters {
-        margin-right: 0px;
+        padding-left: 5px;
+        float: left;
+    }
+
+    .searchform {
+        margin-left: 5px;
     }
 }
