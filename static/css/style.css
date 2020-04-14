@@ -646,6 +646,8 @@ button#dropdownMenuButton:focus {
     }
 
     .searchform {
-        margin-left: 5px;
+        width: 100%;
+        float: left;
+        margin-left: 0px;
     }
 }
