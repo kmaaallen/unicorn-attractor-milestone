@@ -4,6 +4,7 @@ from .forms import AddTicketForm, AddCommentForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.postgres.search import SearchVector, SearchQuery
 from django.contrib import messages
+from django.db.models import Q
 
 
 def all_tickets(request):
@@ -12,11 +13,17 @@ def all_tickets(request):
     Arguments:
     request = HttpRequest object
     """
-    tickets = Ticket.objects.all()
+    reported_tickets = Ticket.objects.filter(Q(state='REPORTED') |
+                                             Q(state='REQUESTED'))
+    working_tickets = Ticket.objects.filter(state='IN PROGRESS')
+    completed_tickets = Ticket.objects.filter(state='COMPLETED')
     context = {
         'ticket_view': 'all'
     }
-    return render(request, "ticket_overview.html", {"tickets": tickets},
+    return render(request, "ticket_overview.html",
+                  {"reported_tickets": reported_tickets,
+                   "working_tickets": working_tickets,
+                   "completed_tickets": completed_tickets},
                   context)
 
 
@@ -32,10 +39,18 @@ def search_tickets(request):
         query = SearchQuery(q)
         tickets = Ticket.objects.annotate(search=SearchVector('title',
                                           'description'),).filter(search=query)
+        reported_tickets = tickets.filter(Q(state='REPORTED') | Q(state='REQUESTED'))
+        working_tickets = tickets.filter(state='IN PROGRESS')
+        completed_tickets = tickets.filter(state='COMPLETED')
         context = {
             'ticket_view': 'search_results'
         }
-    return render(request, "ticket_overview.html", {"tickets": tickets, "search_query": q},
+    return render(request, "ticket_overview.html",
+                  {"tickets": tickets,
+                   "reported_tickets": reported_tickets,
+                   "working_tickets": working_tickets,
+                   "completed_tickets": completed_tickets,
+                   "search_query": q},
                   context)
 
 
@@ -47,10 +62,17 @@ def my_tickets(request):
     request = HttpRequest object
     """
     tickets = Ticket.objects.filter(reported_by=request.user)
+    reported_tickets = tickets.filter(Q(state='REPORTED') |
+                                             Q(state='REQUESTED'))
+    working_tickets = tickets.filter(state='IN PROGRESS')
+    completed_tickets = tickets.filter(state='COMPLETED')
     context = {
         'ticket_view': 'mine'
     }
-    return render(request, "ticket_overview.html", {"tickets": tickets},
+    return render(request, "ticket_overview.html",
+                  {"reported_tickets": reported_tickets,
+                   "working_tickets": working_tickets,
+                   "completed_tickets": completed_tickets},
                   context)
 
 
@@ -62,12 +84,17 @@ def feature_tickets(request):
     request = HttpRequest object
     """
     tickets = Ticket.objects.filter(category='FEATURE')
+    reported_tickets = tickets.filter(Q(state='REPORTED') | Q(state='REQUESTED'))
+    working_tickets = tickets.filter(state='IN PROGRESS')
+    completed_tickets = tickets.filter(state='COMPLETED')
     context = {
         'ticket_view': 'features'
     }
-    return render(request, "ticket_overview.html", {"tickets": tickets},
+    return render(request, "ticket_overview.html",
+                  {"reported_tickets": reported_tickets,
+                   "working_tickets": working_tickets,
+                   "completed_tickets": completed_tickets},
                   context)
-
 
 @login_required
 def issue_tickets(request):
@@ -77,10 +104,16 @@ def issue_tickets(request):
     request = HttpRequest object
     """
     tickets = Ticket.objects.filter(category='ISSUE')
+    reported_tickets = tickets.filter(Q(state='REPORTED') | Q(state='REQUESTED'))
+    working_tickets = tickets.filter(state='IN PROGRESS')
+    completed_tickets = tickets.filter(state='COMPLETED')
     context = {
         'ticket_view': 'issues'
     }
-    return render(request, "ticket_overview.html", {"tickets": tickets},
+    return render(request, "ticket_overview.html",
+                  {"reported_tickets": reported_tickets,
+                   "working_tickets": working_tickets,
+                   "completed_tickets": completed_tickets},
                   context)
 
 
