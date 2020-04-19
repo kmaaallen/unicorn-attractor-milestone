@@ -98,11 +98,10 @@
 	<div class="row hidden-xs hidden-sm">
 		<div class="col-md-4 no-col-padding">
 			<div class="swim-lane-header">
-				<h3 class="white-text">Reported / Requested</h3>
+				<h3 class="white-text">Reported / Requested ({{reported_tickets.count}})</h3>
 			</div>
 			<div class="swim-lane">
-				{% for ticket in tickets|dictsortreversed:"votes" %}
-				{% if ticket.state == 'REQUESTED' or ticket.state == 'REPORTED' %}
+				{% for ticket in reported_tickets|dictsortreversed:"votes" %}
 				<div class="col-xs-12 display panel panel-default">
 					<div class="panel-body">
 						<h3><a class="grey-link"
@@ -185,17 +184,15 @@
 						{% endif %}
 					</div>
 				</div>
-				{% endif %}
 				{% endfor %}
 			</div>
 		</div>
 		<div class="col-md-4 no-col-padding">
 			<div class="swim-lane-header">
-				<h3 class="white-text">In Progress</h3>
+				<h3 class="white-text">In Progress ({{working_tickets.count}})</h3>
 			</div>
 			<div class="swim-lane">
-				{% for ticket in tickets|dictsortreversed:"votes"  %}
-				{% if ticket.state == 'IN PROGRESS' %}
+				{% for ticket in working_tickets|dictsortreversed:"votes"  %}
 				<div class="col-xs-12 display panel panel-default">
 					<div class="panel-body">
 						<h3><a class="grey-link"
@@ -279,17 +276,15 @@
 						{% endif %}
 					</div>
 				</div>
-				{% endif %}
 				{% endfor %}
 			</div>
 		</div>
 		<div class="col-md-4 no-col-padding">
 			<div class="swim-lane-header">
-				<h3 class="white-text">Completed</h3>
+				<h3 class="white-text">Completed ({{completed_tickets.count}})</h3>
 			</div>
 			<div class="swim-lane">
-				{% for ticket in tickets|dictsortreversed:"votes" %}
-				{% if ticket.state == 'COMPLETED' %}
+				{% for ticket in completed_tickets|dictsortreversed:"votes" %}
 				<div class="col-xs-12 display panel panel-default">
 					<div class="panel-body">
 						<h3><a class="grey-link"
@@ -331,7 +326,6 @@
 						{% endif %}
 					</div>
 				</div>
-				{% endif %}
 				{% endfor %}
 			</div>
 		</div>
@@ -343,7 +337,7 @@
 			<div class="card-header" id="headingOne">
 				<h5 class="mb-0">
 					<button class="btn btn-link purple-text hover-purple" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-        Reported / Requested
+        Reported / Requested ({{reported_tickets.count}})
         <i class="fa fa-caret-down"></i>
     </button>
 				</h5>
@@ -353,8 +347,7 @@
 				<div class="card-body">
 					<div class="col-md-4 swim-lane-mobile">
 						<div class="lane-title-div">
-							{% for ticket in tickets|dictsortreversed:"votes" %}
-							{% if ticket.state == 'REQUESTED' or ticket.state == 'REPORTED' %}
+							{% for ticket in reported_tickets|dictsortreversed:"votes" %}
 							<div class="col-xs-12 display panel panel-default">
 								<div class="panel-body">
 									<h3><a class="grey-link"
@@ -441,7 +434,6 @@
 									{% endif %}
 								</div>
 							</div>
-							{% endif %}
 							{% endfor %}
 						</div>
 					</div>
@@ -451,7 +443,7 @@
 				<div class="card-header" id="headingTwo">
 					<h5 class="mb-0">
 						<button class="btn btn-link collapsed purple-text hover-purple" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        In Progress
+        In Progress ({{working_tickets.count}})
         <i class="fa fa-caret-down"></i>
     </button>
 					</h5>
@@ -460,8 +452,7 @@
 					<div class="card-body">
 						<div class="col-md-4 swim-lane-mobile">
 							<div class="lane-title-div">
-								{% for ticket in tickets|dictsortreversed:"votes"  %}
-								{% if ticket.state == 'IN PROGRESS' %}
+								{% for ticket in working_tickets|dictsortreversed:"votes"  %}
 								<div class="col-xs-12 display panel panel-default">
 									<div class="panel-body">
 										<h3><a class="grey-link"
@@ -548,7 +539,6 @@
 										{% endif %}
 									</div>
 								</div>
-								{% endif %}
 								{% endfor %}
 							</div>
 						</div>
@@ -559,7 +549,7 @@
 				<div class="card-header" id="headingThree">
 					<h5 class="mb-0">
 						<button class="btn btn-link collapsed purple-text hover-purple" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        Completed
+        Completed ({{completed_tickets.count}})
         <i class="fa fa-caret-down"></i>
     </button>
 					</h5>
@@ -569,7 +559,6 @@
 						<div class="col-md-4 swim-lane-mobile">
 							<div class="lane-title-div">
 								{% for ticket in tickets|dictsortreversed:"votes" %}
-								{% if ticket.state == 'COMPLETED' %}
 								<div class="col-xs-12 display panel panel-default">
 									<div class="panel-body">
 										<h3><a class="grey-link"
@@ -612,7 +601,6 @@
 										{% endif %}
 									</div>
 								</div>
-								{% endif %}
 								{% endfor %}
 							</div>
 						</div>
