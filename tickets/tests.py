@@ -42,7 +42,7 @@ class TestTicketsPages(TestCase):
         self.assertEqual(response.status_code, 200)
         # Check correct template
         self.assertTemplateUsed(response, 'ticket_overview.html')
-        self.assertQuerysetEqual(response.context['tickets'],
+        self.assertQuerysetEqual(response.context['reported_tickets'],
                                  ['<Ticket: test issue>'])
 
     def test_feature_tickets_page(self):
@@ -70,7 +70,7 @@ class TestTicketsPages(TestCase):
         self.assertEqual(response.status_code, 200)
         # Check correct template
         self.assertTemplateUsed(response, 'ticket_overview.html')
-        self.assertQuerysetEqual(response.context['tickets'],
+        self.assertQuerysetEqual(response.context['reported_tickets'],
                                  ['<Ticket: test issue 2>'])
 
     def test_issue_tickets_page(self):
@@ -98,7 +98,7 @@ class TestTicketsPages(TestCase):
         self.assertEqual(response.status_code, 200)
         # Check correct template
         self.assertTemplateUsed(response, 'ticket_overview.html')
-        self.assertQuerysetEqual(response.context['tickets'],
+        self.assertQuerysetEqual(response.context['reported_tickets'],
                                  ['<Ticket: test issue 1>'])
 
     def test_add_issue_page_logged_in_user(self):
