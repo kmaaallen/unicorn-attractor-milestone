@@ -394,6 +394,10 @@ button#dropdownMenuButton:focus {
 	text-decoration: underline;
 }
 
+.help-block {
+    display: none;
+}
+
 
 /* tickets board */
 
@@ -521,7 +525,6 @@ button#dropdownMenuButton:focus {
 /* Search form styling */
 #searchform {
     float: right;
-    margin-right: -14px;
 }
 
 #searchbox, 
@@ -547,6 +550,12 @@ button#dropdownMenuButton:focus {
     border-top-right-radius: 4px;
     height: 24px;
     border-bottom-right-radius: 4px;
+}
+
+.search-query-text {
+    padding-left: 0px;
+    padding-right: 0px;
+    text-align: right;
 }
 
 /* confirm modal styling */
@@ -645,5 +654,10 @@ button#dropdownMenuButton:focus {
         width: 100%;
         float: left;
         margin-left: 0px;
+    }
+
+    .search-query-text {
+        padding-left: 15px;
+        text-align: left;
     }
 }
