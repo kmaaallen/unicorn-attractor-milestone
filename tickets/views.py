@@ -32,10 +32,10 @@ def search_tickets(request):
         query = SearchQuery(q)
         tickets = Ticket.objects.annotate(search=SearchVector('title',
                                           'description'),).filter(search=query)
-    context = {
-        'ticket_view': 'search_results'
-    }
-    return render(request, "ticket_overview.html", {"tickets": tickets},
+        context = {
+            'ticket_view': 'search_results'
+        }
+    return render(request, "ticket_overview.html", {"tickets": tickets, "search_query": q},
                   context)
 
 
