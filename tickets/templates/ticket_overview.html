@@ -76,13 +76,21 @@
 					id="all_tickets">All Tickets</a>
 			</div>
 
-			<div class="hidden-sm hidden-xs">
+			<div class="row hidden-sm hidden-xs">
+
 				<form id="searchform" action="{% url 'search_tickets' %}" method="get" accept-charset="utf-8">
 					<input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
 					<button class="searchbutton" type="submit">
                     <i class="fa fa-search"></i>
 				      </button>
 				</form>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 search-query-text">
+					{% if search_query %}
+					<span>Your search for "{{search_query}}" returned {{tickets.count}} results.</span>
+					{% endif %}
+				</div>
 			</div>
 			{% endif %}
 		</div>
@@ -103,14 +111,14 @@
 						{% if ticket.category == 'ISSUE' %}
 						<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm grey-btn"
 							role="button">Edit</a>
-						<a class="btn btn-sm red-btn"
-							role="button" onclick="confirmModal('Are you sure you want to delete this ticket?', '{% url 'delete_ticket' ticket_id=ticket.id %}')">Delete</a>
+						<a class="btn btn-sm red-btn" role="button"
+							onclick="confirmModal('Are you sure you want to delete this ticket?', '{% url 'delete_ticket' ticket_id=ticket.id %}')">Delete</a>
 						{% else %}
 						{% if request.user|in_group:"Subscribers" and request.user|is_active:"Subscriber" %}
 						<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm grey-btn"
 							role="button">Edit</a>
-						<a class="btn btn-sm red-btn"
-							role="button" onclick="confirmModal('Are you sure you want to delete this ticket?', '{% url 'delete_ticket' ticket_id=ticket.id %}')">Delete</a>
+						<a class="btn btn-sm red-btn" role="button"
+							onclick="confirmModal('Are you sure you want to delete this ticket?', '{% url 'delete_ticket' ticket_id=ticket.id %}')">Delete</a>
 						{% else %}
 						<p class="italic-text">You must re-subscribe to modify your feature tickets</p>
 						{% endif %}
@@ -197,14 +205,14 @@
 						{% if ticket.category == 'ISSUE' %}
 						<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm grey-btn"
 							role="button">Edit</a>
-						<a class="btn btn-sm red-btn"
-							role="button" onclick="confirmModal('Are you sure you want to delete this ticket?', '{% url 'delete_ticket' ticket_id=ticket.id %}')">Delete</a>
+						<a class="btn btn-sm red-btn" role="button"
+							onclick="confirmModal('Are you sure you want to delete this ticket?', '{% url 'delete_ticket' ticket_id=ticket.id %}')">Delete</a>
 						{% else %}
 						{% if request.user|in_group:"Subscribers" and request.user|is_active:"Subscriber" %}
 						<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm grey-btn"
 							role="button">Edit</a>
-						<a class="btn btn-sm red-btn"
-							role="button" onclick="confirmModal('Are you sure you want to delete this ticket?', '{% url 'delete_ticket' ticket_id=ticket.id %}')">Delete</a>
+						<a class="btn btn-sm red-btn" role="button"
+							onclick="confirmModal('Are you sure you want to delete this ticket?', '{% url 'delete_ticket' ticket_id=ticket.id %}')">Delete</a>
 						{% else %}
 						<p class="italic-text">You must re-subscribe to modify your feature tickets</p>
 						{% endif %}
@@ -356,14 +364,14 @@
 									{% if ticket.category == 'ISSUE' %}
 									<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm grey-btn"
 										role="button">Edit</a>
-									<a class="btn btn-sm red-btn"
-							role="button" onclick="confirmModal('Are you sure you want to delete this ticket?', '{% url 'delete_ticket' ticket_id=ticket.id %}')">Delete</a>
+									<a class="btn btn-sm red-btn" role="button"
+										onclick="confirmModal('Are you sure you want to delete this ticket?', '{% url 'delete_ticket' ticket_id=ticket.id %}')">Delete</a>
 									{% else %}
 									{% if request.user|in_group:"Subscribers" and request.user|is_active:"Subscriber" %}
 									<a href="{% url 'edit_ticket' ticket_id=ticket.id %}" class="btn btn-sm grey-btn"
 										role="button">Edit</a>
-									<a class="btn btn-sm red-btn"
-							role="button" onclick="confirmModal('Are you sure you want to delete this ticket?', '{% url 'delete_ticket' ticket_id=ticket.id %}')">Delete</a>
+									<a class="btn btn-sm red-btn" role="button"
+										onclick="confirmModal('Are you sure you want to delete this ticket?', '{% url 'delete_ticket' ticket_id=ticket.id %}')">Delete</a>
 									{% else %}
 									<p class="italic-text">You must re-subscribe to modify your feature tickets</p>
 									{% endif %}
@@ -463,14 +471,14 @@
 										{% if ticket.category == 'ISSUE' %}
 										<a href="{% url 'edit_ticket' ticket_id=ticket.id %}"
 											class="btn btn-sm grey-btn" role="button">Edit</a>
-										<a class="btn btn-sm red-btn"
-							role="button" onclick="confirmModal('Are you sure you want to delete this ticket?', '{% url 'delete_ticket' ticket_id=ticket.id %}')">Delete</a>
+										<a class="btn btn-sm red-btn" role="button"
+											onclick="confirmModal('Are you sure you want to delete this ticket?', '{% url 'delete_ticket' ticket_id=ticket.id %}')">Delete</a>
 										{% else %}
 										{% if request.user|in_group:"Subscribers" and request.user|is_active:"Subscriber" %}
 										<a href="{% url 'edit_ticket' ticket_id=ticket.id %}"
 											class="btn btn-sm grey-btn" role="button">Edit</a>
-										<a class="btn btn-sm red-btn"
-							role="button" onclick="confirmModal('Are you sure you want to delete this ticket?', '{% url 'delete_ticket' ticket_id=ticket.id %}')">Delete</a>
+										<a class="btn btn-sm red-btn" role="button"
+											onclick="confirmModal('Are you sure you want to delete this ticket?', '{% url 'delete_ticket' ticket_id=ticket.id %}')">Delete</a>
 										{% else %}
 										<p class="italic-text">You must re-subscribe to modify your feature tickets</p>
 										{% endif %}
